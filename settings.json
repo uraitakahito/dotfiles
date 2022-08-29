@@ -1,0 +1,27 @@
+{
+    // When enabled, will trim trailing whitespace when saving a file.
+    "files.trimTrailingWhitespace": true,
+
+    // When enabled, insert a final new line at the end of the file when saving it.
+    "files.insertFinalNewline": true,
+
+    // Adjust the zoom level of the window. The original size is 0 and each increment above (e.g. 1) or below (e.g. -1) represents zooming 20% larger or smaller. You can also enter decimals to adjust the zoom level with a finer granularity.
+    "window.zoomLevel": 4,
+
+    // Controls whether the minimap is shown.
+    "editor.minimap.enabled": false,
+
+    // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
+    "editor.tabSize": 2,
+
+    // Controls the font family of the terminal, this defaults to `editor.fontFamily`'s value.
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+
+    "tabnine.experimentalAutoImports": true,
+
+    // Specifies the file icon theme used in the workbench.
+    "workbench.iconTheme": "material-icon-theme",
+
+    // Setting this to `line` will enable the hovers to show anywhere over the line.
+    "gitlens.hovers.currentLine.over": "line",
+}
