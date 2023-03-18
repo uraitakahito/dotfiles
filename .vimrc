@@ -9,6 +9,11 @@ endif
 " https://vimhelp.org/options.txt.html#%27hlsearch%27
 set hlsearch
 
+" Stop the highlighting for the 'hlsearch' option. Type: <Esc><Esc>
+" https://vimhelp.org/pattern.txt.html#%3Anohlsearch
+" https://vimhelp.org/map.txt.html#%3Anmap
+nmap <Esc><Esc> :nohlsearch<Enter>
+
 " Number of spaces to use for each step of (auto)indent. Used for 'cindent' , >> , << , etc.
 set shiftwidth=2
 
