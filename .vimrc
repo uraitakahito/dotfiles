@@ -5,6 +5,10 @@ if has('macunix')
   source $VIMRUNTIME/defaults.vim
 endif
 
+" When there is a previous search pattern, highlight all its matches.
+" https://vimhelp.org/options.txt.html#%27hlsearch%27
+set hlsearch
+
 " Number of spaces to use for each step of (auto)indent. Used for 'cindent' , >> , << , etc.
 set shiftwidth=2
 
