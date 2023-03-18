@@ -1,7 +1,9 @@
-" When set to "dark", Vim will try to use colors that look good on a dark background. When set to "light", Vim will try to use colors that look good on a light background.
-" When this option is set, the default settings for the highlight groups will change. To use other settings, place ":highlight" commands AFTER the setting of the 'background' option.
-set background=dark
-syntax on
+" See Also:
+" https://stackoverflow.com/questions/44867116/where-is-the-default-vimrc-located-on-mac
+if has('macunix')
+  unlet! skip_defaults_vim
+  source $VIMRUNTIME/defaults.vim
+endif
 
 " Number of spaces to use for each step of (auto)indent. Used for 'cindent' , >> , << , etc.
 set shiftwidth=2
