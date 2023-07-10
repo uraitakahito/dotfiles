@@ -4,6 +4,13 @@ set -u
 # Install script for VSCode Remote Container or Codespaces
 # https://code.visualstudio.com/docs/devcontainers/containers#_personalizing-with-dotfile-repositories
 
+# How to debug this script:
+#   https://kesin.hatenablog.com/entry/2020/07/10/083000
+#
+# 1. docker run --entrypoint=bash --rm -it --mount type=bind,src=$(pwd),dst=/home/dotfiles mcr.microsoft.com/vscode/devcontainers/typescript-node:0-12
+# 2. install.sh
+# 3. . ~/.profile
+
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 cd ~/
