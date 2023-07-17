@@ -20,13 +20,14 @@ The **[Dev Containers extension](https://marketplace.visualstudio.com/items?item
 Build the image:
 
 ```console
-% docker image build -t $(basename `pwd`)-image ./ --build-arg user_id=`id -u` --build-arg group_id=`id -g`
+% PROJECT=$(basename `pwd`)
+% docker image build -t $PROJECT-image ./ --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 ```
 
 Run docker containers:
 
 ```console
-% docker run -d --rm --init --name $(basename `pwd`)-container $(basename `pwd`)-image
+% docker run -d --rm --init --name $PROJECT-container $PROJECT-image
 ```
 
 And Open the **Command Palette** to run the command **Dev Containers: Attach to Running Container**
@@ -40,7 +41,7 @@ The procedure is the same up to the point where the container is started.
 Execute zsh within a running Docker container:
 
 ```console
-% docker exec -it $(basename `pwd`)-container /bin/zsh
+% docker exec -it $PROJECT-container /bin/zsh
 ```
 
 And type vim or emacs :-D
