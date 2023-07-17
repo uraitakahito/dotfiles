@@ -45,3 +45,20 @@ Execute zsh within a running Docker container:
 ```
 
 And type vim or emacs :-D
+
+### Tips
+
+To save history, create volume
+
+```console
+% docker volume create zsh-volume
+% docker run -it --rm -v zsh-volume:/zsh-volume alpine touch /zsh-volume/.zsh_history
+% docker run -it --rm -v zsh-volume:/zsh-volume alpine chown -R `id -u`:`id -g` /zsh-volume
+% docker run -it --rm -v zsh-volume:/zsh-volume alpine /bin/ash
+```
+
+And run docker containers with volume:
+
+```console
+% docker run -d --rm --init -v zsh-volume:/zsh-volume --name $PROJECT-container $PROJECT-image
+```
