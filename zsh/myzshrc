@@ -1,3 +1,11 @@
+# Beep off on error in ZLE
+setopt no_beep
+
+# Editor
+if type "vim" > /dev/null 2>&1; then
+  export EDITOR="vim"
+fi
+
 # fgitshow - git commit browser
 fgitshow() {
   git log --graph --color=always \
