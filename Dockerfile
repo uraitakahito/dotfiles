@@ -22,8 +22,20 @@ RUN apt-get update && \
 COPY bin/set-superuser-and-group.sh ${home}/bin/
 RUN ${home}/bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}
 
-# an empty file to suppress zsh initial messages
-RUN touch ${home}/.zshrc
+#
+# prezto
+# https://github.com/sorin-ionescu/prezto
+#
+RUN git clone --recursive \
+  https://github.com/sorin-ionescu/prezto.git \
+  "${ZDOTDIR:-${home}}/.zprezto"
+
+RUN ln -s ${home}/.zprezto/runcoms/zlogin     ${home}/.zlogin \
+  && ln -s ${home}/.zprezto/runcoms/zlogout   ${home}/.zlogout \
+  && ln -s ${home}/.zprezto/runcoms/zpreztorc ${home}/.zpreztorc \
+  && ln -s ${home}/.zprezto/runcoms/zprofile  ${home}/.zprofile \
+  && ln -s ${home}/.zprezto/runcoms/zshenv    ${home}/.zshenv \
+  && ln -s ${home}/.zprezto/runcoms/zshrc     ${home}/.zshrc
 
 #
 # Starship
