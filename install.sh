@@ -18,4 +18,6 @@ ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
 ln -fs $SCRIPT_DIR/.vimrc .
 
+echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
+
 echo "-----Finish!!------"
