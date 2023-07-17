@@ -18,6 +18,13 @@ ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
 ln -fs $SCRIPT_DIR/.vimrc .
 
+if [ -d /zsh-volume ]; then
+  if [ ! -e /zsh-volume/.zsh_history ]; then
+    touch /zsh-volume/.zsh_history
+  fi
+  ln -fs /zsh-volume/.zsh_history ./.zsh_history
+fi
+
 echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 
 echo "-----Finish!!------"
