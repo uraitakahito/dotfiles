@@ -6,6 +6,11 @@ if type "vim" > /dev/null 2>&1; then
   export EDITOR="vim"
 fi
 
+# Inform gpg-agent of the current TTY for user prompts.
+# If you want to check gpg, type:
+#   echo 'test' | gpg --clearsign
+export GPG_TTY=$TTY
+
 # reverse-i-search with fzf
 function select-history() {
   BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
