@@ -37,4 +37,4 @@ fcd() {
 #
 # Alias
 #
-alias l='exa'
+alias a='exa'
