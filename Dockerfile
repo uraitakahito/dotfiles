@@ -18,7 +18,8 @@ RUN apt-get update && \
   apt-get install -y sudo
 RUN apt-get install -y vim emacs
 RUN apt-get install -y tmux && \
-  apt-get install -y fzf
+  apt-get install -y fzf && \
+  apt-get install -y exa
 
 COPY bin/set-superuser-and-group.sh ${home}/bin/
 RUN ${home}/bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}

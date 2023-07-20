@@ -1,3 +1,14 @@
+## Prerequisites
+
+Starship needs [Nerd Font](https://www.nerdfonts.com/) (for example, try the Hack nerd font).
+
+```console
+% brew tap homebrew/cask-fonts
+% brew install font-Hack-nerd-font
+```
+
+Paste that in a macOS Terminal.
+
 ## Usage
 
 ### Use Visual Studio Code
