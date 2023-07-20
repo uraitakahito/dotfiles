@@ -6,6 +6,14 @@ if type "vim" > /dev/null 2>&1; then
   export EDITOR="vim"
 fi
 
+# reverse-i-search with fzf
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
+
 # fgitshow - git commit browser
 fgitshow() {
   git log --graph --color=always \
