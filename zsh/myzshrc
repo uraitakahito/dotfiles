@@ -43,3 +43,9 @@ fcd() {
 # Alias
 #
 alias a='exa'
+
+# trash-cli
+# https://github.com/andreafrancia/trash-cli
+if type trash-put > /dev/null 2>&1; then
+  alias rm='trash-put'
+fi
