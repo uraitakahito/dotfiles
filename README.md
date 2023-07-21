@@ -71,5 +71,7 @@ To save history, create volume
 And run docker containers with volume:
 
 ```console
-% docker run -d --rm --init -v zsh-volume:/zsh-volume --name $PROJECT-container $PROJECT-image
+% docker run -d --rm --init --mount type=volume,src=zsh-volume,dst=/zsh-volume --name $PROJECT-container $PROJECT-image
+% docker exec -it $PROJECT-container zsh
+% ln -fs /zsh-volume/.zsh_history ~/.zsh_history
 ```
