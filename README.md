@@ -1,5 +1,7 @@
 ## Prerequisites
 
+### Nerd Font
+
 Starship needs [Nerd Font](https://www.nerdfonts.com/) (for example, try the Hack nerd font).
 
 ```console
@@ -9,16 +11,25 @@ Starship needs [Nerd Font](https://www.nerdfonts.com/) (for example, try the Hac
 
 Paste that in a macOS Terminal.
 
+### ssh-agent in local OS
+
+[The extension will automatically forward your local SSH agent](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys). You can add your local SSH keys to the agent if it is running by using the ssh-add command. 
+Type:
+
+```console
+% ssh-add
+```
+
 ## Usage
 
-### Use Visual Studio Code
+### Use Visual Studio Code (recommended)
 
 The **[Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)** supports two primary operating models:
 
 1. You can use a container as your full-time development environment
 2. You can attach to a running container to inspect it
 
-#### 1. container as your full-time development environment
+#### 1. container as your full-time development environment (recommended)
 
 - Run the Docker Desktop application to start Docker.
 - Open the **Command Palette** (Command + Shift + P) to run the command **Dev Containers: Reopen in Container**
@@ -71,5 +82,7 @@ To save history, create volume
 And run docker containers with volume:
 
 ```console
-% docker run -d --rm --init -v zsh-volume:/zsh-volume --name $PROJECT-container $PROJECT-image
+% docker run -d --rm --init --mount type=volume,src=zsh-volume,dst=/zsh-volume --name $PROJECT-container $PROJECT-image
+% docker exec -it $PROJECT-container zsh
+% ln -fs /zsh-volume/.zsh_history ~/.zsh_history
 ```

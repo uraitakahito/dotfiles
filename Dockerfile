@@ -16,7 +16,7 @@ RUN apt-get update && \
   apt-get install -y sed && \
   apt-get install -y curl && \
   apt-get install -y git && \
-  apt-get install -y gpg
+  apt-get install -y gnupg2
 RUN apt-get install -y vim emacs
 RUN apt-get install -y tmux && \
   apt-get install -y fzf && \

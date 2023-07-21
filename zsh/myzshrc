@@ -9,6 +9,9 @@ fi
 # Inform gpg-agent of the current TTY for user prompts.
 # If you want to check gpg, type:
 #   echo 'test' | gpg --clearsign
+#
+# BUT, Unable to List GPG Keys in Dev Container or Sign Git Commits
+# https://github.com/microsoft/vscode-remote-release/issues/8549
 export GPG_TTY=$TTY
 
 # reverse-i-search with fzf
