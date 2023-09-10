@@ -1,16 +1,5 @@
 ## Prerequisites
 
-### Nerd Font
-
-Starship needs [Nerd Font](https://www.nerdfonts.com/) (for example, try the Hack nerd font).
-
-```console
-% brew tap homebrew/cask-fonts
-% brew install font-Hack-nerd-font
-```
-
-Paste that in a macOS Terminal.
-
 ### ssh-agent in local OS
 
 [The extension will automatically forward your local SSH agent](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys). You can add your local SSH keys to the agent if it is running by using the ssh-add command. 
