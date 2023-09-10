@@ -45,6 +45,22 @@ And Open the **Command Palette** to run the command **Dev Containers: Attach to 
 
 See Also: [Attach to a Docker container](https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container)
 
+#### Personalizing Dev Containers with dotfile repositories
+
+In settings.json:
+
+```json
+{
+  "dotfiles.repository": "xxxxx/dotfiles",
+  "dotfiles.targetPath": "~/dotfiles",
+  "dotfiles.installCommand": "install.sh"
+}
+```
+
+CAUTION:
+
+DONOT INPUT `~/dotfiles/install.sh` BUT `install.sh`.
+
 ### Vim or Emacs (in other words, only terminal)
 
 The procedure is the same up to the point where the container is started.
