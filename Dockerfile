@@ -31,30 +31,6 @@ RUN apt-get install -y --no-install-recommends \
 COPY bin/set-superuser-and-group.sh ${home}/bin/
 RUN ${home}/bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}
 
-#
-# prezto
-# https://github.com/sorin-ionescu/prezto
-#
-RUN git clone --recursive \
-  https://github.com/sorin-ionescu/prezto.git \
-  "${ZDOTDIR:-${home}}/.zprezto"
-
-RUN ln -s ${home}/.zprezto/runcoms/zlogin     ${home}/.zlogin \
-  && ln -s ${home}/.zprezto/runcoms/zlogout   ${home}/.zlogout \
-  && ln -s ${home}/.zprezto/runcoms/zpreztorc ${home}/.zpreztorc \
-  && ln -s ${home}/.zprezto/runcoms/zprofile  ${home}/.zprofile \
-  && ln -s ${home}/.zprezto/runcoms/zshenv    ${home}/.zshenv \
-  && ln -s ${home}/.zprezto/runcoms/zshrc     ${home}/.zshrc
-
-#
-# Starship
-# https://starship.rs/
-#
-RUN curl -sS https://starship.rs/install.sh > ${home}/bin/install-starship.sh && \
-  chmod 0755 ${home}/bin/install-starship.sh && \
-  ${home}/bin/install-starship.sh --yes && \
-  echo 'eval "$(starship init zsh)"' >> ${home}/.zshrc
-
 RUN chown -R ${user_id}:${group_id} ${home}
 
 USER ${user_name}
