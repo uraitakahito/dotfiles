@@ -1,3 +1,25 @@
+#
+# prompt
+#
+prompt_precmd() {
+  local magenta=$'\e[35m' cyan=$'\e[36m' reset=$'\e[m'
+  PROMPT="%{${magenta}%}%~%{${reset}%}"
+  TAIL=""
+  git status --porcelain >/dev/null 2>&1
+  if [ $? -ne  0 ]; then
+    TAIL=""
+  else
+    branch=$(git branch --show-current 2>/dev/null)
+    TAIL=" on %{${cyan}%}${branch}%{${reset}%}"
+  fi
+  PROMPT="
+${PROMPT}${TAIL}
+%# "
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd prompt_precmd
+
 # Beep off on error in ZLE
 setopt no_beep
 
