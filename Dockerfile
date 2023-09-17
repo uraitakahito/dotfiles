@@ -34,6 +34,5 @@ RUN ${home}/bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}
 RUN chown -R ${user_id}:${group_id} ${home}
 
 USER ${user_name}
-WORKDIR /home/${user_name}
 
 ENTRYPOINT ["tail", "-F", "/dev/null"]
