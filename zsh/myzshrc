@@ -28,6 +28,12 @@ if type "vim" > /dev/null 2>&1; then
   export EDITOR="vim"
 fi
 
+#
+# Ignore history duplicates
+# Do not enter command lines into the history list if they are duplicates of the previous event.
+#
+setopt hist_ignore_dups
+
 # Inform gpg-agent of the current TTY for user prompts.
 # If you want to check gpg, type:
 #   echo 'test' | gpg --clearsign
