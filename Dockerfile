@@ -18,6 +18,8 @@ RUN apt-get update && \
     sed \
     curl \
     ca-certificates \
+    iputils-ping \
+    net-tools \
     git \
     gnupg2
 RUN apt-get install -y --no-install-recommends vim emacs
