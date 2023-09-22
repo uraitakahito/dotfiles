@@ -1,4 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -eo pipefail
+
 SHELL_NAME=$0
 GROUP_ID=$1
 USER_ID=$2
