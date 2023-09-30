@@ -35,7 +35,7 @@ Build the image:
 
 ```console
 % PROJECT=$(basename `pwd`)
-% docker image build -t $PROJECT-image ./ --build-arg user_id=`id -u` --build-arg group_id=`id -g`
+% docker image build -t $PROJECT-image ./.devcontainer --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 ```
 
 Run docker containers:
