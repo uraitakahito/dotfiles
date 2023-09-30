@@ -32,7 +32,12 @@ fi
 # Ignore history duplicates
 # Do not enter command lines into the history list if they are duplicates of the previous event.
 #
-setopt hist_ignore_dups
+# setopt hist_ignore_dups
+
+#
+# When searching for history entries in the line editor, do not display duplicates of a line previously found, even if the duplicates are not contiguous.
+#
+setopt hist_find_no_dups
 
 # Inform gpg-agent of the current TTY for user prompts.
 # If you want to check gpg, type:
