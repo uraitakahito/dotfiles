@@ -78,7 +78,15 @@ And type vim or emacs :-D
 
 ### Tips
 
-To save history, create volume
+#### Running a command and then killing it
+
+```console
+% docker container run -it --rm --init --name $PROJECT-container $PROJECT-image ls /
+```
+
+#### How to save zsh history
+
+To save history, create volume:
 
 ```console
 % docker volume create zsh-volume

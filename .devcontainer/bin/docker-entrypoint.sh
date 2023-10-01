@@ -11,7 +11,7 @@ _is_sourced() {
 }
 
 _main() {
-    tail -F /dev/null
+    exec "$@"
 }
 
 # If we are sourced from elsewhere, don't perform any further actions

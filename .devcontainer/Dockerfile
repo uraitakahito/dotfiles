@@ -40,3 +40,5 @@ COPY bin/docker-entrypoint.sh /usr/local/bin/
 USER ${user_name}
 
 ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["tail", "-F", "/dev/null"]
