@@ -32,5 +32,12 @@
   "gitlens.hovers.currentLine.over": "line",
 
   // Let you modify the colors.
-  "workbench.colorTheme": "Default Dark+"
+  "workbench.colorTheme": "Default Dark+",
+
+  //
+  // Prettier
+  //
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }
