@@ -1,17 +1,6 @@
 ![MacOS](https://img.shields.io/badge/ventura_13.5.2-support-success.svg?style=for-the-badge&logo=macOS)
 ![Windows](https://img.shields.io/badge/windows-nosupport-critical.svg?style=for-the-badge&logo=windows)
 
-## Prerequisites
-
-### ssh-agent in local OS
-
-[The extension will automatically forward your local SSH agent](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys). You can add your local SSH keys to the agent if it is running by using the ssh-add command. 
-Type:
-
-```console
-% ssh-add
-```
-
 ## Usage
 
 ### Use Visual Studio Code (recommended)
