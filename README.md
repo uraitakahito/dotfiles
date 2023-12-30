@@ -1,4 +1,4 @@
-![MacOS](https://img.shields.io/badge/ventura_13.5.2-support-success.svg?style=for-the-badge&logo=macOS)
+![MacOS](https://img.shields.io/badge/sonoma_14.2.1-support-success.svg?style=for-the-badge&logo=macOS)
 ![Windows](https://img.shields.io/badge/windows-nosupport-critical.svg?style=for-the-badge&logo=windows)
 
 ## Usage
