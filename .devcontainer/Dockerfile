@@ -12,6 +12,7 @@ ARG home=/home/${user_name}
 RUN apt-get update -qq && \
   apt-get upgrade -y -qq && \
   apt-get install -y -qq --no-install-recommends \
+    # Basic
     less \
     sudo \
     procps \
@@ -22,14 +23,17 @@ RUN apt-get update -qq && \
     iputils-ping \
     net-tools \
     git \
-    gnupg2
-RUN apt-get install -y -qq --no-install-recommends vim emacs
-RUN apt-get install -y -qq --no-install-recommends \
-  tmux \
-  # fzf needs PAGER(less or something)
-  fzf \
-  exa \
-  trash-cli
+    gnupg2 \
+    # Editor
+    vim emacs \
+    # Utility
+    tmux \
+    # fzf needs PAGER(less or something)
+    fzf \
+    exa \
+    trash-cli && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 # Add superuser
 RUN curl -sS https://raw.githubusercontent.com/uraitakahito/set-superuser-and-group/main/set-superuser-and-group.sh > /usr/local/bin/set-superuser-and-group.sh && \
