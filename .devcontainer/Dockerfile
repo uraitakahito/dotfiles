@@ -8,9 +8,9 @@ ARG user_name=developer
 # https://docs.docker.com/engine/reference/builder/#/workdir
 ARG home=/home/${user_name}
 
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y --no-install-recommends \
+RUN apt-get update -qq && \
+  apt-get upgrade -y -qq && \
+  apt-get install -y -qq --no-install-recommends \
     less \
     sudo \
     procps \
@@ -22,18 +22,19 @@ RUN apt-get update && \
     net-tools \
     git \
     gnupg2
-RUN apt-get install -y --no-install-recommends vim emacs
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install -y -qq --no-install-recommends vim emacs
+RUN apt-get install -y -qq --no-install-recommends \
   tmux \
   # fzf needs PAGER(less or something)
   fzf \
   exa \
   trash-cli
 
-COPY bin/set-superuser-and-group.sh ${home}/bin/
-RUN ${home}/bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}
-
-RUN chown -R ${user_id}:${group_id} ${home}
+# Add superuser
+RUN curl -sS https://raw.githubusercontent.com/uraitakahito/set-superuser-and-group/main/set-superuser-and-group.sh > /usr/local/bin/set-superuser-and-group.sh && \
+  chmod 755 /usr/local/bin/set-superuser-and-group.sh && \
+  set-superuser-and-group.sh ${group_id} ${user_id} ${user_name} && \
+  chown -R ${user_id}:${group_id} ${home}
 
 COPY bin/docker-entrypoint.sh /usr/local/bin/
 
