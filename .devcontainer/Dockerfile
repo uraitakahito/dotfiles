@@ -30,10 +30,11 @@ RUN apt-get install -y -qq --no-install-recommends \
   exa \
   trash-cli
 
-COPY bin/set-superuser-and-group.sh ${home}/bin/
-RUN ${home}/bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}
-
-RUN chown -R ${user_id}:${group_id} ${home}
+# Add superuser
+RUN curl -sS https://raw.githubusercontent.com/uraitakahito/set-superuser-and-group/main/set-superuser-and-group.sh > /usr/local/bin/set-superuser-and-group.sh && \
+  chmod 755 /usr/local/bin/set-superuser-and-group.sh && \
+  set-superuser-and-group.sh ${group_id} ${user_id} ${user_name} && \
+  chown -R ${user_id}:${group_id} ${home}
 
 COPY bin/docker-entrypoint.sh /usr/local/bin/
 
