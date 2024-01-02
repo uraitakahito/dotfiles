@@ -19,6 +19,7 @@ cd ~/
 ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
 ln -fs $SCRIPT_DIR/.vimrc .
+ln -fs $SCRIPT_DIR/.vscode .
 
 if [ -d /zsh-volume ]; then
   if [ ! -e /zsh-volume/.zsh_history ]; then
