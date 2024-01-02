@@ -7,9 +7,11 @@ set -u
 # How to debug this script:
 #   https://kesin.hatenablog.com/entry/2020/07/10/083000
 #
-# 1. docker run --entrypoint=bash --rm -it --mount type=bind,src=$(pwd),dst=/home/dotfiles mcr.microsoft.com/vscode/devcontainers/typescript-node:0-12
-# 2. install.sh
-# 3. . ~/.profile
+# 1. docker run --entrypoint=bash --rm -it --mount type=bind,src=$(pwd),dst=/home/dotfiles ubuntu
+# 2. cd /home/dotfiles
+# 3. ./install.sh
+# 4. cd ~
+# 5. . .profile
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
