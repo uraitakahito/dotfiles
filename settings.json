@@ -23,7 +23,7 @@
   //  - selection: Render whitespace characters only on selected text.
   //  - trailing: Render only trailing whitespace characters.
   //  - all
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "selection",
 
   "tabnine.experimentalAutoImports": true,
 
