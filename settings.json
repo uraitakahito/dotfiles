@@ -17,6 +17,14 @@
   // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
   "editor.tabSize": 2,
 
+  // Controls how the editor should render whitespace characters.
+  //  - none
+  //  - boundary: Render whitespace characters except for single spaces between words.
+  //  - selection: Render whitespace characters only on selected text.
+  //  - trailing: Render only trailing whitespace characters.
+  //  - all
+  "editor.renderWhitespace": "boundary",
+
   "tabnine.experimentalAutoImports": true,
 
   // Specifies the file icon theme used in the workbench.
