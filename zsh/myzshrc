@@ -29,6 +29,11 @@ if type "vim" > /dev/null 2>&1; then
 fi
 
 #
+# the number of commands that are stored in the zsh history file
+#
+export SAVEHIST=100000
+
+#
 # Ignore history duplicates
 # Do not enter command lines into the history list if they are duplicates of the previous event.
 #
