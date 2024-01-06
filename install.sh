@@ -19,8 +19,12 @@ cd ~/
 ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
 ln -fs $SCRIPT_DIR/.vimrc .
-mkdir -p ~/.vscode-server/data/Machine
-ln -fs $SCRIPT_DIR/settings.json .vscode-server/data/Machine
+
+# Copy settings.json if this script is running in a container
+if [ -e /.dockerenv ]; then
+  mkdir -p ~/.vscode-server/data/Machine
+  ln -fs $SCRIPT_DIR/settings.json .vscode-server/data/Machine
+fi
 
 if [ -d /zsh-volume ]; then
   if [ ! -e /zsh-volume/.zsh_history ]; then
