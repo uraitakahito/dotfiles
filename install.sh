@@ -30,7 +30,9 @@ if [ -d /zsh-volume ]; then
   if [ ! -e /zsh-volume/.zsh_history ]; then
     touch /zsh-volume/.zsh_history
   fi
-  ln -fs /zsh-volume/.zsh_history ./.zsh_history
+  if [ -e /zsh-volume/.zsh_history ]; then
+    ln -fs /zsh-volume/.zsh_history ./.zsh_history
+  fi
 fi
 
 echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
