@@ -37,6 +37,21 @@
   "workbench.colorTheme": "Default Dark+",
 
   //
+  // Ruby LSP
+  //
+  // Ruby version managers
+  //  Available options are
+  //  "auto" (select version manager automatically)
+  //  "none" (do not use a version manager)
+  //  "custom" (use rubyLsp.customRubyCommand for finding/activating Ruby)
+  //  "asdf"
+  //  "chruby"
+  //  "rbenv"
+  //  "rvm"
+  //  "shadowenv"
+  "rubyLsp.rubyVersionManager": "none",
+
+  //
   // Prettier
   //
   "editor.defaultFormatter": "esbenp.prettier-vscode",
