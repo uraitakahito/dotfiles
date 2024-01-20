@@ -50,6 +50,13 @@
   //  "rvm"
   //  "shadowenv"
   "rubyLsp.rubyVersionManager": "none",
+  // Available options
+  //   auto: automatically detect the formatter based on the app's bundle (default)
+  //   none: do not use a formatter (disables format on save and related diagnostics)
+  //   all other options are the name of the formatter (e.g.: rubocop or syntax_tree)
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp"
+  },
 
   //
   // Prettier
