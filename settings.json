@@ -55,7 +55,9 @@
   //   none: do not use a formatter (disables format on save and related diagnostics)
   //   all other options are the name of the formatter (e.g.: rubocop or syntax_tree)
   "[ruby]": {
-    "editor.defaultFormatter": "Shopify.ruby-lsp"
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
   },
 
   //
@@ -63,7 +65,7 @@
   //
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
   }
 }
