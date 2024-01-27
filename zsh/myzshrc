@@ -17,8 +17,7 @@ ${PROMPT}${TAIL}
 %# "
 }
 
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd prompt_precmd
+autoload -Uz add-zsh-hook && add-zsh-hook precmd prompt_precmd
 
 # Beep off on error in ZLE
 setopt no_beep
