@@ -55,17 +55,15 @@
   //   none: do not use a formatter (disables format on save and related diagnostics)
   //   all other options are the name of the formatter (e.g.: rubocop or syntax_tree)
   "[ruby]": {
-    "editor.defaultFormatter": "auto",
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": false
+    "editor.defaultFormatter": "auto"
   },
 
   //
   // Prettier
   //
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": false
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false
 }
