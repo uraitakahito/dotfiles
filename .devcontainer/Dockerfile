@@ -11,7 +11,7 @@ ARG home=/home/${user_name}
 
 RUN apt-get update -qq && \
   apt-get upgrade -y -qq && \
-  apt-get install -y -qq --no-install-recommends \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
     # Basic
     less \
     sudo \
