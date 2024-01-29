@@ -17,7 +17,7 @@ ${PROMPT}${TAIL}
 %# "
 }
 
-autoload -Uz add-zsh-hook && add-zsh-hook precmd prompt_precmd
+# autoload -Uz add-zsh-hook && add-zsh-hook precmd prompt_precmd
 
 #
 # compinit
