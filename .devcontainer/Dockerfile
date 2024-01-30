@@ -23,8 +23,8 @@ RUN apt-get update -qq && \
 RUN cd /usr/src && \
   git clone --depth 1 https://github.com/devcontainers/features.git && \
   USERNAME=${user_name} \
-  USER_UID=#{user_id} \
-  USER_GID={group_id} \
+  UID=${user_id} \
+  GID=${group_id} \
   CONFIGUREZSHASDEFAULTSHELL=true \
     /usr/src/features/src/common-utils/install.sh
 
