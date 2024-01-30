@@ -1,4 +1,5 @@
-FROM debian:bullseye
+# Debian 12.4
+FROM debian:bookworm-20240110
 
 ARG user_id=501
 ARG group_id=20
@@ -22,7 +23,11 @@ RUN apt-get update -qq && \
 #
 RUN cd /usr/src && \
   git clone --depth 1 https://github.com/devcontainers/features.git && \
-  USERNAME=${user_name} USER_UID=#{user_id} USER_GID={group_id} /usr/src/features/src/common-utils/install.sh
+  USERNAME=${user_name} \
+  UID=${user_id} \
+  GID=${group_id} \
+  CONFIGUREZSHASDEFAULTSHELL=true \
+    /usr/src/features/src/common-utils/install.sh
 
 #
 # Install packages
