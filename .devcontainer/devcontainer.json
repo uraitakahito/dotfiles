@@ -19,6 +19,7 @@
   ],
 
   // Features to add to the dev container. More info: https://containers.dev/features.
+  // BUT, DO NOT INVOKE 'features' from devcontainer.json as it is manually called from Dockerfile.
   // "features": {},
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
