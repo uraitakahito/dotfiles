@@ -30,7 +30,8 @@ Build the image:
 Run docker containers:
 
 ```console
-% docker container run -d --rm --init --mount type=bind,src=$PWD,dst=/workspaces/$PROJECT --name $PROJECT-container $PROJECT-image
+% docker container run -d --rm --init --mount type=bind,src=/Users/xxx/dotfiles,dst=/workspaces/$PROJECT --mount type=bind,src=/foo/bar,dst=/workspaces/bar --name $PROJECT-container $PROJECT-image
+
 ```
 
 And Open the **Command Palette** to run the command **Dev Containers: Attach to Running Container**
