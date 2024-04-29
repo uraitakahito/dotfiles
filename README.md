@@ -37,6 +37,12 @@ And Open the **Command Palette** to run the command **Dev Containers: Attach to 
 
 See Also: [Attach to a Docker container](https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container)
 
+##### Choose the -v or --mount flag
+
+New users should use the `--mount` syntax. Experienced users may be more familiar with the `-v` or `--volume` syntax, but are encouraged to use `--mount`, because research has shown it to be easier to use.
+
+See Also: [Bind mounts](https://docs.docker.com/storage/bind-mounts/)
+
 #### Personalizing Dev Containers with dotfile repositories
 
 In settings.json:
