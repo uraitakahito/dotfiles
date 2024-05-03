@@ -24,6 +24,14 @@ ${PROMPT}${TAIL}
 #
 autoload -Uz compinit && compinit
 
+#
+# helper
+#
+# is true on MacOS Darwin
+function is-darwin {
+  [[ "$OSTYPE" == darwin* ]]
+}
+
 # Beep off on error in ZLE
 setopt no_beep
 
@@ -83,6 +91,18 @@ fcd() {
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
+
+#
+# Mac
+#
+if is-darwin; then
+  #
+  # brew
+  #
+  if [ -e /opt/homebrew/bin/brew ]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
+  fi
+fi
 
 #
 # rbenv
