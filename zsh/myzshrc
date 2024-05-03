@@ -102,6 +102,20 @@ if is-darwin; then
   if [ -e /opt/homebrew/bin/brew ]; then
     eval $(/opt/homebrew/bin/brew shellenv)
   fi
+
+  #
+  # Docker
+  #
+  etc=/Applications/Docker.app/Contents/Resources/etc
+  target=~/dotfiles/zsh/completion
+  if [ -d $etc ]; then
+    ln -fs $etc/docker.zsh-completion $target/_docker
+    ln -fs $etc/docker-compose.zsh-completion $target/_docker-compose
+    fpath=($target $fpath)
+    zstyle ':completion:*:*:docker:*' option-stacking yes
+    zstyle ':completion:*:*:docker-*:*' option-stacking yes
+    autoload -Uz compinit && compinit -i
+  fi
 fi
 
 #
