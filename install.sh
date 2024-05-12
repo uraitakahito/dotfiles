@@ -15,6 +15,8 @@ set -u
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
+source "$HOME/dotfiles/zsh/modules/helper/init.sh"
+
 cd ~/
 ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
@@ -39,6 +41,11 @@ if [ -e ~/.zshrc ] && [ `grep -c myzshrc ~/.zshrc` -eq 0 ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 elif [ ! -e ~/.zshrc ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
+fi
+
+if is-vscode; then
+  echo 'Hello Visual Studio Code'
+  echo 'Hello Visual Studio Code' > ~/vscode
 fi
 
 echo "-----Finish!!------"
