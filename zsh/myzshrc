@@ -12,10 +12,7 @@ autoload -Uz compinit && compinit
 #
 # helper
 #
-# is true on MacOS Darwin
-function is-darwin {
-  [[ "$OSTYPE" == darwin* ]]
-}
+source $HOME/dotfiles/zsh/modules/helper/init.sh
 
 # Beep off on error in ZLE
 setopt no_beep
