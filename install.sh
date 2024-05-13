@@ -46,7 +46,9 @@ fi
 # temporary test code
 if is-vscode-remote-containers; then
   echo 'Hello VSCode remote containers'
-  echo 'Hello VSCode remote containers' > ~/vscode
+  echo 'Hello VSCode remote containers' > ~/vscode-if
+else
+  echo 'else statement' > ~/vscode-else
 fi
 
 # temporary test code
