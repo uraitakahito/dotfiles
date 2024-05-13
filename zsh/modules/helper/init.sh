@@ -3,7 +3,12 @@ function is-darwin {
   [[ "$OSTYPE" == darwin* ]]
 }
 
-# Checks if running on Visual Studio Code.
+# Checks if running on Visual Studio Code Terminal.
 function is-vscode {
   [[ "$TERM_PROGRAM" == "vscode" ]]
+}
+
+# Checks if running on VSCode and Remote Containers.
+function is-vscode-remote-containers {
+  [[ -v $VSCODE_REMOTE_CONTAINERS_SESSION ]]
 }
