@@ -10,5 +10,5 @@ function is-vscode {
 
 # Checks if running on VSCode and Remote Containers.
 function is-vscode-remote-containers {
-  [[ -v $VSCODE_REMOTE_CONTAINERS_SESSION ]]
+  [[ -z "${VSCODE_REMOTE_CONTAINERS_SESSION:-}" ]]
 }
