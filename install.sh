@@ -43,9 +43,13 @@ elif [ ! -e ~/.zshrc ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 fi
 
+# temporary test code
 if is-vscode; then
   echo 'Hello Visual Studio Code'
   echo 'Hello Visual Studio Code' > ~/vscode
 fi
+
+# temporary test code
+printenv >> ~/myenv
 
 echo "-----Finish!!------"
