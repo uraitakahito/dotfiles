@@ -51,6 +51,13 @@ else
   echo 'else statement' > ~/vscode-else
 fi
 
+if has-path; then
+  echo 'Hello Path'
+  echo 'Hello Path' > ~/path-if
+else
+  echo 'Hello Path' > ~/path-else
+fi
+
 # temporary test code
 printenv >> ~/myenv
 

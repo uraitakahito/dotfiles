@@ -12,3 +12,7 @@ function is-vscode {
 function is-vscode-remote-containers {
   [[ -z "${VSCODE_REMOTE_CONTAINERS_SESSION:-}" ]]
 }
+
+function has-path {
+  [[ -z "${PATH:-}" ]]
+}
