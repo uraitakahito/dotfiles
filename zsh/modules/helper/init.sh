@@ -9,10 +9,10 @@ function is-vscode {
 }
 
 # Checks if running on VSCode and Remote Containers.
-function is-vscode-remote-containers {
-  [[ -z "${VSCODE_REMOTE_CONTAINERS_SESSION:-true}" ]]
+function has-vscode-remote-containers {
+  [[ -n "${VSCODE_REMOTE_CONTAINERS_SESSION:-}" ]]
 }
 
 function has-path {
-  [[ -z "${PATH:-true}" ]]
+  [[ -n "${PATH:-}" ]]
 }

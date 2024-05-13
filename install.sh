@@ -44,7 +44,7 @@ elif [ ! -e ~/.zshrc ]; then
 fi
 
 # temporary test code
-if is-vscode-remote-containers; then
+if has-vscode-remote-containers; then
   echo 'Hello VSCode remote containers'
   echo 'Hello VSCode remote containers' > ~/vscode-if
 else
