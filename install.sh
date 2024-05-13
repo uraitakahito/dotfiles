@@ -43,22 +43,17 @@ elif [ ! -e ~/.zshrc ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 fi
 
-# temporary test code
 if has-vscode-remote-containers; then
-  echo 'Hello VSCode remote containers'
-  echo 'Hello VSCode remote containers' > ~/vscode-if
-else
-  echo 'else statement' > ~/vscode-else
+  #
+  # Install basic Visual Studio Code extensions
+  #
+  extensions=(
+    "eamodio.gitlens"
+    "oderwat.indent-rainbow"
+  )
+  for extension in ${extensions[@]}; do
+    code --install-extension $extension
+  done
 fi
-
-if has-path; then
-  echo 'Hello Path'
-  echo 'Hello Path' > ~/path-if
-else
-  echo 'Hello Path' > ~/path-else
-fi
-
-# temporary test code
-printenv >> ~/myenv
 
 echo "-----Finish!!------"
