@@ -44,12 +44,10 @@ elif [ ! -e ~/.zshrc ]; then
 fi
 
 # temporary test code
-# if is-vscode; then
-#   echo 'Hello Visual Studio Code'
-#   echo 'Hello Visual Studio Code' > ~/vscode
-# fi
-echo 'Hello Visual Studio Code'
-echo 'Hello Visual Studio Code' > ~/vscode
+if is-vscode-remote-containers; then
+  echo 'Hello VSCode remote containers'
+  echo 'Hello VSCode remote containers' > ~/vscode
+fi
 
 # temporary test code
 printenv >> ~/myenv
