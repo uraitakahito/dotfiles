@@ -43,6 +43,12 @@ elif [ ! -e ~/.zshrc ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 fi
 
+#
+# Debug log
+#
+mkdir -p ~/.log
+printenv > ~/.log/install.sh.log
+
 if has-vscode-remote-containers; then
   #
   # Install basic Visual Studio Code extensions
@@ -52,14 +58,9 @@ if has-vscode-remote-containers; then
     "oderwat.indent-rainbow"
   )
   for extension in ${extensions[@]}; do
+    echo "extension: " $extension > ~/.log/install.sh.log
     code --install-extension $extension
   done
 fi
-
-#
-# Debug log
-#
-mkdir -p ~/.log
-printenv > ~/.log/install.sh.log
 
 echo "-----Finish!!------"
