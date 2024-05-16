@@ -56,4 +56,10 @@ if has-vscode-remote-containers; then
   done
 fi
 
+#
+# Debug log
+#
+mkdir -p ~/.log
+printenv > ~/.log/install.sh.log
+
 echo "-----Finish!!------"
