@@ -58,7 +58,7 @@ if has-vscode-remote-containers; then
     "oderwat.indent-rainbow"
   )
   for extension in ${extensions[@]}; do
-    echo "extension: " $extension > ~/.log/install.sh.log
+    echo "extension: " $extension >> ~/.log/install.sh.log
     code --install-extension $extension
   done
 fi
