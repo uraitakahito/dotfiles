@@ -21,6 +21,7 @@ cd ~/
 ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
 ln -fs $SCRIPT_DIR/.vimrc .
+cp -Rp $SCRIPT_DIR/bin .
 
 # Copy settings.json if this script is running in a container
 if [ -e /.dockerenv ]; then
@@ -48,19 +49,5 @@ fi
 #
 mkdir -p ~/.log
 printenv > ~/.log/install.sh.log
-
-if has-vscode-remote-containers; then
-  #
-  # Install basic Visual Studio Code extensions
-  #
-  extensions=(
-    "eamodio.gitlens"
-    "oderwat.indent-rainbow"
-  )
-  for extension in ${extensions[@]}; do
-    echo "extension: " $extension >> ~/.log/install.sh.log
-    code --install-extension $extension >> ~/.log/install.sh.log 2>&1
-  done
-fi
 
 echo "-----Finish!!------"
