@@ -24,7 +24,7 @@ ln -fs $SCRIPT_DIR/.vimrc .
 cp -Rp $SCRIPT_DIR/bin .
 
 # Copy settings.json if this script is running in a container
-if [ -e /.dockerenv ]; then
+if is-docker; then
   mkdir -p ~/.vscode-server/data/Machine
   ln -fs $SCRIPT_DIR/settings.json .vscode-server/data/Machine
 fi
