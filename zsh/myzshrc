@@ -104,6 +104,17 @@ if is-darwin; then
 fi
 
 #
+# Visual Studio Code
+#
+if is-vscode; then
+  if is-docker; then
+    if [ -e $HOME/bin/install-extension.sh ]; then
+      $HOME/bin/install-extension.sh
+    fi
+  fi
+fi
+
+#
 # rbenv
 #
 [[ -d $HOME/.rbenv ]] && \
