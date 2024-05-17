@@ -3,6 +3,11 @@ function is-darwin {
   [[ "$OSTYPE" == darwin* ]]
 }
 
+# Checks if running in a container.
+function is-docker {
+  [[ -e /.dockerenv ]]
+}
+
 # Checks if running on Visual Studio Code Terminal.
 function is-vscode {
   [[ "$TERM_PROGRAM" == "vscode" ]]

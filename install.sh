@@ -15,7 +15,7 @@ set -u
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-source "$HOME/dotfiles/zsh/modules/helper/init.sh"
+source $SCRIPT_DIR/zsh/modules/helper/init.sh
 
 cd ~/
 ln -fs $SCRIPT_DIR/.gitignore_global .
@@ -24,7 +24,7 @@ ln -fs $SCRIPT_DIR/.vimrc .
 cp -Rp $SCRIPT_DIR/bin .
 
 # Copy settings.json if this script is running in a container
-if [ -e /.dockerenv ]; then
+if is-docker; then
   mkdir -p ~/.vscode-server/data/Machine
   ln -fs $SCRIPT_DIR/settings.json .vscode-server/data/Machine
 fi
