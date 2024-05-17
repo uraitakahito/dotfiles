@@ -12,7 +12,8 @@ autoload -Uz compinit && compinit
 #
 # helper
 #
-source $HOME/dotfiles/zsh/modules/helper/init.sh
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+source $SCRIPT_DIR/zsh/modules/helper/init.sh
 
 # Beep off on error in ZLE
 setopt no_beep
