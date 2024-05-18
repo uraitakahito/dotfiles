@@ -31,11 +31,8 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
+      // Reduce dependency on devcontainer.json. So let's use bin/install-extension.sh
       "extensions": [
-        "ms-vscode-remote.remote-containers",
-        "eamodio.gitlens",
-        "esbenp.prettier-vscode",
-        "ms-azuretools.vscode-docker"
       ]
     }
   }
