@@ -5,6 +5,14 @@ local cyan=$'\e[36m' reset=$'\e[m'
 PROMPT="%{${cyan}%}%1d%# %{${reset}%}"
 
 #
+# shortcut
+#
+# Delete all existing keymaps and reset to the default state.
+bindkey -d
+# Selects keymap `emacs'.
+bindkey -e
+
+#
 # compinit
 #
 autoload -Uz compinit && compinit
