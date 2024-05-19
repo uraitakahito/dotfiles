@@ -24,6 +24,11 @@ SCRIPT_DIR=$(cd "$(dirname "${0:-$BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source $SCRIPT_DIR/modules/helper/init.sh
 
 #
+# Process init files
+#
+zshrc_process_init_files $SCRIPT_DIR/zshrc-entrypoint-init.d/*
+
+#
 # Welcome Message
 #
 my_log `uname -a`

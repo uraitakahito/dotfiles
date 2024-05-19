@@ -41,3 +41,28 @@ function is-vscode {
 function has-vscode-remote-containers {
   [[ -n "${VSCODE_REMOTE_CONTAINERS_SESSION:-}" ]]
 }
+
+# usage: zshrc_process_init_files [file [file [...]]]
+#    ie: zshrc_process_init_files /always-initdb.d/*
+# process initializer files, based on file extensions
+zshrc_process_init_files() {
+	echo
+	local f
+	for f; do
+		case "$f" in
+			*.sh)
+				# https://github.com/docker-library/postgres/issues/450#issuecomment-393167936
+				# https://github.com/docker-library/postgres/pull/452
+				if [ -x "$f" ]; then
+					my_note "$0: running $f"
+					"$f"
+				else
+					my_note "$0: sourcing $f"
+					. "$f"
+				fi
+				;;
+			*)  my_warn "$0: ignoring $f" ;;
+		esac
+		echo
+	done
+}
