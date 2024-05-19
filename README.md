@@ -12,7 +12,7 @@ In settings.json:
 
 CAUTION:
 
-DONOT INPUT `~/dotfiles/install.sh` BUT `install.sh`.
+DO NOT INPUT `~/dotfiles/install.sh` BUT `install.sh`.
 
 ## Tips
 
