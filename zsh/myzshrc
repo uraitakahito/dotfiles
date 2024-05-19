@@ -23,6 +23,11 @@ autoload -Uz compinit && compinit
 SCRIPT_DIR=$(cd "$(dirname "${0:-$BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source $SCRIPT_DIR/modules/helper/init.sh
 
+#
+# Welcome Message
+#
+my_log `uname -a`
+
 # Beep off on error in ZLE
 setopt no_beep
 
