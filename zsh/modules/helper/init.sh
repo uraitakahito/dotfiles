@@ -45,6 +45,7 @@ function has-vscode-remote-containers {
 # usage: zshrc_process_init_files [file [file [...]]]
 #    ie: zshrc_process_init_files /always-initdb.d/*
 # process initializer files, based on file extensions
+# https://github.com/docker-library/mysql/blob/275e9822858884a85434448cb6777683692365e6/8.0/docker-entrypoint.sh#L56
 zshrc_process_init_files() {
 	echo
 	local f
