@@ -21,7 +21,6 @@ cd ~/
 ln -fs $SCRIPT_DIR/.gitignore_global .
 ln -fs $SCRIPT_DIR/.tmux.conf .
 ln -fs $SCRIPT_DIR/.vimrc .
-cp -Rp $SCRIPT_DIR/bin .
 
 # Copy settings.json if this script is running in a container
 if is-docker; then
