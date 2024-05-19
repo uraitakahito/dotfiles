@@ -28,8 +28,9 @@ source $SCRIPT_DIR/modules/helper/init.sh
 #
 if is-vscode; then
   if is-docker; then
-    if [ -e $HOME/bin/install-extension.sh ]; then
-      zshrc_process_init_files $SCRIPT_DIR/zshrc-entrypoint-init.d/*
+    zshrc_process_init_files $SCRIPT_DIR/zshrc-entrypoint-init.d/*
+    if [ -d /etc/zshrc-entrypoint-init.d ]; then
+      zshrc_process_init_files /etc/zshrc-entrypoint-init.d/*
     fi
   fi
 fi
