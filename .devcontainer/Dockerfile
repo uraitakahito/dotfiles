@@ -16,20 +16,6 @@ RUN apt-get update -qq && \
     git
 
 #
-# Add user.
-#
-#   Someone uses devcontainer, but the others don't.
-#   That is why dockerfile calls `features` MANUALLY here without devcontainer.json.
-#
-RUN cd /usr/src && \
-  git clone --depth 1 https://github.com/devcontainers/features.git && \
-  USERNAME=${user_name} \
-  UID=${user_id} \
-  GID=${group_id} \
-  CONFIGUREZSHASDEFAULTSHELL=true \
-    /usr/src/features/src/common-utils/install.sh
-
-#
 # Install packages
 #
 RUN apt-get update -qq && \
@@ -50,6 +36,16 @@ RUN apt-get update -qq && \
 
 COPY bin/docker-entrypoint.sh /usr/local/bin/
 
+#
+# Add user and install basic tools.
+#
+RUN cd /usr/src && \
+  git clone --depth 1 https://github.com/uraitakahito/features.git && \
+  USERNAME=${user_name} \
+  USERUID=${user_id} \
+  USERGID=${group_id} \
+  CONFIGUREZSHASDEFAULTSHELL=true \
+    /usr/src/features/src/common-utils/install.sh
 USER ${user_name}
 
 ENTRYPOINT ["docker-entrypoint.sh"]
