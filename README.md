@@ -19,6 +19,7 @@ DO NOT INPUT `~/dotfiles/install.sh` BUT `install.sh`.
 ### Running a command and then killing it
 
 ```console
+% PROJECT=$(basename `pwd`)
 % docker container run -it --rm --init --name $PROJECT-container $PROJECT-image ls /
 ```
 
