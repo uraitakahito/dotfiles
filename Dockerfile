@@ -29,7 +29,7 @@ RUN apt-get update -qq && \
     tmux \
     # fzf needs PAGER(less or something)
     fzf \
-    exa \
+    eza \
     trash-cli && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
