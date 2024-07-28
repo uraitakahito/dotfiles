@@ -138,7 +138,8 @@ fi
 #
 # Alias
 #
-alias a='exa'
+alias a='eza --icons'
+alias ll='eza -l -g --icons'
 alias bat='bat -p'
 
 # trash-cli
