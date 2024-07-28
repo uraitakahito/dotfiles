@@ -1,19 +1,3 @@
-## Personalizing Dev Containers with dotfile repositories
-
-In settings.json:
-
-```json
-{
-  "dotfiles.repository": "xxxxx/dotfiles",
-  "dotfiles.targetPath": "~/dotfiles",
-  "dotfiles.installCommand": "install.sh"
-}
-```
-
-CAUTION:
-
-DO NOT INPUT `~/dotfiles/install.sh` BUT `install.sh`.
-
 ## Tips
 
 ### Running a command and then killing it
