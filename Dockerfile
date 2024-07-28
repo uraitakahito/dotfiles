@@ -8,6 +8,7 @@ ARG group_id
 # You can only use environment variables explicitly set in the Dockerfile.
 # https://docs.docker.com/engine/reference/builder/#/workdir
 ARG home=/home/${user_name}
+ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
 
 RUN apt-get update -qq && \
   apt-get upgrade -y -qq && \
@@ -66,6 +67,13 @@ RUN cd /usr/src && \
   CONFIGUREZSHASDEFAULTSHELL=true \
     /usr/src/features/src/common-utils/install.sh
 USER ${user_name}
+
+#
+# dotfiles
+#
+RUN cd /home/${user_name} && \
+  git clone --depth 1 ${dotfiles_repository} && \
+  dotfiles/install.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
