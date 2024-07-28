@@ -17,7 +17,7 @@ RUN apt-get update -qq && \
     git \
     iputils-ping \
     # Editor
-    vim emacs \
+    vim \
     # Utility
     tmux \
     # fzf needs PAGER(less or something)
