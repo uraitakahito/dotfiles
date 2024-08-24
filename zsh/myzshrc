@@ -105,11 +105,14 @@ fcd() {
   cd "$dir"
 }
 
-# fdz - Login to Docker with zsh
-fdz() {
+#
+# fdshell - Login to Docker with shell
+#   usage: fdshell /bin/bash
+#
+fdshell() {
   local cid
-  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
-  [ -n "$cid" ] && docker exec -it "$cid" /bin/zsh
+  cid=$(docker ps | sed 1d | fzf | awk '{print $1}')
+  [ -n "$cid" ] && docker exec -it "$cid" $1
 }
 
 #
