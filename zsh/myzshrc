@@ -139,6 +139,11 @@ if is-darwin; then
     zstyle ':completion:*:*:docker-*:*' option-stacking yes
     autoload -Uz compinit && compinit -i
   fi
+
+  #
+  # Alias
+  #
+  alias bell='afplay /System/Library/Sounds/Frog.aiff'
 fi
 
 #
