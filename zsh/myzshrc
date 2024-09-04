@@ -158,7 +158,8 @@ fi
 #
 alias a='eza --icons'
 alias ll='eza -l -g --icons'
-alias bat='bat -p'
+# https://github.com/sharkdp/bat/issues/982
+alias bat='batcat --style=plain'
 
 # trash-cli
 # https://github.com/andreafrancia/trash-cli
