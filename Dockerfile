@@ -14,7 +14,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install packages
 #
 RUN apt-get update -qq && \
-  apt-get upgrade -y -qq && \
   apt-get install -y -qq --no-install-recommends \
     # Basic
     ca-certificates \
@@ -41,6 +40,7 @@ RUN cd /usr/src && \
   USERUID=${user_id} \
   USERGID=${group_id} \
   CONFIGUREZSHASDEFAULTSHELL=true \
+  UPGRADEPACKAGES=false \
     /usr/src/features/src/common-utils/install.sh
 USER ${user_name}
 
