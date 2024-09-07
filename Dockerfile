@@ -7,12 +7,15 @@ ARG group_id
 ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
 ARG features_repository="https://github.com/uraitakahito/features.git"
 
+# Avoid warnings by switching to noninteractive for the build process
+ENV DEBIAN_FRONTEND=noninteractive
+
 #
 # Install packages
 #
 RUN apt-get update -qq && \
   apt-get upgrade -y -qq && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
+  apt-get install -y -qq --no-install-recommends \
     # Basic
     ca-certificates \
     git \
