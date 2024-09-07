@@ -154,6 +154,13 @@ fi
   eval "$(rbenv init - zsh)"
 
 #
+# Go
+# https://github.com/devcontainers/features/tree/main/src/go
+#
+[[ -d /usr/local/go ]] && \
+  export PATH=/usr/local/go/bin:${PATH}
+
+#
 # Alias
 #
 alias a='eza --icons'
