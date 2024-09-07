@@ -34,16 +34,21 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN git config --system --add safe.directory /app
 
 #
-# Add user and install basic tools.
+# clone features
 #
 RUN cd /usr/src && \
-  git clone --depth 1 ${features_repository} && \
-  USERNAME=${user_name} \
-  USERUID=${user_id} \
-  USERGID=${group_id} \
-  CONFIGUREZSHASDEFAULTSHELL=true \
-  UPGRADEPACKAGES=false \
-    /usr/src/features/src/common-utils/install.sh
+  git clone --depth 1 ${features_repository}
+
+#
+# Add user and install basic tools.
+#
+RUN USERNAME=${user_name} \
+    USERUID=${user_id} \
+    USERGID=${group_id} \
+    CONFIGUREZSHASDEFAULTSHELL=true \
+    UPGRADEPACKAGES=false \
+      /usr/src/features/src/common-utils/install.sh
+
 USER ${user_name}
 
 #
