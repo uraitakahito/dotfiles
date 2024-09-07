@@ -5,6 +5,7 @@ ARG user_name=developer
 ARG user_id
 ARG group_id
 ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
+ARG features_repository="https://github.com/uraitakahito/features.git"
 
 #
 # Install packages
@@ -52,7 +53,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 # Add user and install basic tools.
 #
 RUN cd /usr/src && \
-  git clone --depth 1 https://github.com/uraitakahito/features.git && \
+  git clone --depth 1 ${features_repository} && \
   USERNAME=${user_name} \
   USERUID=${user_id} \
   USERGID=${group_id} \
