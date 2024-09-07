@@ -1,4 +1,4 @@
-#
+#!/usr/bin/zsh
 # prompt
 #
 local cyan=$'\e[36m' reset=$'\e[m'
