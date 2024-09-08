@@ -157,8 +157,10 @@ fi
 # Go
 # https://github.com/devcontainers/features/tree/main/src/go
 #
-[[ -d /usr/local/go ]] && \
+[[ -d /usr/local/go/bin ]] && \
   export PATH=/usr/local/go/bin:${PATH}
+[[ -d /go/bin ]] && \
+  export PATH=/go/bin:${PATH}
 
 #
 # Alias
