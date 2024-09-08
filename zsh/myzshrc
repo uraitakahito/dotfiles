@@ -147,6 +147,12 @@ if is-darwin; then
 fi
 
 #
+# Poetry
+#
+[[ -f /app/poetry.toml ]] && \
+  export PATH=/app/.venv/bin:${PATH}
+
+#
 # rbenv
 #
 [[ -d $HOME/.rbenv ]] && \
