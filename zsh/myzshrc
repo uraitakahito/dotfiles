@@ -167,8 +167,10 @@ fi
 #
 alias a='eza --icons'
 alias ll='eza -l -g --icons'
-# https://github.com/sharkdp/bat/issues/982
-alias bat='batcat --style=plain'
+if ! is-darwin; then
+  # https://github.com/sharkdp/bat/issues/982
+  alias bat='batcat --style=plain'
+fi
 
 # trash-cli
 # https://github.com/andreafrancia/trash-cli
