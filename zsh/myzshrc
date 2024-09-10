@@ -46,7 +46,7 @@ export SAVEHIST=100000
 # Do not enter command lines into the history list if they are duplicates of the
 # previous event.
 #
-# setopt hist_ignore_dups
+setopt hist_ignore_dups
 
 #
 # When searching for history entries in the line editor, do not display duplicates
