@@ -24,21 +24,6 @@ SCRIPT_DIR=$(cd "$(dirname "${0:-$BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source $SCRIPT_DIR/modules/helper/init.sh
 
 #
-# Process init files
-# MEMO:
-#   The extensions installed in the container are stored separately by VSCode,
-#   somewhere outside the Docker container. Therefore, this script seems redundant.
-#   We only need to install the extensions in the container ONCE AT THE BEGINNING.
-# if is-vscode; then
-#   if is-docker; then
-#     zshrc_process_init_files $SCRIPT_DIR/zshrc-entrypoint-init.d/*
-#     if [ -d /etc/zshrc-entrypoint-init.d ]; then
-#       zshrc_process_init_files /etc/zshrc-entrypoint-init.d/*
-#     fi
-#   fi
-# fi
-
-#
 # Welcome Message
 #
 my_log `uname -a`
