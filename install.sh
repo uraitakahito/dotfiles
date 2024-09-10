@@ -5,7 +5,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 source $SCRIPT_DIR/zsh/modules/helper/init.sh
 
-cd ~/
+cd ~/ || exit
 # https://github.com/git/git/blob/master/Documentation/RelNotes/1.7.12.txt#L21-L23
 mkdir -p .config/git
 ln -fs "$SCRIPT_DIR/.gitignore_global" .config/git/ignore
