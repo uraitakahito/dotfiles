@@ -27,7 +27,7 @@ if [ -d /zsh-volume ]; then
   fi
 fi
 
-if [ -e ~/.zshrc ] && [ `grep -c myzshrc ~/.zshrc` -eq 0 ]; then
+if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 elif [ ! -e ~/.zshrc ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
