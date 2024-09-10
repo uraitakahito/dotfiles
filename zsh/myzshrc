@@ -146,6 +146,8 @@ fi
   export PATH=/usr/local/go/bin:${PATH}
 [[ -d /go/bin ]] && \
   export PATH=/go/bin:${PATH}
+# https://go.dev/wiki/GOPATH
+export PATH=$HOME/go/bin:${PATH}
 
 #
 # Alias
