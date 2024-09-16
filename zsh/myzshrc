@@ -139,6 +139,12 @@ fi
   eval "$(rbenv init - zsh)"
 
 #
+# nodenv
+#
+[[ -d $HOME/.nodenv ]] && \
+  eval "$(nodenv init - zsh)"
+
+#
 # Go
 # https://github.com/devcontainers/features/tree/main/src/go
 #
