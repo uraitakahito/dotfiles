@@ -165,6 +165,13 @@ if ! is-darwin; then
   alias bat='batcat --style=plain'
 fi
 
+#
+# Git aliases
+#
+alias c='git commit -v'
+alias d='git diff'
+alias s='git status'
+
 # trash-cli
 # https://github.com/andreafrancia/trash-cli
 if type trash-put > /dev/null 2>&1; then
