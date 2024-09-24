@@ -31,8 +31,6 @@ RUN apt-get update -qq && \
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
-RUN git config --system --add safe.directory /app
-
 #
 # clone features
 #
