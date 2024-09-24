@@ -1,12 +1,12 @@
-## Tips
 
-### Running a command and then killing it
+## How to start up
 
 ```console
-% PROJECT=$(basename `pwd`)
-% docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
+% PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 % docker container run -it --rm --init --mount type=bind,src=`pwd`,dst=/app --name $PROJECT-container $PROJECT-image /bin/zsh
 ```
+
+## Tips
 
 ### How to save zsh history
 
