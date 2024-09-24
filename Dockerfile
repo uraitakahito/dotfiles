@@ -11,8 +11,6 @@ ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
 # Avoid warnings by switching to noninteractive for the build process
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY docker-entrypoint.sh /usr/local/bin/
-
 #
 # Git
 #
@@ -47,6 +45,8 @@ RUN cd /usr/src && \
   ADDEZA=true \
   UPGRADEPACKAGES=false \
     /usr/src/extra-utils/install.sh
+
+COPY docker-entrypoint.sh /usr/local/bin/
 
 USER ${user_name}
 
