@@ -6,30 +6,22 @@ ARG user_id
 ARG group_id
 ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
 ARG features_repository="https://github.com/uraitakahito/features.git"
+ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
 
 # Avoid warnings by switching to noninteractive for the build process
 ENV DEBIAN_FRONTEND=noninteractive
 
+COPY docker-entrypoint.sh /usr/local/bin/
+
 #
-# Install packages
+# Git
 #
 RUN apt-get update -qq && \
   apt-get install -y -qq --no-install-recommends \
-    # Basic
     ca-certificates \
-    git \
-    iputils-ping \
-    # Editor
-    vim \
-    # Utility
-    tmux \
-    # fzf needs PAGER(less or something)
-    fzf \
-    trash-cli && \
+    git && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
-
-COPY docker-entrypoint.sh /usr/local/bin/
 
 #
 # clone features
@@ -38,7 +30,7 @@ RUN cd /usr/src && \
   git clone --depth 1 ${features_repository}
 
 #
-# Add user and install basic tools.
+# Add user and install common tools.
 #
 RUN USERNAME=${user_name} \
     USERUID=${user_id} \
@@ -46,6 +38,15 @@ RUN USERNAME=${user_name} \
     CONFIGUREZSHASDEFAULTSHELL=true \
     UPGRADEPACKAGES=false \
       /usr/src/features/src/common-utils/install.sh
+
+#
+# Install extra utils.
+#
+RUN cd /usr/src && \
+  git clone --depth 1 ${extra_utils_repository} && \
+  ADDEZA=true \
+  UPGRADEPACKAGES=false \
+    /usr/src/extra-utils/install.sh
 
 USER ${user_name}
 
