@@ -18,9 +18,6 @@ mkdir -p .config/git
 if [ ! -f .config/git/ignore ]; then
   ln -fs "$SCRIPT_DIR/.gitignore_global" .config/git/ignore
 fi
-if [ ! -f .gitconfig ]; then
-  ln -fs "$SCRIPT_DIR/.gitconfig" .
-fi
 
 # Copy settings.json if this script is running in a container
 if is-docker; then
