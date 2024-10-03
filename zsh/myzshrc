@@ -126,6 +126,14 @@ if is-darwin; then
   fi
 
   #
+  # Docker CLI Plugins
+  #
+  plugins=$HOME/.docker/cli-plugins
+  if [ -d $plugins ]; then
+    export PATH=$plugins:${PATH}
+  fi
+
+  #
   # Alias
   #
   alias bell='afplay /System/Library/Sounds/Frog.aiff'
