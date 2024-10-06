@@ -178,10 +178,11 @@ fi
 export PATH=$HOME/go/bin:${PATH}
 
 #
-# Alias
+# Aliases
 #
 alias a='eza --icons'
 alias ll='eza -l -g --icons'
+alias d='docker'
 if ! is-darwin; then
   # https://github.com/sharkdp/bat/issues/982
   alias bat='batcat --style=plain'
@@ -191,7 +192,6 @@ fi
 # Git aliases
 #
 alias c='git commit -v'
-alias d='git diff'
 alias g='git'
 alias s='git status'
 
