@@ -101,6 +101,16 @@ fdshell() {
 }
 
 #
+# fdvscode - Attach to a running container with VS Code
+#   usage: fdvscode
+#   https://github.com/microsoft/vscode-remote-release/issues/5278#issuecomment-1625401636
+fdvscode() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf | awk '{print $NF}')
+  [ -n "$cid" ] && code --folder-uri vscode-remote://attached-container+$(printf "$cid" | od -A n -t x1 | sed 's/ *//g' | tr -d '\n')/app
+}
+
+#
 # Mac
 #
 if is-darwin; then
