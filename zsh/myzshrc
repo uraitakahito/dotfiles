@@ -188,6 +188,15 @@ fi
 export PATH=$HOME/go/bin:${PATH}
 
 #
+# zoxide
+# https://github.com/ajeetdsouza/zoxide
+#
+if type zoxide > /dev/null 2>&1; then
+  export _ZO_DATA_DIR=${XDG_DATA_HOME-$HOME/.zoxide/data}
+  eval "$(zoxide init zsh)"
+fi
+
+#
 # Aliases
 #
 alias a='eza --icons'
