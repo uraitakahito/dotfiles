@@ -121,6 +121,16 @@ fdvscode() {
 }
 
 #
+# fghbrowse - Open the selected GitHub repository from the list in the browser.
+#   usage: fghbrowse
+#
+fghbrowse() {
+  local repo
+  repo=$(gh repo list | fzf | awk '{print $1}')
+  [ -n "$repo" ] && gh browse -R $repo
+}
+
+#
 # Mac
 #
 if is-darwin; then
