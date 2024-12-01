@@ -25,15 +25,6 @@ if is-docker; then
   ln -fs "$SCRIPT_DIR/settings.json" .vscode-server/data/Machine
 fi
 
-if [ -d /zsh-volume ]; then
-  if [ ! -e /zsh-volume/.zsh_history ]; then
-    touch /zsh-volume/.zsh_history
-  fi
-  if [ -e /zsh-volume/.zsh_history ]; then
-    ln -fs /zsh-volume/.zsh_history ./.zsh_history
-  fi
-fi
-
 if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
   echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
 elif [ ! -e ~/.zshrc ]; then
