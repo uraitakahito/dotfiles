@@ -176,27 +176,27 @@ fi
   export PATH=${HOME}/.rbenv/bin:${PATH} && \
   eval "$(rbenv init - zsh)"
 
-# #
-# # nodenv
-# #
-# [[ -d $HOME/.nodenv ]] && \
-#   eval "$(nodenv init - zsh)"
-# # https://github.com/uraitakahito/features/blob/8291744831e2c42b6c01fe169e98cca2a4b7fbc9/src/node/install.sh#L13
-# if { [ -d $HOME/.nodenv ] } || { [ -d /usr/local/share/nvm ] }; then
-#   export PATH=$PATH:./node_modules/.bin
-# fi
-
 #
-# pyenv
+# nodenv
 #
-if [ -d $HOME/.pyenv ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-  # # run eval "$(pyenv init -)" to install pyenv into your shell as a shell function, enable shims and autocompletion
-  # eval "$(pyenv init -)"
-  # You may run eval "$(pyenv init --path)" instead to just enable shims, without shell integration
-  eval "$(pyenv init --path)"
+[[ -d $HOME/.nodenv ]] && \
+  eval "$(nodenv init - zsh)"
+# https://github.com/uraitakahito/features/blob/8291744831e2c42b6c01fe169e98cca2a4b7fbc9/src/node/install.sh#L13
+if { [ -d $HOME/.nodenv ] } || { [ -d /usr/local/share/nvm ] }; then
+  export PATH=$PATH:./node_modules/.bin
 fi
+
+# #
+# # pyenv
+# #
+# if [ -d $HOME/.pyenv ]; then
+#   export PYENV_ROOT="$HOME/.pyenv"
+#   [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#   # # run eval "$(pyenv init -)" to install pyenv into your shell as a shell function, enable shims and autocompletion
+#   # eval "$(pyenv init -)"
+#   # You may run eval "$(pyenv init --path)" instead to just enable shims, without shell integration
+#   eval "$(pyenv init --path)"
+# fi
 
 #
 # Go
