@@ -186,17 +186,17 @@ if { [ -d $HOME/.nodenv ] } || { [ -d /usr/local/share/nvm ] }; then
   export PATH=$PATH:./node_modules/.bin
 fi
 
-#
-# pyenv
-#
-if [ -d $HOME/.pyenv ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-  # # run eval "$(pyenv init -)" to install pyenv into your shell as a shell function, enable shims and autocompletion
-  # eval "$(pyenv init -)"
-  # You may run eval "$(pyenv init --path)" instead to just enable shims, without shell integration
-  eval "$(pyenv init --path)"
-fi
+# #
+# # pyenv
+# #
+# if [ -d $HOME/.pyenv ]; then
+#   export PYENV_ROOT="$HOME/.pyenv"
+#   [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#   # # run eval "$(pyenv init -)" to install pyenv into your shell as a shell function, enable shims and autocompletion
+#   # eval "$(pyenv init -)"
+#   # You may run eval "$(pyenv init --path)" instead to just enable shims, without shell integration
+#   eval "$(pyenv init --path)"
+# fi
 
 #
 # Go
