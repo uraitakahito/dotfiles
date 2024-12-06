@@ -126,7 +126,7 @@ fdvscode() {
 #
 fghbrowse() {
   local repo
-  repo=$(gh repo list | fzf | awk '{print $1}')
+  repo=$(gh repo list -L 1000 | fzf | awk '{print $1}')
   [ -n "$repo" ] && gh browse -R $repo
 }
 
