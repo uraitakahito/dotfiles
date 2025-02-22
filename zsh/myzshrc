@@ -142,6 +142,36 @@ if is-darwin; then
   fi
 
   #
+  # zsh-completions
+  #
+  # You may also need to force rebuild `zcompdump`:
+  #
+  #   rm -f ~/.zcompdump; compinit
+  #
+  # Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+  # to load these completions, you may need to run these commands:
+  #
+  #   chmod go-w '/opt/homebrew/share'
+  #   chmod -R go-w '/opt/homebrew/share/zsh'
+  #
+  if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
+
+  #
+  # zsh-autosuggestions
+  #
+  # If you press `Ctrl + e` or the `→` key (forward-char widget) or End (end-of-line widget) with the cursor at the end of the buffer,
+  # it will accept the suggestion, replacing the contents of the command line buffer with the suggestion.
+  #
+  if type brew &>/dev/null; then
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  fi
+
+  #
   # Docker
   #
   etc=/Applications/Docker.app/Contents/Resources/etc
@@ -184,6 +214,23 @@ fi
 # https://github.com/uraitakahito/features/blob/8291744831e2c42b6c01fe169e98cca2a4b7fbc9/src/node/install.sh#L13
 if { [ -d $HOME/.nodenv ] } || { [ -d /usr/local/share/nvm ] }; then
   export PATH=$PATH:./node_modules/.bin
+fi
+
+#
+# uv
+# https://zenn.dev/tadayosi/articles/522efbda48fbf4
+#
+if type uv &>/dev/null; then
+  eval "$(uv generate-shell-completion zsh)"
+
+  _uv_run_mod() {
+      if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+          _arguments '*:filename:_files'
+      else
+          _uv "$@"
+      fi
+  }
+  compdef _uv_run_mod uv
 fi
 
 # #
