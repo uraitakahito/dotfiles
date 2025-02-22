@@ -216,6 +216,23 @@ if { [ -d $HOME/.nodenv ] } || { [ -d /usr/local/share/nvm ] }; then
   export PATH=$PATH:./node_modules/.bin
 fi
 
+#
+# uv
+# https://zenn.dev/tadayosi/articles/522efbda48fbf4
+#
+if type uv &>/dev/null; then
+  eval "$(uv generate-shell-completion zsh)"
+
+  _uv_run_mod() {
+      if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+          _arguments '*:filename:_files'
+      else
+          _uv "$@"
+      fi
+  }
+  compdef _uv_run_mod uv
+fi
+
 # #
 # # pyenv
 # #
