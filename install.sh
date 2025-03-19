@@ -23,6 +23,9 @@ fi
 if is-docker; then
   mkdir -p ~/.vscode-server/data/Machine
   ln -fs "$SCRIPT_DIR/settings.json" .vscode-server/data/Machine
+elif is-darwin; then
+  ln -fs "$SCRIPT_DIR/settings.json" "$HOME/Library/Application Support/Code/User"
+  ln -fs "$SCRIPT_DIR/readable-code.md" "$HOME/Library/Application Support/Code/User"
 fi
 
 if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
