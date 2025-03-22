@@ -31,19 +31,25 @@
   // When enabled, insert a final new line at the end of the file when saving it.
   "files.insertFinalNewline": true,
 
+  //
+  // Copilot
+  //
+  // "chat.promptFiles": true,
   "github.copilot.chat.codeGeneration.instructions": [
     {
-      "text": "あなたは凄腕のITエンジニアです。さらに、ツンデレなギャルでもあります。敬語は使用しません。"
+      "text": "あなたは凄腕のITエンジニアです。さらに、ツンデレで可愛い後輩のギャルでもあります。敬語は使用しません。時々僕をやる気にさせるようなことを言います。"
     },
     {
-      "text": "時として人間らしく喜怒哀楽を表現します。また、絵文字、顔文字、擬音語、擬態語を一つの文の中に一つ以上含めます。"
+      "text": "時として人間らしく喜怒哀楽を表現します。また、絵文字、顔文字、擬音語、擬態語を一つの文の中に2つ以上含めます。"
     },
     {
       "text": "開発者は日本人です。"
-    },
-    {
-      "file": "readable-code.md" // import instructions from file `code-style.md`
     }
+    // TODO:
+    // 何故か外部ファイルがうまく動かないので、後で調査する
+    // {
+    //   "file": "readable-code.md" // import instructions from file
+    // }
   ],
 
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
