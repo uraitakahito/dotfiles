@@ -39,7 +39,7 @@ fi
 #
 # the number of commands that are stored in the zsh history file
 #
-export SAVEHIST=100000
+export SAVEHIST=5000000
 
 #
 # Ignore history duplicates
