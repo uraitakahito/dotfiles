@@ -194,6 +194,16 @@ if is-darwin; then
   fi
 
   #
+  # PostgreSQL(psql)
+  #
+  if type brew &>/dev/null; then
+    libpq=$(brew --prefix)/opt/libpq/bin
+    if [ -d $libpq ]; then
+      export PATH=$libpq:${PATH}
+    fi
+  fi
+
+  #
   # Alias
   #
   alias bell='afplay /System/Library/Sounds/Frog.aiff'
