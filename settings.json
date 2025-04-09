@@ -11,7 +11,11 @@
   "editor.minimap.enabled": false,
 
   // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
-  "editor.tabSize": 2,
+  //   In PEP8 for Python, indentation is 4 spaces:
+  //   https://peps.python.org/pep-0008/#indentation
+  //   Rust also uses 4 spaces:
+  //   https://users.rust-lang.org/t/what-do-you-think-about-two-space-indenting/51455
+  "editor.tabSize": 4,
 
   // Controls how the editor should render whitespace characters.
   //  - none
