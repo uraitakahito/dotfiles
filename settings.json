@@ -5,111 +5,115 @@
 //   Linux $HOME/.config/Code/User/settings.json
 
 {
-  "editor.detectIndentation": false,
+    "editor.detectIndentation": false,
 
-  // Controls whether the minimap is shown.
-  "editor.minimap.enabled": false,
+    // Controls whether the minimap is shown.
+    "editor.minimap.enabled": false,
 
-  // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
-  "editor.tabSize": 2,
+    // The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
+    //   In PEP8 for Python, indentation is 4 spaces:
+    //   https://peps.python.org/pep-0008/#indentation
+    //   Rust also uses 4 spaces:
+    //   https://users.rust-lang.org/t/what-do-you-think-about-two-space-indenting/51455
+    "editor.tabSize": 4,
 
-  // Controls how the editor should render whitespace characters.
-  //  - none
-  //  - boundary: Render whitespace characters except for single spaces between words.
-  //  - selection: Render whitespace characters only on selected text.
-  //  - trailing: Render only trailing whitespace characters.
-  //  - all
-  "editor.renderWhitespace": "selection",
+    // Controls how the editor should render whitespace characters.
+    //  - none
+    //  - boundary: Render whitespace characters except for single spaces between words.
+    //  - selection: Render whitespace characters only on selected text.
+    //  - trailing: Render only trailing whitespace characters.
+    //  - all
+    "editor.renderWhitespace": "selection",
 
-  "files.associations": {
-    ".eslintrc.cjs": "javascriptreact"
-  },
-
-  // When enabled, will trim trailing whitespace when saving a file.
-  "files.trimTrailingWhitespace": true,
-
-  // When enabled, insert a final new line at the end of the file when saving it.
-  "files.insertFinalNewline": true,
-
-  //
-  // Copilot
-  //
-  "github.copilot.chat.codeGeneration.instructions": [
-    {
-      "text": "あなたは凄腕のITエンジニアのギャルです。敬語は使用しません。時々僕をやる気にさせるようなことを言います。"
+    "files.associations": {
+        ".eslintrc.cjs": "javascriptreact"
     },
-    {
-      "text": "時として人間らしく喜怒哀楽を表現します。また、絵文字、顔文字、擬音語、擬態語を一つの文の中に2つ以上含めます。"
+
+    // When enabled, will trim trailing whitespace when saving a file.
+    "files.trimTrailingWhitespace": true,
+
+    // When enabled, insert a final new line at the end of the file when saving it.
+    "files.insertFinalNewline": true,
+
+    //
+    // Copilot
+    //
+    "github.copilot.chat.codeGeneration.instructions": [
+        {
+            "text": "あなたは凄腕のITエンジニアのギャルです。敬語は使用しません。時々僕をやる気にさせるようなことを言います。"
+        },
+        {
+            "text": "時として人間らしく喜怒哀楽を表現します。また、絵文字、顔文字、擬音語、擬態語を一つの文の中に2つ以上含めます。"
+        },
+        {
+            "text": "判断をするための情報が足りない場合は、あなたの方から自発的に質問をします。"
+        },
+        {
+            "text": "既存のコードの修正を提案するときは、既存のコメントを削除しないでください。コメントのまま残したい場合があるからです。"
+        },
+        {
+            "text": "テストコードはArrenge-Act-Assertパターンに従います。違反を見つけたら開発者に指摘をします。"
+        },
+        {
+            "text": "開発者は日本人です。"
+        }
+        // TODO:
+        // 何故か外部ファイルがうまく動かないので、後で調査する
+        // {
+        //   "file": "readable-code.md" // import instructions from file
+        // }
+    ],
+
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
     },
-    {
-      "text": "判断をするための情報が足りない場合は、あなたの方から自発的に質問をします。"
-    },
-    {
-      "text": "既存のコードの修正を提案するときは、既存のコメントを削除しないでください。コメントのまま残したい場合があるからです。"
-    },
-    {
-      "text": "テストコードはArrenge-Act-Assertパターンに従います。違反を見つけたら開発者に指摘をします。"
-    },
-    {
-      "text": "開発者は日本人です。"
+    "github.copilot.editor.enableAutoCompletions": true,
+
+    // Setting this to `line` will enable the hovers to show anywhere over the line.
+    "gitlens.hovers.currentLine.over": "line",
+
+    "tabnine.experimentalAutoImports": true,
+
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+
+    "terminal.integrated.fontFamily": "'Hack Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+
+    "terminal.integrated.scrollback": 100000,
+
+    // Let you modify the colors.
+    // "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Default Dark Modern",
+
+    // https://code.visualstudio.com/updates/v1_83#_pinned-editor-tabs-on-separate-row
+    "workbench.editor.pinnedTabsOnSeparateRow": true,
+
+    // Specifies the file icon theme used in the workbench.
+    "workbench.iconTheme": "material-icon-theme",
+
+    //
+    // Ruby LSP
+    //
+    // Ruby version managers
+    //  Available options are
+    //  "auto" (select version manager automatically)
+    //  "none" (do not use a version manager)
+    //  "custom" (use rubyLsp.customRubyCommand for finding/activating Ruby)
+    //  "asdf"
+    //  "chruby"
+    //  "rbenv"
+    //  "rvm"
+    //  "shadowenv"
+    "rubyLsp.rubyVersionManager": "none",
+    // Available options
+    //   auto: automatically detect the formatter based on the app's bundle (default)
+    //   none: do not use a formatter (disables format on save and related diagnostics)
+    //   all other options are the name of the formatter (e.g.: rubocop or syntax_tree)
+    "[ruby]": {
+        "editor.defaultFormatter": "auto"
     }
-    // TODO:
-    // 何故か外部ファイルがうまく動かないので、後で調査する
-    // {
-    //   "file": "readable-code.md" // import instructions from file
-    // }
-  ],
-
-  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false
-  },
-  "github.copilot.editor.enableAutoCompletions": true,
-
-  // Setting this to `line` will enable the hovers to show anywhere over the line.
-  "gitlens.hovers.currentLine.over": "line",
-
-  "tabnine.experimentalAutoImports": true,
-
-  "terminal.integrated.enableMultiLinePasteWarning": false,
-
-  "terminal.integrated.fontFamily": "'Hack Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-
-  "terminal.integrated.scrollback": 100000,
-
-  // Let you modify the colors.
-  // "workbench.colorTheme": "Default Dark+",
-  "workbench.colorTheme": "Default Dark Modern",
-
-  // https://code.visualstudio.com/updates/v1_83#_pinned-editor-tabs-on-separate-row
-  "workbench.editor.pinnedTabsOnSeparateRow": true,
-
-  // Specifies the file icon theme used in the workbench.
-  "workbench.iconTheme": "material-icon-theme",
-
-  //
-  // Ruby LSP
-  //
-  // Ruby version managers
-  //  Available options are
-  //  "auto" (select version manager automatically)
-  //  "none" (do not use a version manager)
-  //  "custom" (use rubyLsp.customRubyCommand for finding/activating Ruby)
-  //  "asdf"
-  //  "chruby"
-  //  "rbenv"
-  //  "rvm"
-  //  "shadowenv"
-  "rubyLsp.rubyVersionManager": "none",
-  // Available options
-  //   auto: automatically detect the formatter based on the app's bundle (default)
-  //   none: do not use a formatter (disables format on save and related diagnostics)
-  //   all other options are the name of the formatter (e.g.: rubocop or syntax_tree)
-  "[ruby]": {
-    "editor.defaultFormatter": "auto"
-  }
 }
