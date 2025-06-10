@@ -42,6 +42,13 @@ fi
 export SAVEHIST=5000000
 
 #
+# Share command history across all zsh sessions in real time.
+# Useful when working with multiple terminal windows or tabs.
+# Ensures history is immediately written to and read from the history file.
+#
+setopt share_history
+
+#
 # Ignore history duplicates
 # Do not enter command lines into the history list if they are duplicates of the
 # previous event.
