@@ -191,7 +191,8 @@ if is-darwin; then
   # it will accept the suggestion, replacing the contents of the command line buffer with the suggestion.
   #
   if type brew &>/dev/null; then
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    [[ -d $(brew --prefix)/share/zsh-autosuggestions ]] && \
+      source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   fi
 
   #
