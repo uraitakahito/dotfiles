@@ -196,6 +196,16 @@ if is-darwin; then
   fi
 
   #
+  # Visual Studio Code
+  #
+  # To run VS Code from the terminal by typing `code`, add it the $PATH environment variable:
+  #
+  code_path=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+  if [ -d $etc ]; then
+    export PATH=$code_path:${PATH}
+  fi
+
+  #
   # Docker
   #
   etc=/Applications/Docker.app/Contents/Resources/etc
