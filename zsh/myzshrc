@@ -312,6 +312,8 @@ alias d='docker'
 if ! is-darwin; then
   # https://github.com/sharkdp/bat/issues/982
   alias bat='batcat --style=plain'
+else
+  alias bat='bat --style=plain'
 fi
 
 #
