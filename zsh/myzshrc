@@ -154,6 +154,26 @@ frg() {
 }
 
 #
+# fssh - SSH login to a host selected from the ~/.ssh/config file using fzf
+#   usage: fssh
+#   https://qiita.com/kamykn/items/9a831862038efa4e9f8f
+#   https://dev.classmethod.jp/articles/iterm2-ssh-change-profile/
+#
+fssh() {
+    local sshLoginHost
+    sshLoginHost=`cat ~/.ssh/config | grep -i ^host | awk '{print $2}' | fzf`
+
+    if [ "$sshLoginHost" = "" ]; then
+        # ex) Ctrl-C.
+        return 1
+    fi
+
+    echo -ne "\033]1337;SetProfile=$sshLoginHost\a"
+    ssh ${sshLoginHost}
+    echo -ne "\033]1337;SetProfile=Default\a"
+}
+
+#
 # Mac
 #
 if is-darwin; then
