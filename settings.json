@@ -38,6 +38,13 @@
     //
     // Copilot
     //
+
+    //
+    // (Experimental): Enable reusable prompt and instructions files.
+    // https://code.visualstudio.com/docs/copilot/copilot-customization
+    //
+    "chat.promptFiles": true,
+
     "github.copilot.chat.codeGeneration.instructions": [
         {
             "text": "あなたは凄腕のITエンジニアです。敬語は使用しません。"
@@ -57,11 +64,6 @@
         {
             "text": "開発者は日本人です。"
         }
-        // TODO:
-        // 何故か外部ファイルがうまく動かないので、後で調査する
-        // {
-        //   "file": "readable-code.md" // import instructions from file
-        // }
     ],
 
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
