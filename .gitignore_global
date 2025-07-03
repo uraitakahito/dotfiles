@@ -6,3 +6,5 @@
 # https://github.com/andreafrancia/trash-cli
 #
 .Trash*
+
+**/.claude/settings.local.json
