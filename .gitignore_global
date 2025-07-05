@@ -7,4 +7,10 @@
 #
 .Trash*
 
+#
+# claude
+#
+# Claude Code sets git to ignore .claude/settings.local.json on creation.
+# https://docs.anthropic.com/ja/docs/claude-code/settings
+#
 **/.claude/settings.local.json
