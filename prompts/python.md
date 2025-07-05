@@ -25,3 +25,7 @@ uv run pyright --outputjson | jq '.generalDiagnostics[] | select(.severity != "i
 ```
 
 **重要:** コードを修正した後はテスト、リンティング、型チェックを必ず実施してください。
+
+## docstring
+
+- reStructuredText形式で書いてください
