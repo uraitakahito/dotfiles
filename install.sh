@@ -34,6 +34,18 @@ elif [ ! -e ~/.zshrc ]; then
 fi
 
 #
+# CLAUDE CODE
+#
+
+#
+# https://docs.anthropic.com/ja/docs/claude-code/memory
+#
+if [ ! -d ~/.claude ]; then
+  mkdir -p ~/.claude
+fi
+ln -fs "$SCRIPT_DIR/.claude/CLAUDE.md" ~/.claude/CLAUDE.md
+
+#
 # Debug log
 #
 mkdir -p ~/.log
