@@ -23,3 +23,25 @@
 ## docstring
 
 - reStructuredText形式で書いてください
+
+## テストコード
+
+テストコードでも単一責任の原則を適用してください。
+
+入れ子で呼び出しているメソッドのテストを過剰にしないでください。例えば、次のようなコードがあるとします。
+
+```python
+def foo(message: str) -> str:
+    return f"Foo says: {message}"
+
+def bar(message: str = "Hello!") -> str:
+    foo_result = foo(message)
+    return f"Bar says: {foo_result}"
+```
+
+この時 `bar` の機能確認のためのテストを書くときには `bar` から呼び出している `foo` の機能が正しいかを確認するテストは書かないでください。
+
+- `foo` の機能確認は `foo` のテストで確認してください。
+- `bar` が入れ子のメソッドである `foo` を正しい引数で呼び出しているかは `bar` のテストで確認してください。
+
+`bar` で `foo` の機能を確認しようとすると密結合なテストになってしまい、複雑になるからです。
