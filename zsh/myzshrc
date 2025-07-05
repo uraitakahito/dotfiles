@@ -5,6 +5,15 @@ local cyan=$'\e[36m' reset=$'\e[m'
 PROMPT="%{${cyan}%}%1d%# %{${reset}%}"
 
 #
+# Load environment variables
+#
+if [ -f "$HOME/.env" ]; then
+  set -a  # Treat all subsequent variable definitions as exports
+  . "$HOME/.env"
+  set +a
+fi
+
+#
 # shortcut
 #
 # Delete all existing keymaps and reset to the default state.
