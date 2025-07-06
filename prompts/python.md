@@ -11,6 +11,8 @@
 ```bash
 # 詳細出力付きで全テストを実行する場合
 uv run pytest -s -v --setup-show
+# カバレッジを調査する場合
+uv run pytest --cov
 ```
 
 #### リンティングと型チェック

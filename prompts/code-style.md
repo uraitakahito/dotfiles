@@ -1,4 +1,4 @@
-# コードを書くときに気をつける点です
+# コードスタイル
 
 開発者がこれらに違反していたら、教えてあげてください。ただし、一度に全てを指摘すると、話が分散してしまいます。話している内容からあまりそれないものや、致命的なものだけ指摘してください。
 
@@ -45,3 +45,9 @@ def bar(message: str = "Hello!") -> str:
 - `bar` が入れ子のメソッドである `foo` を正しい引数で呼び出しているかは `bar` のテストで確認してください。
 
 `bar` で `foo` の機能を確認しようとすると密結合なテストになってしまい、複雑になるからです。
+
+## 参考資料
+
+- [Adapter Pattern - GoF Design Patterns](https://en.wikipedia.org/wiki/Adapter_pattern)
+- [Repository Pattern - Martin Fowler](https://martinfowler.com/eaaCatalog/repository.html)
+- [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/)
