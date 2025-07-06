@@ -44,6 +44,7 @@ if [ ! -d ~/.claude ]; then
   mkdir -p ~/.claude
 fi
 ln -fs "$SCRIPT_DIR/.claude/CLAUDE.md" ~/.claude/CLAUDE.md
+ln -fs "$SCRIPT_DIR/.claude/settings.json" ~/.claude/settings.json
 
 #
 # Debug log

@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -H \"Title: Claude Code Hook\" -d \"Stop Hookが呼ばれました\" ntfy.sh/$NTFY_TOPIC"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -H \"Title: Claude Code Hook\" -d \"Notification Hookが呼ばれました\" ntfy.sh/$NTFY_TOPIC"
+          }
+        ]
+      }
+    ]
+  },
+  "model": "opus"
+}

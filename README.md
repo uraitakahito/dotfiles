@@ -4,3 +4,11 @@
 ```
 
 And type [`fdshell /bin/zsh`](https://github.com/uraitakahito/dotfiles/blob/d6214f4ed6d63fd437ab53d18eba9705a118e1e8/zsh/myzshrc#L93-L101) or [`fdvscode`](https://github.com/uraitakahito/dotfiles/blob/d6214f4ed6d63fd437ab53d18eba9705a118e1e8/zsh/myzshrc#L103-L111) .
+
+## prompts
+
+This provides cross-project prompts that are common to both GitHub Copilot and Claude Code.
+
+GitHub Copilot is invoked from [settings.json](https://github.com/uraitakahito/dotfiles/blob/76109f5dc3b004abb10f1399adb84c7f4749f708/settings.json#L50).
+
+Claude Code is invoked from [CLAUDE.md](https://github.com/uraitakahito/dotfiles/blob/76109f5dc3b004abb10f1399adb84c7f4749f708/.claude/CLAUDE.md)
