@@ -28,6 +28,8 @@ uv run pyright
 uv run pyright --outputjson | jq '.generalDiagnostics[] | select(.severity != "information")'
 ```
 
+静的型チェックと動的エラー処理の両方で上手くいくコードを心がけてください。
+
 **重要:** コードを修正した後はテスト、リンティング、型チェックを必ず実施してください。
 
 ## docstring
