@@ -34,6 +34,13 @@ elif [ ! -e ~/.zshrc ]; then
 fi
 
 #
+# Python
+#
+if [ ! -f "$HOME/.ruff.toml" ]; then
+  ln -fs "$SCRIPT_DIR/.ruff.toml" "$HOME/.ruff.toml"
+fi
+
+#
 # CLAUDE CODE
 #
 

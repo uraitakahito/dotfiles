@@ -1,0 +1,21 @@
+# Ruff configuration file
+# https://docs.astral.sh/ruff/configuration/
+
+line-length = 120
+
+[lint]
+select = ["ALL"]
+
+# Types of errors to exclude
+ignore = [
+    "BLE001", # Do not catch blind exception
+    "D100",   # Missing docstring in public module
+    "D400",   # First line should end with a period
+    "D415",   # First line should end with a period, question mark, or exclamation point
+    "ERA001", # Commented-out code detected - Detects commented-out code. Excluded to allow debug code and TODO comments during development
+    "FIX002", # Line contains TODO, consider resolving the issue - Allow TODO comments
+    "RUF001", # Ambiguous unicode character - Allow ambiguous Unicode characters (full-width characters, etc.)
+    "TD003",  # Missing issue link for this TODO - Allow TODO comments without links
+    "TRY300", # try-consider-else - Excluded due to conflict with RET505
+    "TRY301", # Abstract raise to an inner function - Keep direct raise for clarity
+]
