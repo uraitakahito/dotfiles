@@ -4,6 +4,8 @@
 
 ### uvを使用している場合
 
+**重要:** コードを修正した後はテスト、リンティング、型チェックを必ず実施してください。
+
 #### テスト
 
 テストの全体実行方法
@@ -15,13 +17,15 @@ uv run pytest -s -v --setup-show
 uv run pytest --cov
 ```
 
-#### リンティングと型チェック
+#### Ruff でのリンティング
 
 ```bash
-# Ruffリンターを実行
 uv run ruff check .
+```
 
-# Pyrightで型チェックを実行（Pylanceと同等）
+#### pyright での型チェック(Pylanceと同等)
+
+```bash
 uv run pyright
 
 # 型チェックのみ（警告を含む全て表示）
@@ -29,8 +33,6 @@ uv run pyright --outputjson | jq '.generalDiagnostics[] | select(.severity != "i
 ```
 
 静的型チェックと動的エラー処理の両方で上手くいくコードを心がけてください。
-
-**重要:** コードを修正した後はテスト、リンティング、型チェックを必ず実施してください。
 
 ## docstring
 
