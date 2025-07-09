@@ -1,4 +1,6 @@
 # Ruff configuration file
+# Write only project-wide settings in this file.
+# Write project-specific settings individually in each project folder.
 # https://docs.astral.sh/ruff/configuration/
 
 line-length = 120
