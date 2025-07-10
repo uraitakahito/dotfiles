@@ -2,6 +2,7 @@
 [@conversation-guidelines.md](conversation-guidelines.md)
 [@development-commands.md](development-commands.md)
 [@python.md](python.md)
+[@refactoring_plicy.md](refactoring_policy.md)
 
 ## 開発ノート
 
