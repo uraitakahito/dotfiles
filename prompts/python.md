@@ -37,3 +37,8 @@ uv run pyright --outputjson | jq '.generalDiagnostics[] | select(.severity != "i
 ## docstring
 
 - reStructuredText形式で書いてください
+
+## ファイル名
+
+> 内部インターフェース（パッケージ、モジュール、クラス、関数、属性、その他の名前）は、依然として先頭にアンダースコア1つを付けて命名すべきである。
+> [PEP8 Public and Internal Interfaces](https://peps.python.org/pep-0008/#public-and-internal-interfaces)
