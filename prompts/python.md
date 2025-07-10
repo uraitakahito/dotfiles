@@ -23,7 +23,7 @@ uv run pytest --cov
 uv run ruff check .
 ```
 
-#### pyright での型チェック(Pylanceと同等)
+#### pyright(Pylance) での静的型チェック
 
 ```bash
 uv run pyright
@@ -32,7 +32,7 @@ uv run pyright
 uv run pyright --outputjson | jq '.generalDiagnostics[] | select(.severity != "information")'
 ```
 
-静的型チェックと動的エラー処理の両方で上手くいくコードを心がけてください。
+静的型チェックのエラーが出ないコードを心がけてください。
 
 ## docstring
 
