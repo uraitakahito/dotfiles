@@ -125,5 +125,6 @@
                 "args": ["-y", "@upstash/context7-mcp"]
             }
         }
-    }
+    },
+    "python.analysis.typeCheckingMode": "strict"
 }
