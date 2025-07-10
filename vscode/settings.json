@@ -101,32 +101,6 @@
     },
     "docker.extension.enableComposeLanguageServer": false,
 
-    "mcp": {
-
-        "inputs": [],
-        "servers": {
-            // "mcp-server-time": {
-            //     "command": "python",
-            //     "args": [
-            //         "-m",
-            //         "mcp_server_time",
-            //         "--local-timezone=America/Los_Angeles"
-            //     ],
-            //     "env": {}
-            // },
-
-            //
-            // Context7
-            //   https://github.com/upstash/context7?tab=readme-ov-file#vs-code-local-server-connection
-            //
-            "context7": {
-                "type": "stdio",
-                "command": "npx",
-                "args": ["-y", "@upstash/context7-mcp"]
-            }
-        }
-    },
-
     //
     // Pylance
     //
