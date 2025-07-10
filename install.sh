@@ -19,12 +19,13 @@ if [ ! -f .config/git/ignore ]; then
   ln -fs "$SCRIPT_DIR/.gitignore_global" .config/git/ignore
 fi
 
-# Copy settings.json if this script is running in a container
 if is-docker; then
   mkdir -p ~/.vscode-server/data/Machine
-  ln -fs "$SCRIPT_DIR/settings.json" .vscode-server/data/Machine
+  ln -fs "$SCRIPT_DIR/vscode/settings.json" .vscode-server/data/Machine
+  ln -fs "$SCRIPT_DIR/vscode/mcp.json" .vscode-server/data/Machine
 elif is-darwin; then
-  ln -fs "$SCRIPT_DIR/settings.json" "$HOME/Library/Application Support/Code/User"
+  ln -fs "$SCRIPT_DIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User"
+  ln -fs "$SCRIPT_DIR/vscode/mcp.json" "$HOME/Library/Application Support/Code/User"
 fi
 
 if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
