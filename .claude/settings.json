@@ -27,7 +27,7 @@
       "Read(.env.*)",
       "Read(id_ed25519)",
       "Read(id_rsa)",
-      "Write(.env*)",
+      "Write(.env*)"
     ]
   },
   "hooks": {
