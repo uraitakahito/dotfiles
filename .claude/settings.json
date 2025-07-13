@@ -14,7 +14,9 @@
       "Bash(uv run pytest:*)",
       "Bash(ruff check:*)",
       "Bash(xxd:*)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:stackoverflow.com)"
     ],
     "deny": [
       "Bash(curl:*)",
