@@ -249,6 +249,16 @@ if is-darwin; then
   fi
 
   #
+  # SSH
+  #
+  if [ ! -d ~/.ssh ]; then
+    # Prepare the directory in advance to prevent it from being owned by root when mounting keys
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+  fi
+
+
+  #
   # Docker CLI Plugins
   #
   plugins=$HOME/.docker/cli-plugins
