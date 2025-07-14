@@ -55,6 +55,15 @@ ln -fs "$SCRIPT_DIR/.claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -fs "$SCRIPT_DIR/.claude/settings.json" ~/.claude/settings.json
 
 #
+# Gemini CLI
+#
+if [ ! -d ~/.gemini ]; then
+  mkdir -p ~/.gemini
+fi
+ln -fs "$SCRIPT_DIR/.gemini/settings.json" ~/.gemini/settings.json
+
+
+#
 # Debug log
 #
 mkdir -p ~/.log
