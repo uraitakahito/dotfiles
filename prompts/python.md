@@ -1,12 +1,26 @@
 # Pythonを使ったプロジェクトの場合の開発ガイドライン
 
-## 開発コマンド
-
-### uvを使用している場合
+## 開発コマンド(uvを使用している場合)
 
 **重要:** コードを修正した後はテスト、リンティング、型チェックを必ず実施してください。
 
-#### テスト
+### ワンライナー
+
+**python実行時には `uv` を使ってください。**
+
+悪い例:
+
+```bash
+python -c "print('hello world')"
+```
+
+良い例:
+
+```bash
+uv run python -c "print('hello world')"
+```
+
+### テスト
 
 テストの全体実行方法
 
@@ -17,13 +31,13 @@ uv run pytest -s -v --setup-show
 uv run pytest --cov
 ```
 
-#### Ruff でのリンティング
+### Ruff でのリンティング
 
 ```bash
 uv run ruff check .
 ```
 
-#### pyright(Pylance) での静的型チェック
+### pyright(Pylance) での静的型チェック
 
 ```bash
 uv run pyright
