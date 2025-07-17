@@ -84,8 +84,8 @@ export GPG_TTY=$TTY
 # If you press `Ctrl + e` or the `→` key (forward-char widget) or End (end-of-line widget) with the cursor at the end of the buffer,
 # it will accept the suggestion, replacing the contents of the command line buffer with the suggestion.
 #
-if [ -f "$SCRIPT_DIR/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-  source $SCRIPT_DIR/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f "$SCRIPT_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source $SCRIPT_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # reverse-i-search with fzf
