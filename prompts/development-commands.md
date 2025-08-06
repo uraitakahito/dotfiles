@@ -1,9 +1,5 @@
 # Development Commands
 
-## grep
-
-`ripgrep` をインストールしています。 `rg` コマンドを使用して、コードベース内の特定の文字列をgrepより高速に検索できます。
-
 ## Context7の使用ルール
 
 - あなた（Claude）は、MCP Toolkitを通じてContext7に接続されています。
