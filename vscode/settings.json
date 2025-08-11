@@ -60,6 +60,12 @@
     // Setting this to `line` will enable the hovers to show anywhere over the line.
     "gitlens.hovers.currentLine.over": "line",
 
+    //
+    // OS notification on user action
+    // https://code.visualstudio.com/updates/v1_103#_os-notification-on-user-action
+    //
+    "chat.notifyWindowOnConfirmation": true,
+
     "tabnine.experimentalAutoImports": true,
 
     "terminal.integrated.enableMultiLinePasteWarning": false,
