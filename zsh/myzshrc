@@ -157,6 +157,20 @@ fghbrowse() {
 }
 
 #
+# fkill - Select a process to kill using fzf
+#   usage: fkill
+#
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill
+  fi
+}
+
+#
 # frg - Search files with ripgrep (or grep), select with fzf, and open in the editor
 #   usage: frg
 #
