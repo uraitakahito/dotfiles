@@ -11,4 +11,4 @@ This provides cross-project prompts that are common to both GitHub Copilot and C
 
 GitHub Copilot is invoked from [settings.json](https://github.com/uraitakahito/dotfiles/blob/76109f5dc3b004abb10f1399adb84c7f4749f708/settings.json#L50).
 
-Claude Code is invoked from [CLAUDE.md](https://github.com/uraitakahito/dotfiles/blob/76109f5dc3b004abb10f1399adb84c7f4749f708/.claude/CLAUDE.md)
+Claude Code is invoked from [CLAUDE.md](https://github.com/uraitakahito/dotfiles/blob/a4bc06bfbd64ff0944110182ef36e23001999988/.claude/CLAUDE.md)
