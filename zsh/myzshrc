@@ -296,6 +296,15 @@ if is-darwin; then
 fi
 
 #
+# Docker
+#
+if is-docker; then
+  if [ -d /zsh-volume ]; then
+    export HISTFILE=/zsh-volume/.zsh_history
+  fi
+fi
+
+#
 # rbenv
 #
 [[ -d $HOME/.rbenv ]] && \
