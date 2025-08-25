@@ -49,10 +49,8 @@ fi
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
 if [ ! -d ~/.claude ]; then
-  mkdir -p ~/.claude
+  ln -fs "$SCRIPT_DIR/.claude" "$HOME/.claude"
 fi
-ln -fs "$SCRIPT_DIR/.claude/CLAUDE.md" ~/.claude/CLAUDE.md
-ln -fs "$SCRIPT_DIR/.claude/settings.json" ~/.claude/settings.json
 
 #
 # Gemini CLI
