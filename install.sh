@@ -61,18 +61,6 @@ fi
 ln -fs "$SCRIPT_DIR/.gemini/settings.json" ~/.gemini/settings.json
 
 #
-# zsh history in docker
-#
-if [ -d /zsh-volume ]; then
-  if [ ! -e /zsh-volume/.zsh_history ]; then
-    touch /zsh-volume/.zsh_history
-  fi
-  if [ -e /zsh-volume/.zsh_history ]; then
-    ln -fs /zsh-volume/.zsh_history ~/.zsh_history
-  fi
-fi
-
-#
 # Debug log
 #
 mkdir -p ~/.log
