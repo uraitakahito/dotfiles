@@ -20,6 +20,7 @@
 - コーディングに現れない意図は積極的にコメントに残します。逆にコーディングに現れる仕様はコメントにすることを控えます。
 - 変数のスコープと可変性を最小化します。変数をmutableにするのは、必要な場合に限ります。
 - Single source of truthを守ります。例えば、同じ値や実装を複数の場所で定義しないようにします。
+- Principle of Least Astonishmentを守ります。
 
 ## TIDY FIRST APPROACH
 
