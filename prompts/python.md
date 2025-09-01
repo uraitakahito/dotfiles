@@ -4,17 +4,9 @@
 
 **重要:** コードを修正した後はテスト、リンティング、型チェックを必ず実施してください。
 
-### ワンライナー
+### one-liner
 
 **python実行時には `uv` を使ってください。**
-
-悪い例:
-
-```bash
-python -c "print('hello world')"
-```
-
-良い例:
 
 ```bash
 uv run python -c "print('hello world')"
