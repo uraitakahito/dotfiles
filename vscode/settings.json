@@ -36,6 +36,13 @@
     "files.insertFinalNewline": true,
 
     //
+    // process - process monitoring only
+    // output - console output only
+    // hybrid - both (default)
+    //
+    "remote.autoForwardPortsSource": "hybrid",
+
+    //
     // Copilot
     //
 
