@@ -35,6 +35,10 @@
     // When enabled, insert a final new line at the end of the file when saving it.
     "files.insertFinalNewline": true,
 
+    "files.exclude": {
+        "**/.Trash*": true
+    },
+
     //
     // process - process monitoring only
     // output - console output only
