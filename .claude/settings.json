@@ -25,6 +25,7 @@
       "Bash(git reset:*)",
       "Bash(git rebase:*)",
       "Bash(rm -rf:*)",
+      "Read(./.Trash-501/**)",
       "Bash(sudo:*)",
       "Read(.env.*)",
       "Read(id_ed25519.*)",
