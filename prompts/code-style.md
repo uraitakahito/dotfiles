@@ -31,12 +31,15 @@
 - あまりにも細かく分散されて可読性が悪くなってはいけない
 - 適切なコメントの付与は必要ですが、不要なコメントは削除しましょう
 
-# コード品質基準
+## コード品質基準
 
 - 名前や構造を通じて意図を明確に表現する
-- 依存関係は明示的にする
 - 状態と副作用は最小限に抑える
 - 「うまく動くもっとも単純な解決策」を使う
+
+## Design Patterns
+
+- [Composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance)
 
 ## テストコード
 
