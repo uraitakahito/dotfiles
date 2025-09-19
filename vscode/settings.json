@@ -56,6 +56,12 @@
     //
     "chat.promptFiles": true,
 
+    //
+    // An AGENTS.md file lets you provide context and instructions to the agent.
+    // https://code.visualstudio.com/updates/v1_104#_support-for-agentsmd-files-experimental
+    //
+    "chat.useAgentsMdFile": true,
+
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
 
     "github.copilot.chat.systemPrompt": "@~/dotfiles/prompts/onboarding.md",
