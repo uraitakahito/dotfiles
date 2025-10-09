@@ -127,5 +127,16 @@
     //
     // Pylance
     //
-    "python.analysis.typeCheckingMode": "strict"
+    "python.analysis.typeCheckingMode": "strict",
+
+    //
+    // YAML Language Support by Red Hat
+    //   https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml
+    //
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
 }
