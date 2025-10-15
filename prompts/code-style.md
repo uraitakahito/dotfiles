@@ -63,6 +63,9 @@
 ## Design Patterns
 
 - [Composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance)
+- [Adapter Pattern - GoF Design Patterns](https://en.wikipedia.org/wiki/Adapter_pattern)
+- [Repository Pattern - Martin Fowler](https://martinfowler.com/eaaCatalog/repository.html)
+- [Template Method - Refactoring Guru](https://refactoring.guru/design-patterns/template-method)
 
 ## テストコード
 
@@ -88,6 +91,4 @@ def bar(message: str = "Hello!") -> str:
 
 ## 参考資料
 
-- [Adapter Pattern - GoF Design Patterns](https://en.wikipedia.org/wiki/Adapter_pattern)
-- [Repository Pattern - Martin Fowler](https://martinfowler.com/eaaCatalog/repository.html)
 - [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/)
