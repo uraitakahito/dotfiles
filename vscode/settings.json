@@ -57,6 +57,18 @@
     "chat.promptFiles": true,
 
     //
+    // OS notifications for chat responses
+    // https://code.visualstudio.com/updates/v1_105#_os-notifications-for-chat-responses
+    //
+    "chat.notifyWindowOnResponseReceived": true,
+
+    //
+    // OS notification for long-running task completion
+    // https://code.visualstudio.com/updates/v1_105#_os-notification-for-longrunning-task-completion
+    //
+    "task.notifyWindowOnTaskCompletion": true,
+
+    //
     // An AGENTS.md file lets you provide context and instructions to the agent.
     // https://code.visualstudio.com/updates/v1_104#_support-for-agentsmd-files-experimental
     //
