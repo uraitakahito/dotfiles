@@ -1,5 +1,9 @@
 # コードスタイル
 
+## KISS principleに従います
+
+Keep it simple stupid.
+
 ## SOLIDの原則に従います
 
 ### 単一責任の原則 (single-responsibility principle)
