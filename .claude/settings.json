@@ -57,5 +57,5 @@
       }
     ]
   },
-  "model": "opus"
+  "model": "sonnet[1m]"
 }
