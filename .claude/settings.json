@@ -19,12 +19,7 @@
       "WebFetch(domain:stackoverflow.com)"
     ],
     "deny": [
-      "Bash(curl:*)",
-      "Bash(wget:*)",
       "Bash(git push:*)",
-      "Bash(git reset:*)",
-      "Bash(git rebase:*)",
-      "Bash(rm -rf:*)",
       "Read(./.Trash-501/**)",
       "Bash(sudo:*)",
       "Read(.env.*)",
