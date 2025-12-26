@@ -1,6 +1,3 @@
-#
-# Dockerfile to launch Claude Code
-#
 # ## ビルド方法
 #
 # dotfilesディレクトリで実行:
