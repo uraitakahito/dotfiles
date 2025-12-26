@@ -86,14 +86,21 @@
     },
     "github.copilot.editor.enableAutoCompletions": true,
 
-    // Setting this to `line` will enable the hovers to show anywhere over the line.
-    "gitlens.hovers.currentLine.over": "line",
-
     //
     // OS notification on user action
     // https://code.visualstudio.com/updates/v1_103#_os-notification-on-user-action
     //
     "chat.notifyWindowOnConfirmation": true,
+
+    "chat.tools.terminal.autoApprove": {
+        "git add": true,
+        "git commit": true,
+        "gh": true,
+        "git push": true
+    },
+
+    // Setting this to `line` will enable the hovers to show anywhere over the line.
+    "gitlens.hovers.currentLine.over": "line",
 
     "tabnine.experimentalAutoImports": true,
 
@@ -150,5 +157,6 @@
         "editor.tabSize": 2,
         "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml"
-    }
+    },
+    "redhat.telemetry.enabled": false
 }
