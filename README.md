@@ -1,3 +1,9 @@
+# dotfiles
+
+Personal dotfiles repository for a unified development environment.
+Provides Docker, Zsh, and VS Code configurations.
+Includes development guidelines based on SOLID principles and Domain-Driven Design.
+
 ## Steps to Try the Created Dotfiles
 
 ```console
