@@ -7,6 +7,10 @@
 #
 #   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo
 #
+# dotfiles変更後にCOPY以降を再ビルドする場合:
+#
+#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo --build-arg CACHEBUST=$(date +%s)
+#
 # ## コンテナ起動
 #
 #   docker volume create $PROJECT-zsh-history
@@ -107,7 +111,9 @@ USER ${user_name}
 
 #
 # dotfiles - COPYでローカルファイルをコピー
+# CACHEBUST: この値を変更するとここ以降のキャッシュが無効化される
 #
+ARG CACHEBUST=1
 COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 
 #
