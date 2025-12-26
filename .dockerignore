@@ -1,0 +1,33 @@
+# Git
+.git
+.gitignore
+.gitmodules
+
+# Git submodules (Dockerfile内で別途cloneする)
+zsh/zsh-autosuggestions
+
+# Claude Code関連（ユーザー固有データ）
+.claude/debug/
+.claude/file-history/
+.claude/session-env/
+.claude/todos/
+.claude/projects/
+.claude/ide/
+.claude/plans/
+.claude/shell-snapshots/
+.claude/chrome/
+
+# ドキュメント
+docs/
+*.md
+!prompts/*.md
+LICENSE
+
+# IDE
+.vscode/
+
+# macOS
+.DS_Store
+
+# その他
+*.log

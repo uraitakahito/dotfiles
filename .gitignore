@@ -3,5 +3,3 @@ zsh/completion/_docker-compose
 .claude/chrome/
 .claude/plugins/
 .claude/shell-snapshots/
-docker-entrypoint.sh
-Dockerfile
