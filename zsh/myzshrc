@@ -1,8 +1,20 @@
 #!/usr/bin/zsh
+
+#
+# helper
+#
+SCRIPT_DIR=$(cd "$(dirname "${0:-$BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+source $SCRIPT_DIR/modules/helper/init.sh
+
+#
 # prompt
 #
 local cyan=$'\e[36m' reset=$'\e[m'
-PROMPT="%{${cyan}%}%1d%# %{${reset}%}"
+if is-docker; then
+  PROMPT="🐳 %{${cyan}%}%1d%# %{${reset}%}"
+else
+  PROMPT="%{${cyan}%}%1d%# %{${reset}%}"
+fi
 
 #
 # Load environment variables
@@ -25,12 +37,6 @@ bindkey -e
 # compinit
 #
 autoload -Uz compinit && compinit
-
-#
-# helper
-#
-SCRIPT_DIR=$(cd "$(dirname "${0:-$BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-source $SCRIPT_DIR/modules/helper/init.sh
 
 #
 # Welcome Message
