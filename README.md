@@ -1,4 +1,7 @@
 ```console
+% curl -L -O https://raw.githubusercontent.com/uraitakahito/claude-code-docker/refs/heads/main/Dockerfile
+% curl -L -O https://raw.githubusercontent.com/uraitakahito/claude-code-docker/refs/heads/main/docker-entrypoint.sh
+% chmod 755 docker-entrypoint.sh
 % PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 % docker container run -d --rm --init --mount type=bind,src=`pwd`,dst=/app --mount type=bind,src=$HOME/.gitconfig,dst=/home/developer/.gitconfig --name $PROJECT-container $PROJECT-image
 ```
