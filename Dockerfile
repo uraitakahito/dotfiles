@@ -44,7 +44,7 @@ RUN cd /usr/src && \
   git clone --depth 1 ${extra_utils_repository} && \
   ADDEZA=true \
   UPGRADEPACKAGES=false \
-    /usr/src/extra-utils/install.sh
+    /usr/src/extra-utils/utils/install.sh
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
