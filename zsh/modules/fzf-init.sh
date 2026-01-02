@@ -8,7 +8,7 @@
 # select-history - reverse-i-search with fzf
 #
 function select-history() {
-  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  BUFFER=$(fc -l -n 1 | tail -r | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
 }
 zle -N select-history
