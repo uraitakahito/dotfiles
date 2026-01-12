@@ -261,6 +261,25 @@ fi
 #
 alias a='eza --icons'
 alias ll='eza -l -g --icons'
+#
+# Enable file/directory name completion for 'a' and 'll' aliases.
+#
+# Why use '_files' instead of '_eza':
+#   The '_eza' completion function uses '_arguments' internally, which expects
+#   to parse options from the beginning of the command line. However, since
+#   these aliases already include options (e.g., '--icons', '-l', '-g'),
+#   '_arguments' gets confused about the argument position, causing file name
+#   completion to fail.
+#
+#   Using '_files' directly provides simple file/directory completion without
+#   attempting to parse eza's options. This is sufficient for these aliases
+#   since they are primarily used for listing files.
+#
+# Trade-off:
+#   - Works: Tab completion for file and directory names
+#   - Not available: eza option completion (e.g., --long, --all)
+#
+compdef _files a ll
 
 alias d='docker'
 if ! is-darwin; then
