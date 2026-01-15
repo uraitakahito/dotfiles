@@ -100,19 +100,6 @@ if is-darwin; then
   if [ -e /opt/homebrew/bin/brew ]; then
     eval $(/opt/homebrew/bin/brew shellenv)
   fi
-fi
-
-#
-# fzf module
-#
-if type fzf > /dev/null 2>&1; then
-  source $SCRIPT_DIR/modules/fzf-init.sh
-fi
-
-#
-# Mac (continued)
-#
-if is-darwin; then
 
   #
   # zsh-completions
@@ -190,6 +177,17 @@ if is-darwin; then
   # Alias
   #
   alias bell='afplay /System/Library/Sounds/Frog.aiff'
+fi
+
+#
+# fzf module
+#
+# NOTE: This must come after Homebrew initialization on Mac.
+# fzf is installed via Homebrew, so /opt/homebrew/bin must be in PATH
+# before `type fzf` can find it.
+#
+if type fzf > /dev/null 2>&1; then
+  source $SCRIPT_DIR/modules/fzf-init.sh
 fi
 
 #
