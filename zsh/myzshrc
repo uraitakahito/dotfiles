@@ -91,13 +91,6 @@ if [ -f "$SCRIPT_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
 fi
 
 #
-# fzf module
-#
-if type fzf > /dev/null 2>&1; then
-  source $SCRIPT_DIR/modules/fzf-init.sh
-fi
-
-#
 # Mac
 #
 if is-darwin; then
@@ -107,6 +100,19 @@ if is-darwin; then
   if [ -e /opt/homebrew/bin/brew ]; then
     eval $(/opt/homebrew/bin/brew shellenv)
   fi
+fi
+
+#
+# fzf module
+#
+if type fzf > /dev/null 2>&1; then
+  source $SCRIPT_DIR/modules/fzf-init.sh
+fi
+
+#
+# Mac (continued)
+#
+if is-darwin; then
 
   #
   # zsh-completions
