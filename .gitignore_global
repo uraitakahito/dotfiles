@@ -13,6 +13,7 @@
 # Claude Code sets git to ignore .claude/settings.local.json on creation.
 # https://docs.anthropic.com/ja/docs/claude-code/settings
 #
+**/.claude/cache/
 **/.claude/settings.local.json
 **/.claude/.update.lock
 **/.claude/debug/
