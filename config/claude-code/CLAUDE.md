@@ -1,9 +1,9 @@
 ## 開発ガイドライン
 
-- [@code-style.md](prompts/code-style.md)
-- [@conversation-guidelines.md](prompts/conversation-guidelines.md)
-- [@python.md](prompts/python.md)
-- [@refactoring_policy.md](prompts/refactoring_policy.md)
+- [@code-style.md](guidelines/code-style.md)
+- [@conversation-guidelines.md](guidelines/conversation-guidelines.md)
+- [@python.md](guidelines/python.md)
+- [@refactoring_policy.md](guidelines/refactoring_policy.md)
 
 ## 開発ノート
 

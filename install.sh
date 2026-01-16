@@ -46,13 +46,11 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 #
 # CLAUDE CODE
 #
-
-#
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
-if [ ! -d ~/.claude ]; then
-  ln -fs "$SCRIPT_DIR/.claude" "$HOME/.claude"
-fi
+mkdir -p ~/.claude
+ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" ~/.claude/settings.json
+ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" ~/.claude/CLAUDE.md
 
 #
 # Gemini CLI
