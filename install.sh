@@ -3,7 +3,7 @@ set -u
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-source $SCRIPT_DIR/zsh/modules/helper/init.sh
+source $SCRIPT_DIR/config/zsh/functions/helper.zsh
 
 cd ~/ || exit
 
@@ -46,10 +46,22 @@ elif is-darwin; then
   ln -fs "$SCRIPT_DIR/config/Code/User/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
 fi
 
-if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
-  echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
-elif [ ! -e ~/.zshrc ]; then
-  echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
+#
+# Zsh
+#
+ZSHRC_SOURCE="source $SCRIPT_DIR/config/zsh/zshrc"
+if [ -e ~/.zshrc ]; then
+  # Remove old myzshrc reference if exists
+  if grep -q 'myzshrc' ~/.zshrc; then
+    sed -i'' -e '/myzshrc/d' ~/.zshrc
+  fi
+  # Remove old config/zsh/zshrc reference if exists (to update path)
+  if grep -q 'config/zsh/zshrc' ~/.zshrc; then
+    sed -i'' -e '/config\/zsh\/zshrc/d' ~/.zshrc
+  fi
+  echo "$ZSHRC_SOURCE" >> ~/.zshrc
+else
+  echo "$ZSHRC_SOURCE" >> ~/.zshrc
 fi
 
 #

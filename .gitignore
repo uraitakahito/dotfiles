@@ -1,5 +1,5 @@
-zsh/completion/_docker
-zsh/completion/_docker-compose
+config/zsh/completion/_docker
+config/zsh/completion/_docker-compose
 .claude/chrome/
 .claude/plugins/
 .claude/shell-snapshots/
