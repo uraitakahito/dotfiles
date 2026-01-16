@@ -6,8 +6,23 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source $SCRIPT_DIR/zsh/modules/helper/init.sh
 
 cd ~/ || exit
-ln -fs "$SCRIPT_DIR/.tmux.conf" .
-ln -fs "$SCRIPT_DIR/.vimrc" .
+
+#
+# tmux
+#
+# tmux 3.1+ supports ~/.config/tmux/tmux.conf
+# https://github.com/tmux/tmux/wiki/FAQ#where-is-my-tmuxconf-file
+#
+mkdir -p ~/.config/tmux
+ln -fs "$SCRIPT_DIR/config/tmux/tmux.conf" ~/.config/tmux/tmux.conf
+
+#
+# Vim
+#
+# Vim uses traditional ~/.vimrc location
+# Future: Consider Neovim migration with ~/.config/nvim/init.vim
+#
+ln -fs "$SCRIPT_DIR/config/vim/vimrc" ~/.vimrc
 
 #
 # Git
