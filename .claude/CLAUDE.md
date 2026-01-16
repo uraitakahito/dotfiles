@@ -1,1 +1,1 @@
-[@~/dotfiles/AGENTS.md](~/dotfiles/AGENTS.md)
+/Users/takahito/dotfiles/config/claude-code/CLAUDE.md

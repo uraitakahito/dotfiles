@@ -1,8 +1,13 @@
-#!/usr/bin/zsh
-#
 # fzf-dependent functions
-# This file is only sourced when fzf is available
+# This section is only active when fzf is available
 #
+# NOTE: This must come after Homebrew initialization on Mac.
+# fzf is installed via Homebrew, so /opt/homebrew/bin must be in PATH
+# before `type fzf` can find it.
+
+if ! type fzf > /dev/null 2>&1; then
+  return
+fi
 
 #
 # select-history - reverse-i-search with fzf

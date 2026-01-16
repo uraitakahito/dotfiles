@@ -1,0 +1,16 @@
+#!/usr/bin/zsh
+
+# Zsh configuration entry point
+# This file sources all configuration files in conf.d/
+
+# Get the directory where this script is located
+ZSH_CONFIG_DIR="${0:A:h}"
+export ZSH_CONFIG_DIR
+
+# Load helper functions
+source "$ZSH_CONFIG_DIR/functions/helper.zsh"
+
+# Source all conf.d files in order
+for conf in "$ZSH_CONFIG_DIR"/conf.d/*.zsh(N); do
+  source "$conf"
+done

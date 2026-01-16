@@ -3,11 +3,26 @@ set -u
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-source $SCRIPT_DIR/zsh/modules/helper/init.sh
+source $SCRIPT_DIR/config/zsh/functions/helper.zsh
 
 cd ~/ || exit
-ln -fs "$SCRIPT_DIR/.tmux.conf" .
-ln -fs "$SCRIPT_DIR/.vimrc" .
+
+#
+# tmux
+#
+# tmux 3.1+ supports ~/.config/tmux/tmux.conf
+# https://github.com/tmux/tmux/wiki/FAQ#where-is-my-tmuxconf-file
+#
+mkdir -p ~/.config/tmux
+ln -fs "$SCRIPT_DIR/config/tmux/tmux.conf" ~/.config/tmux/tmux.conf
+
+#
+# Vim
+#
+# Vim uses traditional ~/.vimrc location
+# Future: Consider Neovim migration with ~/.config/nvim/init.vim
+#
+ln -fs "$SCRIPT_DIR/config/vim/vimrc" ~/.vimrc
 
 #
 # Git
@@ -31,10 +46,22 @@ elif is-darwin; then
   ln -fs "$SCRIPT_DIR/config/Code/User/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
 fi
 
-if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
-  echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
-elif [ ! -e ~/.zshrc ]; then
-  echo 'source ~/dotfiles/zsh/myzshrc' >> ~/.zshrc
+#
+# Zsh
+#
+ZSHRC_SOURCE="source $SCRIPT_DIR/config/zsh/zshrc"
+if [ -e ~/.zshrc ]; then
+  # Remove old myzshrc reference if exists
+  if grep -q 'myzshrc' ~/.zshrc; then
+    sed -i'' -e '/myzshrc/d' ~/.zshrc
+  fi
+  # Remove old config/zsh/zshrc reference if exists (to update path)
+  if grep -q 'config/zsh/zshrc' ~/.zshrc; then
+    sed -i'' -e '/config\/zsh\/zshrc/d' ~/.zshrc
+  fi
+  echo "$ZSHRC_SOURCE" >> ~/.zshrc
+else
+  echo "$ZSHRC_SOURCE" >> ~/.zshrc
 fi
 
 #
@@ -46,13 +73,11 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 #
 # CLAUDE CODE
 #
-
-#
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
-if [ ! -d ~/.claude ]; then
-  ln -fs "$SCRIPT_DIR/.claude" "$HOME/.claude"
-fi
+mkdir -p ~/.claude
+ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" ~/.claude/settings.json
+ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" ~/.claude/CLAUDE.md
 
 #
 # Gemini CLI
