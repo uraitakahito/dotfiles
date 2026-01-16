@@ -106,7 +106,8 @@
 
     "terminal.integrated.enableMultiLinePasteWarning": false,
 
-    "terminal.integrated.fontFamily": "'Hack Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.fontSize": 14,
 
     "terminal.integrated.scrollback": 100000,
 

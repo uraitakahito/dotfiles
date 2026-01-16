@@ -2,10 +2,8 @@
 
 - [@code-style.md](prompts/code-style.md)
 - [@conversation-guidelines.md](prompts/conversation-guidelines.md)
-- [@github-style.md](prompts/github-style.md)
-- [@development-commands.md](prompts/development-commands.md)
 - [@python.md](prompts/python.md)
-- [@refactoring_plicy.md](prompts/refactoring_policy.md)
+- [@refactoring_policy.md](prompts/refactoring_policy.md)
 
 ## 開発ノート
 

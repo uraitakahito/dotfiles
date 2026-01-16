@@ -12,20 +12,23 @@ ln -fs "$SCRIPT_DIR/.vimrc" .
 #
 # Git
 #
-cd ~/ || exit
 # https://github.com/git/git/blob/master/Documentation/RelNotes/1.7.12.txt#L21-L23
-mkdir -p .config/git
-if [ ! -f .config/git/ignore ]; then
-  ln -fs "$SCRIPT_DIR/.gitignore_global" .config/git/ignore
-fi
+mkdir -p ~/.config/git
+ln -fs "$SCRIPT_DIR/config/git/ignore" ~/.config/git/ignore
 
+#
+# VS Code
+#
 if is-docker; then
   mkdir -p ~/.vscode-server/data/Machine
-  ln -fs "$SCRIPT_DIR/vscode/settings.json" .vscode-server/data/Machine
-  ln -fs "$SCRIPT_DIR/vscode/mcp.json" .vscode-server/data/Machine
+  ln -fs "$SCRIPT_DIR/config/Code/User/settings.json" ~/.vscode-server/data/Machine/settings.json
+  ln -fs "$SCRIPT_DIR/config/Code/User/mcp.json" ~/.vscode-server/data/Machine/mcp.json
 elif is-darwin; then
-  ln -fs "$SCRIPT_DIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User"
-  ln -fs "$SCRIPT_DIR/vscode/mcp.json" "$HOME/Library/Application Support/Code/User"
+  VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
+  mkdir -p "$VSCODE_USER_DIR"
+  ln -fs "$SCRIPT_DIR/config/Code/User/settings.json" "$VSCODE_USER_DIR/settings.json"
+  ln -fs "$SCRIPT_DIR/config/Code/User/mcp.json" "$VSCODE_USER_DIR/mcp.json"
+  ln -fs "$SCRIPT_DIR/config/Code/User/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
 fi
 
 if [ -e ~/.zshrc ] && [ "$(grep -c myzshrc ~/.zshrc)" -eq 0 ]; then
@@ -35,11 +38,10 @@ elif [ ! -e ~/.zshrc ]; then
 fi
 
 #
-# Python
+# Ruff (Python linter)
 #
-if [ ! -f "$HOME/.ruff.toml" ]; then
-  ln -fs "$SCRIPT_DIR/.ruff.toml" "$HOME/.ruff.toml"
-fi
+mkdir -p ~/.config/ruff
+ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 
 #
 # CLAUDE CODE
@@ -55,10 +57,8 @@ fi
 #
 # Gemini CLI
 #
-if [ ! -d ~/.gemini ]; then
-  mkdir -p ~/.gemini
-fi
-ln -fs "$SCRIPT_DIR/.gemini/settings.json" ~/.gemini/settings.json
+mkdir -p ~/.config/gemini
+ln -fs "$SCRIPT_DIR/config/gemini/settings.json" ~/.config/gemini/settings.json
 
 #
 # Debug log
