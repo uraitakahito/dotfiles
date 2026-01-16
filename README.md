@@ -3,6 +3,7 @@
 Personal dotfiles repository for a unified development environment.
 Provides Docker, Zsh, and VS Code configurations.
 Includes development guidelines based on SOLID principles and Domain-Driven Design.
+Follows [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) for configuration file placement.
 
 ## ディレクトリ構造
 
@@ -31,11 +32,6 @@ dotfiles/
 ```bash
 ./install.sh
 ```
-
-## メモ
-
-ezaのaliasを設定しています。`ls` コマンドを使わずに `a` や `ll` を使いましょう。
-（定義: `config/zsh/conf.d/10-aliases.zsh`）
 
 ## Docker開発環境の構築
 
