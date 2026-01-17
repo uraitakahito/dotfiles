@@ -2,8 +2,17 @@
 
 Personal dotfiles repository for a unified development environment.
 Provides Docker, Zsh, and VS Code configurations.
-Includes development guidelines based on SOLID principles and Domain-Driven Design.
 Follows [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) for configuration file placement.
+
+## VS Code Dev Containers との連携
+
+このリポジトリは [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) の dotfiles 機能と連携して使用することを想定しています。
+
+VS Code の設定で以下を指定すると、Dev Container 作成時に自動的にこのリポジトリがクローンされ、`install.sh` が実行されます：
+
+- `dotfiles.repository`: このリポジトリのURL
+- `dotfiles.targetPath`: コンテナ内のインストール先パス
+- `dotfiles.installCommand`: `install.sh`
 
 ## ディレクトリ構造
 
