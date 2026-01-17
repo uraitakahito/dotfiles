@@ -67,15 +67,15 @@ RUN cd /usr/src && \
 # Add user and install common utils.
 #
 RUN USERNAME=${user_name} \
-    USERUID=${user_id} \
-    USERGID=${group_id} \
-    CONFIGUREZSHASDEFAULTSHELL=true \
-    UPGRADEPACKAGES=false \
-    # When using ssh-agent inside Docker, add the user to the root group
-    # to ensure permission to access the mounted socket.
-    #   https://github.com/uraitakahito/features/blob/59e8acea74ff0accd5c2c6f98ede1191a9e3b2aa/src/common-utils/main.sh#L467-L471
-    ADDUSERTOROOTGROUP=true \
-      /usr/src/features/src/common-utils/install.sh
+  USERUID=${user_id} \
+  USERGID=${group_id} \
+  CONFIGUREZSHASDEFAULTSHELL=true \
+  UPGRADEPACKAGES=false \
+  # When using ssh-agent inside Docker, add the user to the root group
+  # to ensure permission to access the mounted socket.
+  #   https://github.com/uraitakahito/features/blob/59e8acea74ff0accd5c2c6f98ede1191a9e3b2aa/src/common-utils/main.sh#L467-L471
+  ADDUSERTOROOTGROUP=true \
+    /usr/src/features/src/common-utils/install.sh
 
 #
 # Install extra utils.
@@ -101,7 +101,7 @@ COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 # (COPY does not include the .git directory, so submodules will be empty)
 #
 RUN git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions.git \
-    /home/${user_name}/dotfiles/zsh/zsh-autosuggestions
+  /home/${user_name}/dotfiles/zsh/zsh-autosuggestions
 
 #
 # Install dotfiles
