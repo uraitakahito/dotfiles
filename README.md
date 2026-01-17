@@ -4,44 +4,44 @@ Personal dotfiles repository for a unified development environment.
 Provides Docker, Zsh, and VS Code configurations.
 Follows [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) for configuration file placement.
 
-## VS Code Dev Containers との連携
+## Integration with VS Code Dev Containers
 
-このリポジトリは [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) の dotfiles 機能と連携して使用することを想定しています。
+This repository is designed to work with the dotfiles feature of [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
 
-VS Code の設定で以下を指定すると、Dev Container 作成時に自動的にこのリポジトリがクローンされ、`install.sh` が実行されます：
+When you configure the following VS Code settings, this repository will be cloned automatically when creating a Dev Container and `install.sh` will be executed:
 
-- `dotfiles.repository`: このリポジトリのURL
-- `dotfiles.targetPath`: コンテナ内のインストール先パス
+- `dotfiles.repository`: URL of this repository
+- `dotfiles.targetPath`: Installation path inside the container
 - `dotfiles.installCommand`: `install.sh`
 
-## ディレクトリ構造
+## Directory Structure
 
 ```
 dotfiles/
 ├── config/
-│   ├── Code/User/          # VS Code設定
-│   ├── claude-code/        # Claude Code設定
-│   ├── gemini/             # Gemini CLI設定
-│   ├── git/                # Git設定
-│   ├── ruff/               # Ruff設定
-│   ├── tmux/               # tmux設定
-│   ├── vim/                # Vim設定
-│   └── zsh/                # Zsh設定
-│       ├── zshrc           # エントリーポイント
-│       ├── conf.d/         # モジュール化された設定
-│       ├── functions/      # ヘルパー関数
-│       ├── completion/     # 補完定義
-│       └── plugins/        # プラグイン
-├── install.sh              # インストールスクリプト
+│   ├── Code/User/          # VS Code settings
+│   ├── claude-code/        # Claude Code settings
+│   ├── gemini/             # Gemini CLI settings
+│   ├── git/                # Git settings
+│   ├── ruff/               # Ruff settings
+│   ├── tmux/               # tmux settings
+│   ├── vim/                # Vim settings
+│   └── zsh/                # Zsh settings
+│       ├── zshrc           # Entry point
+│       ├── conf.d/         # Modularized configuration
+│       ├── functions/      # Helper functions
+│       ├── completion/     # Completion definitions
+│       └── plugins/        # Plugins
+├── install.sh              # Installation script
 └── Dockerfile
 ```
 
-## インストール
+## Installation
 
 ```bash
 ./install.sh
 ```
 
-## Docker開発環境の構築
+## Docker Development Environment Setup
 
-ビルド・起動・接続の詳細な手順は [Dockerfile](./Dockerfile) のコメントを参照してください。
+See the comments in [Dockerfile](./Dockerfile) for detailed instructions on building, starting, and connecting.

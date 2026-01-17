@@ -1,35 +1,35 @@
-# ## ビルド方法
+# Build Instructions
 #
-# dotfilesディレクトリで実行:
+# Run in the dotfiles directory:
 #
 #   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo
 #
-# dotfiles変更後にCOPY以降を再ビルドする場合:
+# To rebuild layers after COPY when dotfiles change:
 #
 #   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo --build-arg CACHEBUST=$(date +%s)
 #
-# ## コンテナ起動
+# Start Container
 #
 #   docker volume create $PROJECT-zsh-history
 #
 #   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
 #
-# ## コンテナにログインする
+# Log into the container
 #
 #   fdshell /bin/zsh
 #
 # About fdshell:
 #   https://github.com/uraitakahito/dotfiles/blob/37c4142038c658c468ade085cbc8883ba0ce1cc3/zsh/myzshrc#L93-L101
 #
-# ## Claude Code起動
+# Launch Claude Code
 #
 #   claude --dangerously-skip-permissions
 #
-# ## VS Codeからの接続
+# Connect from VS Code
 #
-# 1. **Command Palette (Shift + Command + p)** を開く
-# 2. **Dev Containers: Attach to Running Container** を選択
-# 3. `/app` ディレクトリを開く
+# 1. Open Command Palette (Shift + Command + P)
+# 2. Select Dev Containers: Attach to Running Container
+# 3. Open the /app directory
 #
 # For details:
 #   https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container
@@ -111,21 +111,21 @@ RUN curl --fail-early --silent --show-error --location https://astral.sh/uv/inst
 USER ${user_name}
 
 #
-# dotfiles - COPYでローカルファイルをコピー
-# CACHEBUST: この値を変更するとここ以降のキャッシュが無効化される
+# dotfiles - Copy local files with COPY
+# CACHEBUST: Changing this value invalidates the cache for the following steps
 #
 ARG CACHEBUST=1
 COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 
 #
-# zsh-autosuggestions サブモジュールの取得
-# （COPYでは.gitディレクトリが含まれないためサブモジュールが空になる）
+# Fetch zsh-autosuggestions submodule
+# (COPY does not include the .git directory, so submodules will be empty)
 #
 RUN git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions.git \
     /home/${user_name}/dotfiles/zsh/zsh-autosuggestions
 
 #
-# dotfiles のインストール
+# Install dotfiles
 #
 RUN /home/${user_name}/dotfiles/install.sh
 
