@@ -87,27 +87,6 @@ RUN cd /usr/src && \
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
-#
-# Install Node
-#   https://github.com/uraitakahito/features/blob/develop/src/node/install.sh
-#
-RUN INSTALLYARNUSINGAPT=false \
-    NVMVERSION="latest" \
-    PNPM_VERSION="none" \
-    USERNAME=${user_name} \
-    VERSION=${node_version} \
-      /usr/src/features/src/node/install.sh
-
-#
-# Install uv
-# https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
-#
-RUN curl --fail-early --silent --show-error --location https://astral.sh/uv/install.sh --output /tmp/uv-install.sh && \
-  # Changing the install path
-  # https://github.com/astral-sh/uv/blob/main/docs/configuration/installer.md#changing-the-install-path
-  UV_INSTALL_DIR=/bin sh /tmp/uv-install.sh && \
-  rm /tmp/uv-install.sh
-
 USER ${user_name}
 
 #
