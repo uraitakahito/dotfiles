@@ -14,28 +14,6 @@ When you configure the following VS Code settings, this repository will be clone
 - `dotfiles.targetPath`: Installation path inside the container
 - `dotfiles.installCommand`: `install.sh`
 
-## Directory Structure
-
-```
-dotfiles/
-├── config/
-│   ├── Code/User/          # VS Code settings
-│   ├── claude-code/        # Claude Code settings
-│   ├── gemini/             # Gemini CLI settings
-│   ├── git/                # Git settings
-│   ├── ruff/               # Ruff settings
-│   ├── tmux/               # tmux settings
-│   ├── vim/                # Vim settings
-│   └── zsh/                # Zsh settings
-│       ├── zshrc           # Entry point
-│       ├── conf.d/         # Modularized configuration
-│       ├── functions/      # Helper functions
-│       ├── completion/     # Completion definitions
-│       └── plugins/        # Plugins
-├── install.sh              # Installation script
-└── Dockerfile
-```
-
 ## Installation
 
 ```bash
