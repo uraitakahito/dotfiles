@@ -6,16 +6,10 @@
 # Git submodules (Dockerfile内で別途cloneする)
 zsh/zsh-autosuggestions
 
-# Claude Code関連（ユーザー固有データ）
-.claude/debug/
-.claude/file-history/
-.claude/session-env/
-.claude/todos/
-.claude/projects/
-.claude/ide/
-.claude/plans/
-.claude/shell-snapshots/
-.claude/chrome/
+# Claude Code (exclude entire directory)
+# Note: .claude/CLAUDE.md is a symlink pointing to config/claude-code/CLAUDE.md,
+#       so the actual file will be copied to the Docker image
+.claude/
 
 # ドキュメント
 docs/
