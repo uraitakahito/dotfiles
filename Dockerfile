@@ -16,11 +16,6 @@
 #
 # Log into the container
 #
-#   fdshell /bin/zsh
-#
-# About fdshell:
-#   https://github.com/uraitakahito/dotfiles/blob/37c4142038c658c468ade085cbc8883ba0ce1cc3/zsh/myzshrc#L93-L101
-#
 # Launch Claude Code
 #
 #   claude --dangerously-skip-permissions
