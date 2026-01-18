@@ -1,4 +1,12 @@
 #
+# Bash/Zsh compatible helper functions
+#
+# This file is sourced by install.sh (bash) and zshrc (zsh).
+# Keep only POSIX-compatible or bash/zsh dual-compatible syntax here.
+# Zsh-specific functions (e.g., glob qualifiers) belong in path-helper.zsh.
+#
+
+#
 # logging functions
 #
 my_log() {

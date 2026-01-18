@@ -3,19 +3,23 @@
 #
 # rbenv
 #
-[[ -d $HOME/.rbenv ]] && \
-  export PATH=${HOME}/.rbenv/bin:${PATH} && \
+path_prepend $HOME/.rbenv/bin
+if (( $+commands[rbenv] )); then
   eval "$(rbenv init - zsh)"
+fi
 
 #
 # nodenv
 #
-[[ -d $HOME/.nodenv ]] && \
+if (( $+commands[nodenv] )); then
   eval "$(nodenv init - zsh)"
-# https://github.com/uraitakahito/features/blob/8291744831e2c42b6c01fe169e98cca2a4b7fbc9/src/node/install.sh#L13
-if { [ -d $HOME/.nodenv ] } || { [ -d /usr/local/share/nvm ] }; then
-  export PATH=$PATH:./node_modules/.bin
 fi
+
+#
+# node_modules/.bin
+# https://github.com/uraitakahito/features/blob/8291744831e2c42b6c01fe169e98cca2a4b7fbc9/src/node/install.sh#L13
+#
+path_append ./node_modules/.bin
 
 #
 # uv
@@ -37,13 +41,11 @@ fi
 #
 # Go
 # https://github.com/devcontainers/features/tree/main/src/go
-#
-[[ -d /usr/local/go/bin ]] && \
-  export PATH=/usr/local/go/bin:${PATH}
-[[ -d /go/bin ]] && \
-  export PATH=/go/bin:${PATH}
 # https://go.dev/wiki/GOPATH
-export PATH=$HOME/go/bin:${PATH}
+#
+path_prepend /usr/local/go/bin
+path_prepend /go/bin
+path_prepend $HOME/go/bin
 
 #
 # zoxide

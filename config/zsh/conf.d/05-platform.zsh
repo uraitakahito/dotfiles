@@ -36,10 +36,7 @@ if is-darwin; then
   #
   # To run VS Code from the terminal by typing `code`, add it the $PATH environment variable:
   #
-  code_path=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-  if [ -d $etc ]; then
-    export PATH=$code_path:${PATH}
-  fi
+  path_prepend "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
   #
   # Docker
@@ -68,19 +65,13 @@ if is-darwin; then
   #
   # Docker CLI Plugins
   #
-  plugins=$HOME/.docker/cli-plugins
-  if [ -d $plugins ]; then
-    export PATH=$plugins:${PATH}
-  fi
+  path_prepend $HOME/.docker/cli-plugins
 
   #
   # PostgreSQL(psql)
   #
-  if type brew &>/dev/null; then
-    libpq=$(brew --prefix)/opt/libpq/bin
-    if [ -d $libpq ]; then
-      export PATH=$libpq:${PATH}
-    fi
+  if (( $+commands[brew] )); then
+    path_prepend $(brew --prefix)/opt/libpq/bin
   fi
 
   #
