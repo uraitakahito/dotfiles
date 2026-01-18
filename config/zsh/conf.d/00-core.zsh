@@ -9,7 +9,17 @@ typeset -U path PATH
 # prompt
 #
 local cyan=$'\e[36m' reset=$'\e[m'
-PROMPT="%F{green}%m%f %{${cyan}%}%2d%# %{${reset}%}"
+
+# OS icon for prompt (requires Nerd Fonts)
+if is-docker; then
+  OS_ICON=$'\uF308'
+elif is-darwin; then
+  OS_ICON=$'\uF179'
+else
+  OS_ICON=$'\uF17C'
+fi
+
+PROMPT="${OS_ICON} %{${cyan}%}%2d%# %{${reset}%}"
 
 #
 # Load environment variables
