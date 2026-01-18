@@ -100,3 +100,13 @@ export GPG_TTY=$TTY
 if [ -f "$ZSH_CONFIG_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
   source "$ZSH_CONFIG_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
+
+#
+# fast-syntax-highlighting
+#
+# Feature rich syntax highlighting for Zsh.
+# https://github.com/zdharma-continuum/fast-syntax-highlighting
+#
+if [ -f "$ZSH_CONFIG_DIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]; then
+  source "$ZSH_CONFIG_DIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+fi

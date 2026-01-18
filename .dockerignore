@@ -4,7 +4,8 @@
 .gitmodules
 
 # Git submodules (Dockerfile内で別途cloneする)
-zsh/zsh-autosuggestions
+config/zsh/plugins/zsh-autosuggestions
+config/zsh/plugins/fast-syntax-highlighting
 
 # Claude Code (exclude entire directory)
 # Note: .claude/CLAUDE.md is a symlink pointing to config/claude-code/CLAUDE.md,
