@@ -86,6 +86,35 @@ mkdir -p ~/.config/gemini
 ln -fs "$SCRIPT_DIR/config/gemini/settings.json" ~/.config/gemini/settings.json
 
 #
+# Docker
+#
+# Merge detachKeys into the existing config to preserve other settings (auths, etc.).
+#
+# Using ctrl-@,ctrl-@ instead of empty string to avoid compatibility issues
+# with some Docker versions. ctrl-@ maps to ASCII code 0 (NUL character),
+# which is never typed in normal terminal operations, effectively disabling
+# the detach key sequence.
+#
+if command -v jq &> /dev/null; then
+  DOCKER_CONFIG_FILE="$HOME/.docker/config.json"
+  mkdir -p ~/.docker
+  # Remove broken symlink if exists (from previous dotfiles setup)
+  if [[ -L "$DOCKER_CONFIG_FILE" && ! -e "$DOCKER_CONFIG_FILE" ]]; then
+    rm "$DOCKER_CONFIG_FILE"
+  fi
+  if [[ -f "$DOCKER_CONFIG_FILE" ]]; then
+    jq '. + {"detachKeys": "ctrl-@,ctrl-@"}' "$DOCKER_CONFIG_FILE" > "$DOCKER_CONFIG_FILE.tmp" \
+      && mv "$DOCKER_CONFIG_FILE.tmp" "$DOCKER_CONFIG_FILE"
+    my_note "Docker: detachKeys added to existing config"
+  else
+    echo '{"detachKeys": "ctrl-@,ctrl-@"}' > "$DOCKER_CONFIG_FILE"
+    my_note "Docker: config.json created with detachKeys"
+  fi
+else
+  my_warn "Docker: jq not found, skipping detachKeys configuration"
+fi
+
+#
 # Debug log
 #
 mkdir -p ~/.log
