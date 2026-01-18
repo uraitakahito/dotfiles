@@ -8,11 +8,17 @@ Follows [XDG Base Directory Specification](https://specifications.freedesktop.or
 
 This repository is designed to work with the dotfiles feature of [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
 
-When you configure the following VS Code settings, this repository will be cloned automatically when creating a Dev Container and `install.sh` will be executed:
+Add the following to your VS Code `settings.json`:
 
-- `dotfiles.repository`: URL of this repository
-- `dotfiles.targetPath`: Installation path inside the container
-- `dotfiles.installCommand`: `install.sh`
+```json
+{
+    "dotfiles.repository": "https://github.com/your-username/dotfiles",
+    "dotfiles.targetPath": "~/dotfiles",
+    "dotfiles.installCommand": "install.sh"
+}
+```
+
+When creating a Dev Container, this repository will be cloned automatically and `install.sh` will be executed.
 
 ## Installation
 
