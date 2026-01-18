@@ -1,6 +1,11 @@
 # Core zsh settings: prompt, options, exports, keybindings
 
 #
+# Ensure unique PATH entries (remove duplicates)
+#
+typeset -U path PATH
+
+#
 # prompt
 #
 local cyan=$'\e[36m' reset=$'\e[m'
