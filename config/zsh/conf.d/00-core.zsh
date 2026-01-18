@@ -1,10 +1,15 @@
 # Core zsh settings: prompt, options, exports, keybindings
 
 #
+# Ensure unique PATH entries (remove duplicates)
+#
+typeset -U path PATH
+
+#
 # prompt
 #
 local cyan=$'\e[36m' reset=$'\e[m'
-PROMPT="%{${cyan}%}%m:%1d%# %{${reset}%}"
+PROMPT="%F{green}%m%f %{${cyan}%}%2d%# %{${reset}%}"
 
 #
 # Load environment variables

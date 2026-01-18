@@ -12,14 +12,9 @@
 #
 #   docker volume create $PROJECT-zsh-history
 #
-#   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
+#   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock -e GH_TOKEN=$(gh auth token) --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
 #
 # Log into the container
-#
-#   fdshell /bin/zsh
-#
-# About fdshell:
-#   https://github.com/uraitakahito/dotfiles/blob/37c4142038c658c468ade085cbc8883ba0ce1cc3/zsh/myzshrc#L93-L101
 #
 # Launch Claude Code
 #
@@ -119,6 +114,7 @@ ENV TZ="$TZ"
 #
 # Discussion about using nvm during Docker container build:
 #   https://stackoverflow.com/questions/25899912/how-to-install-nvm-in-docker
+#
 RUN curl -fsSL https://claude.ai/install.sh | bash
 
 WORKDIR /app

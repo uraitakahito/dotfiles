@@ -10,6 +10,9 @@ export ZSH_CONFIG_DIR
 # Load helper functions
 source "$ZSH_CONFIG_DIR/functions/helper.zsh"
 
+# Load Zsh-specific PATH helper functions
+source "$ZSH_CONFIG_DIR/functions/path-helper.zsh"
+
 # Source all conf.d files in order
 for conf in "$ZSH_CONFIG_DIR"/conf.d/*.zsh(N); do
   source "$conf"
