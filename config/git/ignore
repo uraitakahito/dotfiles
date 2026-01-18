@@ -14,6 +14,7 @@
 # https://docs.anthropic.com/ja/docs/claude-code/settings
 #
 **/.claude/cache/
+**/.claude/paste-cache/
 **/.claude/settings.local.json
 **/.claude/.update.lock
 **/.claude/debug/
@@ -24,3 +25,4 @@
 **/.claude/stats-cache.json
 **/.claude/statsig/
 **/.claude/todos/
+**/.claude/plans/

@@ -86,6 +86,12 @@ mkdir -p ~/.config/gemini
 ln -fs "$SCRIPT_DIR/config/gemini/settings.json" ~/.config/gemini/settings.json
 
 #
+# Docker
+#
+mkdir -p ~/.docker
+ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
+
+#
 # Debug log
 #
 mkdir -p ~/.log
