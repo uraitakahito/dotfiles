@@ -119,4 +119,5 @@ fi
 #
 if [ -f "$ZSH_CONFIG_DIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ]; then
   source "$ZSH_CONFIG_DIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+  fast-theme safari >/dev/null 2>&1
 fi
