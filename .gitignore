@@ -1,5 +1,7 @@
 config/zsh/completion/_docker
 config/zsh/completion/_docker-compose
+# Zsh plugins (installed by install.sh)
+config/zsh/plugins/
 .claude/chrome/
 .claude/plugins/
 .claude/shell-snapshots/
