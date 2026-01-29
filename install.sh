@@ -65,6 +65,28 @@ else
 fi
 
 #
+# Zsh plugins
+#
+# Clone plugins directly instead of using git submodules.
+# This ensures plugins are available in VS Code Dev Containers
+# where submodules are not automatically initialized.
+#
+ZSH_PLUGINS_DIR="$SCRIPT_DIR/config/zsh/plugins"
+mkdir -p "$ZSH_PLUGINS_DIR"
+
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions/.git" ]; then
+  rm -rf "$ZSH_PLUGINS_DIR/zsh-autosuggestions"
+  git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions.git \
+    "$ZSH_PLUGINS_DIR/zsh-autosuggestions"
+fi
+
+if [ ! -d "$ZSH_PLUGINS_DIR/fast-syntax-highlighting/.git" ]; then
+  rm -rf "$ZSH_PLUGINS_DIR/fast-syntax-highlighting"
+  git clone --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+    "$ZSH_PLUGINS_DIR/fast-syntax-highlighting"
+fi
+
+#
 # Ruff (Python linter)
 #
 mkdir -p ~/.config/ruff

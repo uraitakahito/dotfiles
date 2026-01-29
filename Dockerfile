@@ -92,15 +92,6 @@ ARG CACHEBUST=1
 COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 
 #
-# Fetch zsh plugin submodules
-# (COPY does not include the .git directory, so submodules will be empty)
-#
-RUN git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions.git \
-  /home/${user_name}/dotfiles/config/zsh/plugins/zsh-autosuggestions && \
-  git clone --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-  /home/${user_name}/dotfiles/config/zsh/plugins/fast-syntax-highlighting
-
-#
 # Install dotfiles
 #
 RUN /home/${user_name}/dotfiles/install.sh
