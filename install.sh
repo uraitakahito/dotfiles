@@ -119,4 +119,10 @@ ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
 mkdir -p ~/.log
 printenv > ~/.log/install.sh.log
 
-echo "-----Finish!!------"
+echo ""
+echo "Installation complete!"
+echo ""
+echo "Note: This dotfiles uses Nerd Fonts icons in the Zsh prompt."
+echo "Please install a Nerd Font (e.g., MesloLGS Nerd Font) for proper display."
+echo "Download: https://www.nerdfonts.com/"
+echo ""
