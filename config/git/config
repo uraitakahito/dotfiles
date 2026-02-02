@@ -1,0 +1,3 @@
+[core]
+	# Display non-ASCII characters (e.g., Japanese) as-is instead of octal escapes
+	quotepath = false

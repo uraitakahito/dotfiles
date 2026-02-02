@@ -29,6 +29,7 @@ ln -fs "$SCRIPT_DIR/config/vim/vimrc" ~/.vimrc
 #
 # https://github.com/git/git/blob/master/Documentation/RelNotes/1.7.12.txt#L21-L23
 mkdir -p ~/.config/git
+ln -fs "$SCRIPT_DIR/config/git/config" ~/.config/git/config
 ln -fs "$SCRIPT_DIR/config/git/ignore" ~/.config/git/ignore
 
 #
