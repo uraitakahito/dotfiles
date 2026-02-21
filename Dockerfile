@@ -2,23 +2,23 @@
 #
 # Run in the dotfiles directory:
 #
-#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo
+#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg TZ=Asia/Tokyo --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 #
 # To rebuild layers after COPY when dotfiles change:
 #
-#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo --build-arg CACHEBUST=$(date +%s)
+#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg TZ=Asia/Tokyo --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg CACHEBUST=$(date +%s)
 #
-# Start Container
+# (First startup only) Create volume
 #
 #   docker volume create $PROJECT-zsh-history
+#
+# Start Container
 #
 #   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock -e GH_TOKEN=$(gh auth token) --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
 #
 # Log into the container
 #
-# Launch Claude Code
-#
-#   claude --dangerously-skip-permissions
+#   OR
 #
 # Connect from VS Code
 #
@@ -38,9 +38,21 @@ ARG user_id
 ARG group_id
 ARG features_repository="https://github.com/uraitakahito/features.git"
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
-# Refer to the following URL for Node.js versions:
-#   https://nodejs.org/en/about/previous-releases
-ARG node_version="24.4.0"
+
+#
+# Locale
+#
+# Required for Unicode characters (e.g., Nerd Fonts icons in Zsh prompt).
+# https://github.com/uraitakahito/dotfiles/blob/f504143a3eb9f93679edbb85d36754327eabfae7/config/zsh/conf.d/00-core.zsh#L13-L20
+#
+ARG LANG=C.UTF-8
+ENV LANG="$LANG"
+
+#
+# Timezone
+#
+ARG TZ=UTC
+ENV TZ="$TZ"
 
 #
 # Git
@@ -100,24 +112,7 @@ COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 RUN /home/${user_name}/dotfiles/install.sh
 
 #
-# Timezone
-#
-ARG TZ
-ENV TZ="$TZ"
-
-#
-# Locale
-#
-# Required for Unicode characters (e.g., Nerd Fonts icons in Zsh prompt).
-# https://github.com/uraitakahito/dotfiles/blob/f504143a3eb9f93679edbb85d36754327eabfae7/config/zsh/conf.d/00-core.zsh#L13-L20
-#
-ENV LANG=C.UTF-8
-
-#
 # Claude Code
-#
-# Discussion about using nvm during Docker container build:
-#   https://stackoverflow.com/questions/25899912/how-to-install-nvm-in-docker
 #
 RUN curl -fsSL https://claude.ai/install.sh | bash
 
