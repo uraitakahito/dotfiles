@@ -40,9 +40,6 @@ ARG user_id
 ARG group_id
 ARG features_repository="https://github.com/uraitakahito/features.git"
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
-# Refer to the following URL for Node.js versions:
-#   https://nodejs.org/en/about/previous-releases
-ARG node_version="24.4.0"
 
 #
 # Locale
