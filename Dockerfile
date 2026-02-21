@@ -2,11 +2,11 @@
 #
 # Run in the dotfiles directory:
 #
-#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo
+#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg TZ=Asia/Tokyo --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 #
 # To rebuild layers after COPY when dotfiles change:
 #
-#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg TZ=Asia/Tokyo --build-arg CACHEBUST=$(date +%s)
+#   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg TZ=Asia/Tokyo --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg CACHEBUST=$(date +%s)
 #
 # Start Container
 #
@@ -41,6 +41,12 @@ ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
 # Refer to the following URL for Node.js versions:
 #   https://nodejs.org/en/about/previous-releases
 ARG node_version="24.4.0"
+
+#
+# Timezone
+#
+ARG TZ=UTC
+ENV TZ="$TZ"
 
 #
 # Git
@@ -98,12 +104,6 @@ COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 # Install dotfiles
 #
 RUN /home/${user_name}/dotfiles/install.sh
-
-#
-# Timezone
-#
-ARG TZ=UTC
-ENV TZ="$TZ"
 
 #
 # Locale
