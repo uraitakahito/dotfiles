@@ -5,7 +5,7 @@
 # brew install --cask font-meslo-lg-nerd-font
 #
 alias a='eza --icons'
-alias ll='eza -l -g --icons'
+alias ll='eza -l -g --icons --time-style=long-iso'
 alias d='docker'
 if ! is-darwin; then
   # https://github.com/sharkdp/bat/issues/982
