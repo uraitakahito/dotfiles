@@ -93,6 +93,9 @@ RUN USERNAME=${user_name} \
 RUN cd /usr/src && \
   git clone --depth 1 ${extra_utils_repository} && \
   ADDEZA=true \
+  ADDCLAUDECODE=true \
+  # Claude Code is installed under $HOME, so the username must be specified.
+  USERNAME=${user_name} \
     /usr/src/extra-utils/utils/install.sh
 
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -110,11 +113,6 @@ COPY --chown=${user_name}:${user_name} . /home/${user_name}/dotfiles
 # Install dotfiles
 #
 RUN /home/${user_name}/dotfiles/install.sh
-
-#
-# Claude Code
-#
-RUN curl -fsSL https://claude.ai/install.sh | bash
 
 WORKDIR /app
 ENTRYPOINT ["docker-entrypoint.sh"]
