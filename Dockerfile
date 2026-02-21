@@ -102,7 +102,7 @@ RUN /home/${user_name}/dotfiles/install.sh
 #
 # Timezone
 #
-ARG TZ
+ARG TZ=UTC
 ENV TZ="$TZ"
 
 #
