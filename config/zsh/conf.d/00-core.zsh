@@ -5,6 +5,11 @@
 #
 typeset -U path PATH
 
+# ~/.local/bin - Standard user-local binary directory
+# (used by Claude Code native installer, pip --user, etc.)
+# https://code.claude.com/docs/en/troubleshooting
+path_prepend $HOME/.local/bin
+
 #
 # prompt
 #
