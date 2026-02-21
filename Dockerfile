@@ -8,11 +8,15 @@
 #
 #   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg TZ=Asia/Tokyo --build-arg user_id=`id -u` --build-arg group_id=`id -g` --build-arg CACHEBUST=$(date +%s)
 #
-# (First startup only) Create volume
+# (First time only) Create a volume for command history:
+#
+# Create a volume to persist the command history executed inside the Docker container.
+# It is stored in the volume because the dotfiles configuration redirects the shell history there.
+#   https://github.com/uraitakahito/dotfiles/blob/b80664a2735b0442ead639a9d38cdbe040b81ab0/zsh/myzshrc#L298-L305
 #
 #   docker volume create $PROJECT-zsh-history
 #
-# Start Container
+# Start Container:
 #
 #   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock -e GH_TOKEN=$(gh auth token) --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
 #
