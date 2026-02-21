@@ -18,9 +18,7 @@
 #
 # Log into the container
 #
-# Launch Claude Code
-#
-#   claude --dangerously-skip-permissions
+#   OR
 #
 # Connect from VS Code
 #
