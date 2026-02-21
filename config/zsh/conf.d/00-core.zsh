@@ -11,15 +11,20 @@ typeset -U path PATH
 local cyan=$'\e[36m' reset=$'\e[m'
 
 # OS icon for prompt (requires Nerd Fonts)
-if is-docker; then
-  OS_ICON=$'\uF308'
-elif is-darwin; then
-  OS_ICON=$'\uF179'
-else
-  OS_ICON=$'\uF17C'
+# $'\uXXXX' (Unicode escape) requires a UTF-8 locale.
+# Without it, zsh fails with "character not in range".
+OS_ICON=""
+if [[ "${LANG:-}" == *.UTF-8 || "${LANG:-}" == *.utf8 ]]; then
+  if is-docker; then
+    OS_ICON=$'\uF308'
+  elif is-darwin; then
+    OS_ICON=$'\uF179'
+  else
+    OS_ICON=$'\uF17C'
+  fi
 fi
 
-PROMPT="${OS_ICON} %{${cyan}%}%2d%# %{${reset}%}"
+PROMPT="${OS_ICON}${OS_ICON:+ }%{${cyan}%}%2d%# %{${reset}%}"
 
 #
 # Load environment variables
