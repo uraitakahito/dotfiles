@@ -1,9 +1,11 @@
 # Features of this Dockerfile
 #
 # - Not based on devcontainer; use by attaching VSCode to the container
+# - Claude Code is pre-installed
+# - Includes dotfiles and extra utilities
 # - Assumes host OS is Mac
 #
-# Run in the dotfiles directory:
+# Build the Docker image:
 #
 #   PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg TZ=Asia/Tokyo --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 #
@@ -19,7 +21,7 @@
 #
 #   docker volume create $PROJECT-zsh-history
 #
-# Start Container:
+# Start the Docker container(/run/host-services/ssh-auth.sock is a virtual socket provided by Docker Desktop for Mac.):
 #
 #   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock -e GH_TOKEN=$(gh auth token) --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
 #
@@ -46,18 +48,8 @@ ARG group_id
 ARG features_repository="https://github.com/uraitakahito/features.git"
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
 
-#
-# Locale
-#
-# Required for Unicode characters (e.g., Nerd Fonts icons in Zsh prompt).
-# https://github.com/uraitakahito/dotfiles/blob/f504143a3eb9f93679edbb85d36754327eabfae7/config/zsh/conf.d/00-core.zsh#L13-L20
-#
 ARG LANG=C.UTF-8
 ENV LANG="$LANG"
-
-#
-# Timezone
-#
 ARG TZ=UTC
 ENV TZ="$TZ"
 
