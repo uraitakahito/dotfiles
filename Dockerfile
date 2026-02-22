@@ -1,4 +1,7 @@
-# Build Instructions
+# ## Features of this Dockerfile
+#
+# - Not based on devcontainer; use by attaching VSCode to the container
+# - Assumes host OS is Mac
 #
 # Run in the dotfiles directory:
 #
