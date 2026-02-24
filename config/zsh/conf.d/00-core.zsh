@@ -17,26 +17,19 @@ local cyan=$'\e[36m' reset=$'\e[m'
 
 # OS icon for prompt (requires Nerd Fonts)
 #
-# $'\uXXXX' (Unicode escape) requires a UTF-8 locale.
-# Without it, zsh fails with "character not in range".
-#
-# However, $'\uXXXX' is interpreted at parse time, before the if condition
-# is evaluated at runtime. This means the guard cannot prevent the error.
-#
-# printf '\uXXXX' avoids this problem because:
-#   - '\uXXXX' in regular single quotes is not interpreted by zsh's parser
-#   - printf interprets the escape at runtime, inside the guarded block
+# printf '\uXXXX' defers Unicode interpretation to runtime, unlike $'\uXXXX'
+# which is expanded at parse time. 2>/dev/null || true ensures the script
+# never stops, even if the locale is misconfigured or unsupported (e.g.
+# LANG set to a locale that is not installed, or musl libc without locale
+# support).
 OS_ICON=""
-if [[ "${LANG:-}" == *.UTF-8 || "${LANG:-}" == *.utf8 ]]; then
-  if is-docker; then
-    OS_ICON=$(printf '\uF308')
-  elif is-darwin; then
-    OS_ICON=$(printf '\uF179')
-  else
-    OS_ICON=$(printf '\uF17C')
-  fi
+if is-docker; then
+  OS_ICON=$(printf '\uF308' 2>/dev/null) || true
+elif is-darwin; then
+  OS_ICON=$(printf '\uF179' 2>/dev/null) || true
+else
+  OS_ICON=$(printf '\uF17C' 2>/dev/null) || true
 fi
-
 
 PROMPT="${OS_ICON}${OS_ICON:+ }%{${cyan}%}%2d%# %{${reset}%}"
 
