@@ -4,6 +4,7 @@
 # - Claude Code is pre-installed
 # - Includes dotfiles and extra utilities
 # - Assumes host OS is Mac
+# - Passes the GH_TOKEN environment variable into the container
 #
 # Build the Docker image:
 #
@@ -38,6 +39,9 @@
 # For details:
 #   https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container
 #
+# (First time only) change the owner of the command history folder:
+#
+#   sudo chown -R $(id -u):$(id -g) /zsh-volume
 
 # Debian 12.13
 FROM debian:bookworm-20260202
