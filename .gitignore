@@ -5,3 +5,4 @@ config/zsh/plugins/
 .claude/chrome/
 .claude/plugins/
 .claude/shell-snapshots/
+.claude/tasks/
