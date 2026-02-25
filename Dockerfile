@@ -92,9 +92,14 @@ RUN USERNAME=${user_name} \
 RUN cd /usr/src && \
   git clone --depth 1 ${extra_utils_repository} && \
   ADDEZA=true \
+  ADDGRPCURL=true \
+  ADDHADOLINT=true \
+  \
   ADDCLAUDECODE=true \
   # Claude Code is installed under $HOME, so the username must be specified.
   USERNAME=${user_name} \
+  \
+  UPGRADEPACKAGES=false \
     /usr/src/extra-utils/utils/install.sh
 
 COPY docker-entrypoint.sh /usr/local/bin/
