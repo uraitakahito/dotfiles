@@ -160,6 +160,9 @@
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "redhat.telemetry.enabled": false,
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
+    },
     "json.schemaDownload.trustedDomains": {
         "https://schemastore.azurewebsites.net/": true,
         "https://raw.githubusercontent.com/": true,
