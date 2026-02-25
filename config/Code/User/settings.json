@@ -105,7 +105,7 @@
 
     "tabnine.experimentalAutoImports": true,
 
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
 
     "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontSize": 14,
