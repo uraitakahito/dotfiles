@@ -65,8 +65,9 @@
     //
     // OS notification for long-running task completion
     // https://code.visualstudio.com/updates/v1_105#_os-notification-for-longrunning-task-completion
+    // https://github.com/microsoft/vscode/blob/b795f6fb53459245377bfce149594ca3f231ee98/src/vs/workbench/contrib/tasks/browser/task.contribution.ts#L568-L573
     //
-    "task.notifyWindowOnTaskCompletion": true,
+    "task.notifyWindowOnTaskCompletion": 10000,
 
     //
     // An AGENTS.md file lets you provide context and instructions to the agent.
@@ -104,7 +105,7 @@
 
     "tabnine.experimentalAutoImports": true,
 
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
 
     "terminal.integrated.fontFamily": "'MesloLGS Nerd Font Mono', Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontSize": 14,
@@ -160,6 +161,9 @@
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "redhat.telemetry.enabled": false,
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
+    },
     "json.schemaDownload.trustedDomains": {
         "https://schemastore.azurewebsites.net/": true,
         "https://raw.githubusercontent.com/": true,
