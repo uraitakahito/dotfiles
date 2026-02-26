@@ -50,7 +50,9 @@ ARG user_name=developer
 ARG user_id
 ARG group_id
 ARG features_repository="https://github.com/uraitakahito/features.git"
+ARG features_commit="e9cfd3fec55ab1cd40bb17d7b6eb19bb4100f292"
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
+ARG extra_utils_commit="45971b97b5356cb605245e581b3ec417db8756f6"
 
 ARG LANG=C.UTF-8
 ENV LANG="$LANG"
@@ -71,7 +73,9 @@ RUN apt-get update -qq && \
 # clone features
 #
 RUN cd /usr/src && \
-  git clone --depth 1 ${features_repository}
+  git clone ${features_repository} && \
+  cd features && \
+  git checkout ${features_commit}
 
 #
 # Add user and install common utils.
@@ -94,7 +98,10 @@ RUN USERNAME=${user_name} \
 # Install extra utils.
 #
 RUN cd /usr/src && \
-  git clone --depth 1 ${extra_utils_repository} && \
+  git clone ${extra_utils_repository} && \
+  cd extra-utils && \
+  git checkout ${extra_utils_commit} && \
+  cd /usr/src && \
   ADDEZA=true \
   ADDGRPCURL=true \
   ADDHADOLINT=true \
