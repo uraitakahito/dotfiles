@@ -50,7 +50,7 @@ ARG user_name=developer
 ARG user_id
 ARG group_id
 ARG features_repository="https://github.com/uraitakahito/features.git"
-ARG features_commit="e9cfd3fec55ab1cd40bb17d7b6eb19bb4100f292"
+ARG features_commit="83c606621491178d55b685ddd8d44bcd0d48059b"
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
 ARG extra_utils_commit="45971b97b5356cb605245e581b3ec417db8756f6"
 
