@@ -101,7 +101,6 @@ RUN cd /usr/src && \
   git clone ${extra_utils_repository} && \
   cd extra-utils && \
   git checkout ${extra_utils_commit} && \
-  cd /usr/src && \
   ADDEZA=true \
   ADDGRPCURL=true \
   ADDHADOLINT=true \
