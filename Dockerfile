@@ -49,10 +49,12 @@ FROM debian:bookworm-20260202
 ARG user_name=developer
 ARG user_id
 ARG group_id
+# https://github.com/uraitakahito/features/releases/tag/1.0.0
 ARG features_repository="https://github.com/uraitakahito/features.git"
-ARG features_commit="83c606621491178d55b685ddd8d44bcd0d48059b"
+ARG features_commit="e8d887d2e17e79f5289b0e8a087dd0730dcad24e"
+# https://github.com/uraitakahito/extra-utils/releases/tag/1.0.0
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
-ARG extra_utils_commit="45971b97b5356cb605245e581b3ec417db8756f6"
+ARG extra_utils_commit="3fb9cf4625cdd57270adc48ddf1b230cf151fdf0"
 
 ARG LANG=C.UTF-8
 ENV LANG="$LANG"
