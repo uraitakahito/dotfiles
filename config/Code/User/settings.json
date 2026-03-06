@@ -57,10 +57,16 @@
     "chat.promptFiles": true,
 
     //
-    // OS notifications for chat responses
-    // https://code.visualstudio.com/updates/v1_105#_os-notifications-for-chat-responses
+    // OS notification on user action
+    // https://code.visualstudio.com/updates/v1_103#_os-notification-on-user-action
     //
-    "chat.notifyWindowOnResponseReceived": true,
+    "chat.notifyWindowOnConfirmation": "windowNotFocused",
+
+    //
+    // OS notifications for chat responses
+    // https://code.visualstudio.com/docs/copilot/chat/chat-sessions#_get-notified-about-chat-responses
+    //
+    "chat.notifyWindowOnResponseReceived": "windowNotFocused",
 
     //
     // OS notification for long-running task completion
@@ -86,12 +92,6 @@
         "scminput": false
     },
     "github.copilot.editor.enableAutoCompletions": true,
-
-    //
-    // OS notification on user action
-    // https://code.visualstudio.com/updates/v1_103#_os-notification-on-user-action
-    //
-    "chat.notifyWindowOnConfirmation": true,
 
     "chat.tools.terminal.autoApprove": {
         "git add": true,
