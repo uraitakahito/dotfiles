@@ -52,9 +52,9 @@ ARG group_id
 # https://github.com/uraitakahito/features/releases/tag/1.0.0
 ARG features_repository="https://github.com/uraitakahito/features.git"
 ARG features_commit="e8d887d2e17e79f5289b0e8a087dd0730dcad24e"
-# https://github.com/uraitakahito/extra-utils/releases/tag/1.0.0
+# https://github.com/uraitakahito/extra-utils/releases/tag/1.1.0
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
-ARG extra_utils_commit="3fb9cf4625cdd57270adc48ddf1b230cf151fdf0"
+ARG extra_utils_commit="2c5b1ab72c7b98b2a9c42c084aa6b67cdaa36625"
 
 ARG LANG=C.UTF-8
 ENV LANG="$LANG"
@@ -106,6 +106,7 @@ RUN cd /usr/src && \
   ADDEZA=true \
   ADDGRPCURL=true \
   ADDHADOLINT=true \
+  ADDMAKE=true \
   \
   ADDCLAUDECODE=true \
   # Claude Code is installed under $HOME, so the username must be specified.
