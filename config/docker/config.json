@@ -1,6 +1,6 @@
 {
 	"auths": {},
 	"detachKeys": "ctrl-@,ctrl-@",
-	"credsStore": "desktop",
-	"currentContext": "desktop-linux"
+	"credsStore": "osxkeychain",
+	"currentContext": "orbstack"
 }
