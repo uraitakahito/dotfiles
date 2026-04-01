@@ -17,6 +17,11 @@ mkdir -p ~/.config/tmux
 ln -fs "$SCRIPT_DIR/config/tmux/tmux.conf" ~/.config/tmux/tmux.conf
 
 #
+# EditorConfig
+#
+ln -fs "$SCRIPT_DIR/config/editorconfig/editorconfig" ~/.editorconfig
+
+#
 # Vim
 #
 # Vim uses traditional ~/.vimrc location
