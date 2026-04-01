@@ -65,19 +65,19 @@ ENV TZ="$TZ"
 # Git
 #
 RUN apt-get update -qq && \
-  apt-get install -y -qq --no-install-recommends \
-    ca-certificates=20230311+deb12u1 \
-    git=1:2.39.5-0+deb12u3 && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+    apt-get install -y -qq --no-install-recommends \
+        ca-certificates=20230311+deb12u1 \
+        git=1:2.39.5-0+deb12u3 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 #
 # clone features
 #
 RUN cd /usr/src && \
-  git clone ${features_repository} && \
-  cd features && \
-  git checkout ${features_commit}
+    git clone ${features_repository} && \
+    cd features && \
+    git checkout ${features_commit}
 
 #
 # Add user and install common utils.
@@ -86,34 +86,34 @@ RUN cd /usr/src && \
 #   https://github.com/uraitakahito/features/blob/deb6cf416fda206b99c7b771e9caa12e6952f9c7/src/common-utils/main.sh#L35-L78
 #
 RUN USERNAME=${user_name} \
-  USERUID=${user_id} \
-  USERGID=${group_id} \
-  CONFIGUREZSHASDEFAULTSHELL=true \
-  UPGRADEPACKAGES=false \
-  # When using ssh-agent inside Docker, add the user to the root group
-  # to ensure permission to access the mounted socket.
-  #   https://github.com/uraitakahito/features/blob/59e8acea74ff0accd5c2c6f98ede1191a9e3b2aa/src/common-utils/main.sh#L467-L471
-  ADDUSERTOROOTGROUP=true \
-    /usr/src/features/src/common-utils/install.sh
+    USERUID=${user_id} \
+    USERGID=${group_id} \
+    CONFIGUREZSHASDEFAULTSHELL=true \
+    UPGRADEPACKAGES=false \
+    # When using ssh-agent inside Docker, add the user to the root group
+    # to ensure permission to access the mounted socket.
+    #   https://github.com/uraitakahito/features/blob/59e8acea74ff0accd5c2c6f98ede1191a9e3b2aa/src/common-utils/main.sh#L467-L471
+    ADDUSERTOROOTGROUP=true \
+        /usr/src/features/src/common-utils/install.sh
 
 #
 # Install extra utils.
 #
 RUN cd /usr/src && \
-  git clone ${extra_utils_repository} && \
-  cd extra-utils && \
-  git checkout ${extra_utils_commit} && \
-  ADDEZA=true \
-  ADDGRPCURL=true \
-  ADDHADOLINT=true \
-  ADDMAKE=true \
-  \
-  ADDCLAUDECODE=true \
-  # Claude Code is installed under $HOME, so the username must be specified.
-  USERNAME=${user_name} \
-  \
-  UPGRADEPACKAGES=false \
-    /usr/src/extra-utils/utils/install.sh
+    git clone ${extra_utils_repository} && \
+    cd extra-utils && \
+    git checkout ${extra_utils_commit} && \
+    ADDEZA=true \
+    ADDGRPCURL=true \
+    ADDHADOLINT=true \
+    ADDMAKE=true \
+    \
+    ADDCLAUDECODE=true \
+    # Claude Code is installed under $HOME, so the username must be specified.
+    USERNAME=${user_name} \
+    \
+    UPGRADEPACKAGES=false \
+        /usr/src/extra-utils/utils/install.sh
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
