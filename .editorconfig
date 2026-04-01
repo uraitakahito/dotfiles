@@ -1,3 +1,14 @@
+# Stops EditorConfig from searching for further .editorconfig files
+# in parent directories. Without this, the editor walks up the directory
+# tree and merges all .editorconfig files it finds until it hits the
+# filesystem root or a file with root = true.
+# Place this only in your project's top-level .editorconfig.
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+
 [Dockerfile]
 indent_style = space
 indent_size = 4
