@@ -112,10 +112,6 @@
 
     "terminal.integrated.scrollback": 100000,
 
-    // Let you modify the colors.
-    // "workbench.colorTheme": "Default Dark+",
-    "workbench.colorTheme": "Default Dark Modern",
-
     // https://code.visualstudio.com/updates/v1_83#_pinned-editor-tabs-on-separate-row
     "workbench.editor.pinnedTabsOnSeparateRow": true,
 
