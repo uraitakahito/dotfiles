@@ -5,5 +5,6 @@ config/zsh/plugins/
 .claude/chrome/
 .claude/mcp-needs-auth-cache.json
 .claude/plugins/
+.claude/sessions/
 .claude/shell-snapshots/
 .claude/tasks/
