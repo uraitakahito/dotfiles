@@ -1,28 +1,14 @@
-# Git
-.git
-.gitignore
-.gitmodules
+# Whitelist: only include files needed for Docker build
+*
 
-# Git submodules (Dockerfile内で別途cloneする)
-config/zsh/plugins/zsh-autosuggestions
-config/zsh/plugins/fast-syntax-highlighting
+# Required by: COPY docker-entrypoint.sh /usr/local/bin/
+!docker-entrypoint.sh
 
-# Claude Code (exclude entire directory)
-# Note: .claude/CLAUDE.md is a symlink pointing to config/claude-code/CLAUDE.md,
-#       so the actual file will be copied to the Docker image
-.claude/
+# Required by: COPY . /home/${user_name}/dotfiles + RUN install.sh
+!install.sh
+!config/
 
-# ドキュメント
-docs/
-*.md
-!prompts/*.md
-LICENSE
-
-# IDE
-.vscode/
-
-# macOS
-.DS_Store
-
-# その他
-*.log
+# Exclude generated/runtime files within config/
+# (install.sh clones plugins fresh; completion symlinks are created at runtime)
+config/zsh/plugins/
+config/zsh/completion/
