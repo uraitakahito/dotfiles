@@ -182,5 +182,31 @@
         "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
         "*.mts": "${capture}.typegen.ts",
         "*.cts": "${capture}.typegen.ts"
-    }
+    },
+
+    //
+    // Integrated Browser
+    // https://code.visualstudio.com/docs/debugtest/integrated-browser
+    //
+
+    // Open localhost URLs in the integrated browser instead of the system browser
+    "workbench.browser.openLocalhostLinks": true,
+
+    // Show the globe button in the title bar
+    "workbench.browser.showInTitleBar": true,
+
+    // Enable browser tools for Copilot agent
+    "workbench.browser.enableChatTools": true,
+
+    // Session data storage: "global", "workspace", or "ephemeral"
+    "workbench.browser.dataStorage": "workspace",
+
+    // Include CSS styles when sending elements to chat
+    "chat.sendElementsToChat.attachCSS": true,
+
+    // Include screenshots when sending elements to chat
+    "chat.sendElementsToChat.attachImages": true,
+
+    // Use the integrated browser for Live Preview
+    "livePreview.useIntegratedBrowser": true
 }
