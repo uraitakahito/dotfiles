@@ -120,6 +120,14 @@ mkdir -p ~/.docker
 ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
 
 #
+# npm
+#
+# npm does NOT natively support $XDG_CONFIG_HOME/npm/npmrc.
+# Link to the traditional ~/.npmrc location.
+#
+ln -fs "$SCRIPT_DIR/config/npm/npmrc" ~/.npmrc
+
+#
 # Debug log
 #
 mkdir -p ~/.log
