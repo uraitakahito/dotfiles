@@ -30,11 +30,11 @@ fi
 #
 # Claude Code
 #
-# For Claude Opus 4.6 and Sonnet 4.6, effort replaces budget_tokens as the recommended way to control thinking depth.
+# For Claude Opus and Sonnet, effort replaces budget_tokens as the recommended way to control thinking depth.
 #   https://platform.claude.com/docs/en/build-with-claude/effort
 #
 # One important detail: low, medium, and high persist across sessions. Set it once and it sticks until you change it. max resets when your session ends.
 #   https://kentgigger.com/posts/claude-code-effort-parameter
 #
-alias ccm="claude --model claude-opus-4-6 --effort max --remote-control"
-alias ccms="claude --model claude-opus-4-6 --effort max --remote-control --dangerously-skip-permissions"
+alias ccm="claude --model opus --effort max --remote-control"
+alias ccms="claude --model opus --effort max --remote-control --dangerously-skip-permissions"
