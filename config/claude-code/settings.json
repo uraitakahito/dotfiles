@@ -52,5 +52,19 @@
         ]
       }
     ]
-  }
+  },
+  "// preferredNotifChannel": [
+    "iTerm2側で以下を有効化する必要がある:",
+    "1. iTerm2 → Settings → Profiles → Terminal",
+    "2. 'Notification Center Alerts' をチェック",
+    "3. 'Filter Alerts' をクリックして 'Send escape sequence-generated alerts' を有効化"
+  ],
+  "preferredNotifChannel": "iterm2",
+  "// agentPushNotifEnabled": [
+    "Remote Controlセッション (--remote-control起動) 中に、Claudeモバイルアプリへプッシュ通知を送る:",
+    "- トリガー: タスク完了時 / 判断要求時 / '/notify me when ...' 指示時",
+    "- 必要: モバイルアプリ + claude.aiログイン (Pro以上)",
+    "- 対話中に '/config' の 'Push when Claude decides' トグルで切替可能"
+  ],
+  "agentPushNotifEnabled": true
 }
