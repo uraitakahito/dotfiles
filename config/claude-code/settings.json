@@ -66,5 +66,17 @@
     "- 必要: モバイルアプリ + claude.aiログイン (Pro以上)",
     "- 対話中に '/config' の 'Push when Claude decides' トグルで切替可能"
   ],
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "// statusLine": [
+    "ステータスラインに 5h/7d レートリミット使用率とリセット時刻を表示する。",
+    "rate_limits は Pro/Max + 最初のAPI応答後にのみ stdin に渡されるため、",
+    "認証前/初回応答前は --% / --:-- にフォールバックする。",
+    "refreshInterval=30s はリミットウィンドウ境界をまたぐ際の更新を保証するため。"
+  ],
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 1,
+    "refreshInterval": 30
+  }
 }

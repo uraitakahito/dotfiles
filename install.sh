@@ -106,6 +106,7 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 mkdir -p ~/.claude
 ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" ~/.claude/settings.json
 ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" ~/.claude/CLAUDE.md
+ln -fs "$SCRIPT_DIR/config/claude-code/statusline.sh" ~/.claude/statusline.sh
 
 #
 # Gemini CLI
