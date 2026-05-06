@@ -1,0 +1,1 @@
+/Users/takahito/dotfiles/config/claude-code/statusline.sh
