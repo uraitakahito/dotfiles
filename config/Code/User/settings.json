@@ -208,5 +208,11 @@
     "chat.sendElementsToChat.attachImages": true,
 
     // Use the integrated browser for Live Preview
-    "livePreview.useIntegratedBrowser": true
+    "livePreview.useIntegratedBrowser": true,
+
+    //
+    // AWS Toolkit Extension
+    //
+    "aws.telemetry": false,
+    "aws.cloudformation.telemetry.enabled": false
 }
