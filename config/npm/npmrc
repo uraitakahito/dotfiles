@@ -1,28 +1,9 @@
-# Shared npm + pnpm config. Both tools read this file as ~/.npmrc.
-# Unknown keys are silently ignored by each CLI.
-# Note: pnpm 9 does NOT read ~/.config/pnpm/rc; ~/.npmrc is the only rc source.
+# ~/.npmrc — npm-only config (and auth/registry for pnpm).
+# pnpm 11 dropped reading non-auth settings from .npmrc; pnpm's non-auth
+# user-level config now lives in ~/.config/pnpm/config.yaml (YAML).
+# See: config/pnpm/config.yaml
 
-# npm + pnpm: cooldown for fresh releases.
-# Unit: days (Number). Requires npm CLI 11.10+.
+# npm: cooldown for fresh releases. Unit: days. Requires npm CLI 11.10+.
+# pnpm's equivalent is `minimumReleaseAge` (minutes) in ~/.config/pnpm/config.yaml.
 # https://docs.npmjs.com/cli/v11/using-npm/config#min-release-age
 min-release-age=2
-
-# pnpm: let pnpm self-manage its own version via the project's packageManager field.
-# Prepares for Node 25, which removes the bundled Corepack.
-manage-package-manager-versions=true
-
-# pnpm: explicit default. When the lockfile satisfies package.json, perform
-# a headless install (no resolution, just symlink from the store). Otherwise
-# resolve normally and update the lockfile. NOT the same as `frozen-lockfile`,
-# which errors on a stale lockfile (auto-enabled in CI environments).
-prefer-frozen-lockfile=true
-
-# pnpm: store/state under PNPM_HOME (exported by 45-pnpm.zsh).
-# Resolves to ~/Library/pnpm/{store,state} on macOS and
-# ${XDG_DATA_HOME:-~/.local/share}/pnpm/{store,state} on Linux,
-# both matching pnpm's own defaults.
-store-dir=${PNPM_HOME}/store
-state-dir=${PNPM_HOME}/state
-
-# pnpm: cache under XDG_CACHE_HOME (fallback ~/.cache).
-cache-dir=${XDG_CACHE_HOME:-~/.cache}/pnpm

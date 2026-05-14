@@ -1,0 +1,26 @@
+# pnpm 11 user-level config.
+# pnpm reads this from $XDG_CONFIG_HOME/pnpm/config.yaml
+# (= ~/.config/pnpm/config.yaml on macOS/Linux).
+# https://pnpm.io/settings
+#
+# pnpm 11 dropped reading non-auth/registry settings from .npmrc, so all
+# non-auth user-level config has to live here (YAML, camelCase).
+# Auth and registry credentials stay in ~/.npmrc.
+# Per-project overrides go in each project's pnpm-workspace.yaml.
+#
+# storeDir / stateDir / cacheDir are intentionally omitted; pnpm 11 defaults
+# already resolve to $PNPM_HOME/{store,state} and $XDG_CACHE_HOME/pnpm,
+# which is exactly what this dotfiles wants.
+
+# Cooldown for fresh releases. Unit: minutes (2880 = 2 days).
+# npm's equivalent is `min-release-age` (days) in ~/.npmrc.
+minimumReleaseAge: 2880
+
+# Let pnpm self-manage its own version via package.json's packageManager field.
+# Prepares for Node 25, which removes the bundled Corepack.
+managePackageManagerVersions: true
+
+# When the lockfile satisfies package.json, perform a headless install
+# (no resolution, just symlink from the store). NOT the same as
+# `frozen-lockfile`, which errors on a stale lockfile (auto-enabled in CI).
+preferFrozenLockfile: true

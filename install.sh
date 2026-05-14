@@ -129,6 +129,17 @@ ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
 ln -fs "$SCRIPT_DIR/config/npm/npmrc" ~/.npmrc
 
 #
+# pnpm
+#
+# pnpm 11 reads user-level config from $XDG_CONFIG_HOME/pnpm/config.yaml
+# (YAML, camelCase). pnpm 11 also dropped reading non-auth settings from
+# .npmrc, so all non-auth global config lives in this file.
+# Per-project policy should live in each project's pnpm-workspace.yaml.
+#
+mkdir -p ~/.config/pnpm
+ln -fs "$SCRIPT_DIR/config/pnpm/config.yaml" ~/.config/pnpm/config.yaml
+
+#
 # Debug log
 #
 mkdir -p ~/.log
