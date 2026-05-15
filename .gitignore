@@ -1,11 +1,3 @@
-.claude/.last-cleanup
-.claude/chrome/
-.claude/mcp-needs-auth-cache.json
-.claude/plugins/
-.claude/sessions/
-.claude/shell-snapshots/
-.claude/tasks/
-
 config/zsh/completion/_docker
 config/zsh/completion/_docker-compose
 # Zsh plugins (installed by install.sh)
