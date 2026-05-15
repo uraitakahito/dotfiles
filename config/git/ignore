@@ -13,17 +13,30 @@
 # Claude Code sets git to ignore .claude/settings.local.json on creation.
 # https://docs.anthropic.com/ja/docs/claude-code/settings
 #
-**/.claude/cache/
-**/.claude/paste-cache/
-**/.claude/settings.local.json
+**/.claude/.last-cleanup
 **/.claude/.update.lock
+**/.claude/backups/
+**/.claude/cache/
+**/.claude/chrome/
+**/.claude/daemon.log
+**/.claude/daemon/
 **/.claude/debug/
+**/.claude/downloads/
 **/.claude/file-history/
 **/.claude/history.jsonl
 **/.claude/ide/
+**/.claude/jobs/
+**/.claude/mcp-needs-auth-cache.json
+**/.claude/paste-cache/
+**/.claude/plans/
+**/.claude/plugins/
 **/.claude/projects/
+**/.claude/session-env/
+**/.claude/sessions/
+**/.claude/settings.local.json
+**/.claude/shell-snapshots/
 **/.claude/stats-cache.json
 **/.claude/statsig/
+**/.claude/tasks/
 **/.claude/todos/
-**/.claude/plans/
-**/.claude/backups/
+**/.claude/worktrees/
