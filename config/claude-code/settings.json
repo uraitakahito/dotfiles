@@ -4,6 +4,8 @@
       "Bash(chmod:*)",
       "Bash(diff:*)",
       "Bash(find:*)",
+      "Bash(git -C * add:*)",
+      "Bash(git -C * commit:*)",
       "Bash(git check-ignore:*)",
       "Bash(grep:*)",
       "Bash(ls:*)",
