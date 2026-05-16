@@ -10,6 +10,7 @@
       "Bash(docker logs:*)",
       "Bash(docker ps:*)",
       "Bash(docker run:*)",
+      "Bash(echo:*)",
       "Bash(find:*)",
       "Bash(git -C * add:*)",
       "Bash(git -C * branch:*)",
