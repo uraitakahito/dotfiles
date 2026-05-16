@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Bash(cat:*)",
       "Bash(chmod:*)",
       "Bash(diff:*)",
       "Bash(find:*)",
@@ -33,7 +34,14 @@
       "Read(.env.*)",
       "Read(id_ed25519.*)",
       "Read(id_rsa.*)",
-      "Write(.env*)"
+      "Write(.env*)",
+      "Bash(cat *.env*:*)",
+      "Bash(cat *id_rsa*:*)",
+      "Bash(cat *id_ed25519*:*)",
+      "Bash(cat */.ssh/*:*)",
+      "Bash(cat *KEY*:*)",
+      "Bash(cat *API*:*)",
+      "Bash(cat *passwd*:*)"
     ]
   },
   "hooks": {
