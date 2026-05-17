@@ -38,6 +38,16 @@ ln -fs "$SCRIPT_DIR/config/git/config" ~/.config/git/config
 ln -fs "$SCRIPT_DIR/config/git/ignore" ~/.config/git/ignore
 
 #
+# Global git hooks (gitleaks pre-commit)
+#
+# core.hooksPath = ~/.config/git/hooks (set in config/git/config)
+# The hook itself is a silent no-op when gitleaks is not installed,
+# so it is safe to symlink on every environment.
+#
+mkdir -p ~/.config/git/hooks
+ln -fs "$SCRIPT_DIR/config/git/hooks/pre-commit" ~/.config/git/hooks/pre-commit
+
+#
 # VS Code
 #
 if is-docker; then
