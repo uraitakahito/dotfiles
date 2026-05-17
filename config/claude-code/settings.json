@@ -138,6 +138,13 @@
     "- 必要: モバイルアプリ + claude.aiログイン (Pro以上)",
     "- 対話中に '/config' の 'Push when Claude decides' トグルで切替可能"
   ],
+  "// inputNeededNotifEnabled": [
+    "Claudeが入力待ち (permission prompt や質問) になったときに、Claudeモバイルアプリへプッシュ通知を送る:",
+    "- 公式説明 (内部スキーマ): 'Push to mobile when a permission prompt or question is waiting'",
+    "- agentPushNotifEnabled (Claudeの能動的な通知) と対をなし、こちらは『ユーザーの入力待ち』が発火条件",
+    "- 必要: モバイルアプリ + claude.aiログイン (Pro以上)",
+    "- 対話中に '/config' の 'Push when actions required' トグルで切替可能"
+  ],
   "// statusLine": [
     "ステータスラインに 5h/7d レートリミット使用率とリセット時刻を表示する。",
     "rate_limits は Pro/Max + 最初のAPI応答後にのみ stdin に渡されるため、",
