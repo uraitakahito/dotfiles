@@ -1,3 +1,6 @@
 [core]
 	# Display non-ASCII characters (e.g., Japanese) as-is instead of octal escapes
 	quotepath = false
+	# Use dotfiles-managed global hooks (e.g. gitleaks pre-commit).
+	# Note: this overrides each repository's .git/hooks/* entirely.
+	hooksPath = ~/.config/git/hooks

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# Global pre-commit hook for the dotfiles.
+# Runs gitleaks on staged changes; bypass with `git commit --no-verify`.
+#
+# Silent no-op when gitleaks is not installed, because dotfiles must
+# work on environments where gitleaks is not provisioned (Dev Container,
+# fresh VMs, CI runners, etc).
+set -eu
+
+command -v gitleaks >/dev/null 2>&1 || exit 0
+
+if ! gitleaks git --staged --pre-commit --redact -v; then
+  echo "" >&2
+  echo "gitleaks detected potential secrets in staged changes." >&2
+  echo "Review the findings above. To bypass intentionally:" >&2
+  echo "  git commit --no-verify" >&2
+  exit 1
+fi
