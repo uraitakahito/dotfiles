@@ -1,6 +1,18 @@
 {
   "permissions": {
     "allow": [
+      "Bash(aws --help)",
+      "Bash(aws --version)",
+      "Bash(aws configure list:*)",
+      "Bash(aws configure list-profiles)",
+      "Bash(aws ec2 describe-*:*)",
+      "Bash(aws iam get-*:*)",
+      "Bash(aws iam list-*:*)",
+      "Bash(aws s3 ls:*)",
+      "Bash(aws sts:*)",
+      "Bash(aws-vault --version)",
+      "Bash(aws-vault exec:*)",
+      "Bash(aws-vault list:*)",
       "Bash(cat:*)",
       "Bash(chmod:*)",
       "Bash(diff:*)",
@@ -32,6 +44,7 @@
       "Bash(uv run pytest:*)",
       "Bash(ruff check:*)",
       "Bash(tail:*)",
+      "Bash(which:*)",
       "Bash(xxd:*)",
       "mcp__ide__getDiagnostics",
       "WebFetch(domain:github.com)",
@@ -100,13 +113,13 @@
       }
     ]
   },
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 1,
     "refreshInterval": 30
   },
+  "skipDangerousModePermissionPrompt": true,
   "preferredNotifChannel": "iterm2",
   "agentPushNotifEnabled": true,
   "//": [
@@ -130,5 +143,6 @@
     "rate_limits は Pro/Max + 最初のAPI応答後にのみ stdin に渡されるため、",
     "認証前/初回応答前は --% / --:-- にフォールバックする。",
     "refreshInterval=30s はリミットウィンドウ境界をまたぐ際の更新を保証するため。"
-  ]
+  ],
+  "inputNeededNotifEnabled": true
 }
