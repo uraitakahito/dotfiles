@@ -15,6 +15,7 @@
       "Bash(aws-vault list:*)",
       "Bash(cat:*)",
       "Bash(chmod:*)",
+      "Bash(curl:*)",
       "Bash(diff:*)",
       "Bash(docker build:*)",
       "Bash(docker compose:*)",
@@ -127,7 +128,23 @@
       "Bash(xxd */.ssh/*:*)",
       "Bash(xxd *KEY*:*)",
       "Bash(xxd *API*:*)",
-      "Bash(xxd *passwd*:*)"
+      "Bash(xxd *passwd*:*)",
+      "Bash(curl * -u *:*)",
+      "Bash(curl * --user *:*)",
+      "Bash(curl * -H Authorization*:*)",
+      "Bash(curl * --header Authorization*:*)",
+      "Bash(curl * -d *:*)",
+      "Bash(curl * --data*:*)",
+      "Bash(curl * -F *:*)",
+      "Bash(curl * --form*:*)",
+      "Bash(curl * -T *:*)",
+      "Bash(curl * --upload-file*:*)",
+      "Bash(curl * -X POST*:*)",
+      "Bash(curl * -X PUT*:*)",
+      "Bash(curl * -X DELETE*:*)",
+      "Bash(curl * --request POST*:*)",
+      "Bash(curl * --request PUT*:*)",
+      "Bash(curl * --request DELETE*:*)"
     ]
   },
   "hooks": {
