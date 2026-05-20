@@ -43,8 +43,8 @@
 #
 #   sudo chown -R $(id -u):$(id -g) /zsh-volume
 
-# Debian 12.13
-FROM debian:bookworm-20260406
+# Debian 12.14
+FROM debian:bookworm-20260518
 
 ARG user_name=developer
 ARG user_id
