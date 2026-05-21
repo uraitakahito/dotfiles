@@ -49,9 +49,9 @@ FROM debian:bookworm-20260518
 ARG user_name=developer
 ARG user_id
 ARG group_id
-# https://github.com/uraitakahito/features/releases/tag/1.0.0
+# https://github.com/uraitakahito/features/releases/tag/2.0.1
 ARG features_repository="https://github.com/uraitakahito/features.git"
-ARG features_commit="e8d887d2e17e79f5289b0e8a087dd0730dcad24e"
+ARG features_commit="9f7e672e27207f374d56e5da7f862b0b5b110b3f"
 # https://github.com/uraitakahito/extra-utils/releases/tag/1.1.0
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
 ARG extra_utils_commit="2c5b1ab72c7b98b2a9c42c084aa6b67cdaa36625"
