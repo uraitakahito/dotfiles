@@ -113,10 +113,11 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 #
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
-mkdir -p ~/.claude
+mkdir -p ~/.claude ~/.claude/hooks
 ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" ~/.claude/settings.json
 ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -fs "$SCRIPT_DIR/config/claude-code/statusline.sh" ~/.claude/statusline.sh
+ln -fs "$SCRIPT_DIR/config/claude-code/hooks/notify.sh" ~/.claude/hooks/notify.sh
 
 #
 # Gemini CLI
