@@ -40,3 +40,12 @@
 **/.claude/tasks/
 **/.claude/todos/
 **/.claude/worktrees/
+
+#
+# Personal notes
+#
+# Repositories may contain a private-note/ directory for personal
+# scratch notes, diagrams, and references that should not be shared.
+# Globally ignored so each repo doesn't need its own .gitignore line.
+#
+**/private-note/

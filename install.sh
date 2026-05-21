@@ -5,6 +5,32 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 source $SCRIPT_DIR/config/zsh/functions/helper.zsh
 
+#
+# Sweep stale dotfiles symlinks under known link roots.
+#
+# Any symlink whose target points back into this repo is removed, then
+# re-created by the ln -fs calls below. This lets file deletions or
+# renames in the repo be reflected on the next install.sh run.
+#
+# Scope: we restrict the walk to directories install.sh actually links
+# into. Walking the entire $HOME would trigger macOS TCC denials for
+# ~/Documents, ~/Desktop, ~/Library/Mail, etc. when invoked from iTerm.
+#
+
+# HOME 直下のドットファイル (~/.vimrc, ~/.editorconfig, ~/.npmrc)
+find "$HOME" -maxdepth 1 -type l -lname "$SCRIPT_DIR/*" -delete 2>/dev/null || true
+
+# install.sh が貼る既知の親ディレクトリ群 (TCC 非保護領域のみ)
+for dir in \
+  "$HOME/.claude" \
+  "$HOME/.config" \
+  "$HOME/.docker" \
+  "$HOME/.vscode-server" \
+  "$HOME/Library/Application Support/Code/User"
+do
+  [ -d "$dir" ] && find "$dir" -type l -lname "$SCRIPT_DIR/*" -delete 2>/dev/null || true
+done
+
 cd ~/ || exit
 
 #
@@ -113,10 +139,11 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 #
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
-mkdir -p ~/.claude
+mkdir -p ~/.claude ~/.claude/hooks
 ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" ~/.claude/settings.json
 ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -fs "$SCRIPT_DIR/config/claude-code/statusline.sh" ~/.claude/statusline.sh
+ln -fs "$SCRIPT_DIR/config/claude-code/hooks/notify.sh" ~/.claude/hooks/notify.sh
 
 #
 # Gemini CLI
