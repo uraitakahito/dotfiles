@@ -22,9 +22,20 @@
 #
 #   docker volume create $PROJECT-zsh-history
 #
-# Start the Docker container(/run/host-services/ssh-auth.sock is a virtual socket provided by Docker Desktop for Mac and OrbStack.):
+# Start the Docker container (DooD enabled — see SOCKETPATH below):
+# - /run/host-services/ssh-auth.sock is a virtual socket provided by Docker
+#   Desktop for Mac and OrbStack.
+# - /var/run/docker.sock is bind-mounted to /var/run/docker-host.sock inside the
+#   container; the docker-outside-of-docker feature's docker-init.sh script
+#   forwards it to /var/run/docker.sock at runtime (GID sync or socat proxy).
 #
-#   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/agent.sock -e SSH_AUTH_SOCK=/agent.sock -e GH_TOKEN=$(gh auth token) --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
+#   docker container run -d --rm --init -v /run/host-services/ssh-auth.sock:/agent.sock -e SSH_AUTH_SOCK=/agent.sock -v /var/run/docker.sock:/var/run/docker-host.sock -e GH_TOKEN=$(gh auth token) --mount type=bind,src=`pwd`,dst=/app --mount type=volume,source=$PROJECT-zsh-history,target=/zsh-volume --name $PROJECT-container $PROJECT-image
+#
+# Windows users: run the above command from a **WSL2 shell** with Docker
+# Desktop's "Enable integration with my default WSL distro" turned on. The
+# container expects /var/run/docker.sock to be a unix socket; PowerShell-native
+# invocation would pass the named-pipe path (//./pipe/docker_engine) which is
+# incompatible.
 #
 # Log into the container.
 #
@@ -114,6 +125,33 @@ RUN cd /usr/src && \
     \
     UPGRADEPACKAGES=false \
         /usr/src/extra-utils/utils/install.sh
+
+#
+# Install docker-outside-of-docker (uses host's docker daemon via socket mount)
+# https://github.com/uraitakahito/features/tree/2.0.1/src/docker-outside-of-docker
+#
+# Version pins (consistent with the dotfiles' philosophy of pinning everything):
+#   VERSION=29.4.3        # moby-cli package version (Microsoft Moby repo)
+#   MOBYBUILDXVERSION=0.33.0  # moby-buildx package version (Microsoft Moby repo)
+#   DOCKERDASHCOMPOSEVERSION=v2  # Compose major version (enum: none|latest|v1|v2)
+#
+# Note: VERSION / MOBYBUILDXVERSION here track the moby-cli / moby-buildx
+# package versions in https://packages.microsoft.com/ (NOT the docker/cli or
+# docker/buildx upstream GitHub tag versions, which differ).
+#
+# SOCKETPATH is set explicitly (matches the default) to make the socket path
+# visible in the Dockerfile. The container expects the host's docker socket to
+# be mounted at this path at runtime; see the run command in the header comment.
+#
+RUN VERSION=29.4.3 \
+    MOBY=true \
+    MOBYBUILDXVERSION=0.33.0 \
+    DOCKERDASHCOMPOSEVERSION=v2 \
+    INSTALLDOCKERBUILDX=true \
+    INSTALLDOCKERCOMPOSESWITCH=false \
+    SOCKETPATH=/var/run/docker-host.sock \
+    USERNAME=${user_name} \
+        /usr/src/features/src/docker-outside-of-docker/install.sh
 
 COPY docker-entrypoint.sh /usr/local/bin/
 

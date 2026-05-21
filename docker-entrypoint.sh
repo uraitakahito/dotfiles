@@ -11,7 +11,14 @@ _is_sourced() {
 }
 
 _main() {
-    exec "$@"
+	# If the docker-outside-of-docker feature is installed, delegate to its
+	# init script. docker-init.sh syncs the docker group GID with the mounted
+	# host socket (or falls back to a socat proxy when GID sync isn't viable)
+	# and then `exec "$@"` to start the container's CMD.
+	if [ -x /usr/local/share/docker-init.sh ]; then
+		exec /usr/local/share/docker-init.sh "$@"
+	fi
+	exec "$@"
 }
 
 # If we are sourced from elsewhere, don't perform any further actions
