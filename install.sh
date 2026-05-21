@@ -127,8 +127,14 @@ ln -fs "$SCRIPT_DIR/config/gemini/settings.json" ~/.config/gemini/settings.json
 #
 # Docker
 #
-mkdir -p ~/.docker
-ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
+# Only link on macOS host: config.json sets `currentContext = "orbstack"` which
+# only exists on the host. In a Docker container (DooD via socket mount), this
+# config would break `docker version` etc. with "context not found".
+#
+if is-darwin && ! is-docker; then
+  mkdir -p ~/.docker
+  ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
+fi
 
 #
 # npm
