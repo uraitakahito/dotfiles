@@ -36,5 +36,7 @@ fi
 # One important detail: low, medium, and high persist across sessions. Set it once and it sticks until you change it. max resets when your session ends.
 #   https://kentgigger.com/posts/claude-code-effort-parameter
 #
-alias ccm="claude --model opus --effort max --remote-control"
-alias ccms="claude --model opus --effort max --remote-control --dangerously-skip-permissions"
+alias ccm="claude --model opus --effort max"
+alias ccms="claude --model opus --effort max --dangerously-skip-permissions"
+alias ccmr="claude --model opus --effort max --remote-control"
+alias ccmrs="claude --model opus --effort max --remote-control --dangerously-skip-permissions"
