@@ -15,20 +15,25 @@ path_prepend $HOME/.local/bin
 #
 local cyan=$'\e[36m' reset=$'\e[m'
 
-# OS icon for prompt (requires Nerd Fonts)
+# OS icon for prompt
 #
-# printf '\uXXXX' defers Unicode interpretation to runtime, unlike $'\uXXXX'
-# which is expanded at parse time. 2>/dev/null || true ensures the script
-# never stops, even if the locale is misconfigured or unsupported (e.g.
-# LANG set to a locale that is not installed, or musl libc without locale
-# support).
+# Uses standard Unicode SMP emoji instead of Nerd Font PUA characters
+# (U+E000-U+F8FF), because PUA glyphs garble in any destination that
+# lacks the patched font (Notion, Slack, Notes, Word, etc.) when the
+# prompt happens to be copied along with the command output.
+#
+# printf '\UXXXXXXXX' (capital U, 8 hex digits) is required for non-BMP
+# codepoints. Lowercase '\uXXXX' only accepts 4 digits (BMP only).
+# Runtime interpretation is preserved by using printf (not $'...').
+# 2>/dev/null || true ensures the script never stops, even if the
+# locale is misconfigured or unsupported.
 OS_ICON=""
 if is-docker; then
-  OS_ICON=$(printf '\uF308' 2>/dev/null) || true
+  OS_ICON=$(printf '\U0001F433' 2>/dev/null) || true
 elif is-darwin; then
-  OS_ICON=$(printf '\uF179' 2>/dev/null) || true
+  OS_ICON=$(printf '\U0001F34E' 2>/dev/null) || true
 else
-  OS_ICON=$(printf '\uF17C' 2>/dev/null) || true
+  OS_ICON=$(printf '\U0001F427' 2>/dev/null) || true
 fi
 
 PROMPT="${OS_ICON}${OS_ICON:+ }%{${cyan}%}%2d%# %{${reset}%}"
