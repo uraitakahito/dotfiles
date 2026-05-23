@@ -11,8 +11,9 @@
 # Behavior:
 # - Per-event Priority / Tags so Stop (completion) and Notification
 #   (input-required) are distinguishable at a glance on the receiver.
-# - Body is Markdown-formatted, including the short session id and the
-#   Claude message (when present in the payload).
+# - Title carries event/project so the iOS lock screen (which does not
+#   render Markdown via APNs) shows readable metadata in bold.
+# - Body is plain text: Claude's message + a short session id.
 #
 # NTFY_TOPIC unset/empty is treated as "notifications disabled" rather
 # than an error, because install.sh symlinks this script on every
@@ -37,18 +38,15 @@ case "$event" in
   *)            priority="default"; tags="claude-code" ;;
 esac
 
-# Markdown body: project + short session id, plus Claude's message
-# when present (Notification events carry the permission prompt etc).
-body="**Project**: \`${proj}\`
-**Session**: \`${session_id:-?}\`"
-[ -n "$message" ] && body="${body}
-
-> ${message}"
+# Plain text body: Claude's message + short session id.
+# Title carries project/event metadata; the body stays minimal so the
+# iOS lock screen (which does not render Markdown via APNs) is readable.
+body="${message:-(no message)}
+(session ${session_id:-?})"
 
 curl -fsS \
-  -H "Title: Claude ${event} (${proj})" \
+  -H "Title: ${proj} — ${event}" \
   -H "Priority: $priority" \
   -H "Tags: $tags" \
-  -H "Markdown: yes" \
   -d "$body" \
   "ntfy.sh/${NTFY_TOPIC}" >/dev/null
