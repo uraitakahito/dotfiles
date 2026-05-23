@@ -214,5 +214,13 @@
     // AWS Toolkit Extension
     //
     "aws.telemetry": false,
-    "aws.cloudformation.telemetry.enabled": false
+    "aws.cloudformation.telemetry.enabled": false,
+
+    //
+    // ShellCheck Extension
+    //
+
+    // -x: follow `source` directives so SC1091 disappears when paired with
+    //     a `# shellcheck source=path` hint at the source line.
+    "shellcheck.customArgs": ["-x"]
 }

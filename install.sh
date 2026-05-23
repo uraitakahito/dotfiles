@@ -3,6 +3,7 @@ set -u
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
+# shellcheck source=config/zsh/functions/helper.zsh
 source $SCRIPT_DIR/config/zsh/functions/helper.zsh
 
 #
