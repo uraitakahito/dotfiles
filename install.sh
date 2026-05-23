@@ -20,13 +20,14 @@ source "$SCRIPT_DIR/config/zsh/functions/helper.zsh"
 find "$HOME" -maxdepth 1 -type l -lname "$SCRIPT_DIR/*" -delete 2>/dev/null || true
 
 # install.sh が貼る既知の親ディレクトリ群 (TCC 非保護領域のみ)
-for dir in \
-  "$HOME/.claude" \
-  "$HOME/.config" \
-  "$HOME/.docker" \
-  "$HOME/.vscode-server" \
+LINK_ROOTS=(
+  "$HOME/.claude"
+  "$HOME/.config"
+  "$HOME/.docker"
+  "$HOME/.vscode-server"
   "$HOME/Library/Application Support/Code/User"
-do
+)
+for dir in "${LINK_ROOTS[@]}"; do
   [ -d "$dir" ] && find "$dir" -type l -lname "$SCRIPT_DIR/*" -delete 2>/dev/null || true
 done
 
