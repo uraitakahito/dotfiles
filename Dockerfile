@@ -63,9 +63,9 @@ ARG group_id
 # https://github.com/uraitakahito/features/releases/tag/2.0.1
 ARG features_repository="https://github.com/uraitakahito/features.git"
 ARG features_commit="9f7e672e27207f374d56e5da7f862b0b5b110b3f"
-# https://github.com/uraitakahito/extra-utils/releases/tag/1.1.0
+# https://github.com/uraitakahito/extra-utils/releases/tag/1.4.0
 ARG extra_utils_repository="https://github.com/uraitakahito/extra-utils.git"
-ARG extra_utils_commit="2c5b1ab72c7b98b2a9c42c084aa6b67cdaa36625"
+ARG extra_utils_commit="18ed6c714f1ecf58930ced0a3d2e281cf1977994"
 
 ARG LANG=C.UTF-8
 ENV LANG="$LANG"
@@ -115,13 +115,23 @@ RUN cd /usr/src && \
     cd extra-utils && \
     git checkout ${extra_utils_commit} && \
     ADDEZA=true \
+    ADDGITLEAKS=true \
     ADDGRPCURL=true \
     ADDHADOLINT=true \
     ADDMAKE=true \
+    ADDXXD=true \
+    ADDYQ=true \
     \
     ADDCLAUDECODE=true \
     # Claude Code is installed under $HOME, so the username must be specified.
     USERNAME=${user_name} \
+    \
+    # Pin tool versions (env-overridable since extra-utils 1.3.0; consistent
+    # with this repo's philosophy of pinning everything).
+    GITLEAKSVERSION=8.30.1 \
+    GRPCURLVERSION=1.9.3 \
+    HADOLINTVERSION=2.12.0 \
+    YQVERSION=4.53.2 \
     \
     UPGRADEPACKAGES=false \
         /usr/src/extra-utils/utils/install.sh
