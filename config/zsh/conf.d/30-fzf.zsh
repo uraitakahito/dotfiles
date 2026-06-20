@@ -75,6 +75,26 @@ fdvscode() {
 }
 
 #
+# fcshell - Login to an Apple Container with shell
+#   usage: fcshell /bin/bash
+#
+fcshell() {
+  local cid
+  cid=$(container ls | sed 1d | fzf | awk '{print $1}')
+  [ -n "$cid" ] && container exec -it "$cid" $1
+}
+
+#
+# fcstop - Stop a running Apple Container
+#   usage: fcstop
+#
+fcstop() {
+  local cid
+  cid=$(container ls | sed 1d | fzf | awk '{print $1}')
+  [ -n "$cid" ] && container stop "$cid"
+}
+
+#
 # fghbrowse - Open the selected GitHub repository from the list in the browser.
 #   usage: fghbrowse
 #
