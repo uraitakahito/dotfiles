@@ -64,14 +64,18 @@ ln -fs "$SCRIPT_DIR/config/git/config" ~/.config/git/config
 ln -fs "$SCRIPT_DIR/config/git/ignore" ~/.config/git/ignore
 
 #
-# Global git hooks (gitleaks pre-commit)
+# Git template (per-repo hooks via init.templateDir) — case A
 #
-# core.hooksPath = ~/.config/git/hooks (set in config/git/config)
-# The hook itself is a silent no-op when gitleaks is not installed,
-# so it is safe to symlink on every environment.
+# init.templateDir = ~/.config/git/template (set in config/git/config)
+# Symlink the template DIRECTORY. The hook inside stays a REAL file, so
+# `git init`/`clone` copies it as a real, self-contained file into each
+# repo's .git/hooks -> portable across Docker / other machines.
+# (Symlinking the hook FILE would copy an absolute-path symlink that breaks
+#  when dotfiles live elsewhere, silently disabling gitleaks.)
+# git-lfs hooks are intentionally NOT here; use `git lfs install --local`.
+# -n keeps it idempotent (no nesting when the link already exists).
 #
-mkdir -p ~/.config/git/hooks
-ln -fs "$SCRIPT_DIR/config/git/hooks/pre-commit" ~/.config/git/hooks/pre-commit
+ln -fsn "$SCRIPT_DIR/config/git/template" ~/.config/git/template
 
 #
 # VS Code

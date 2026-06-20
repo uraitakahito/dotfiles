@@ -1,6 +1,9 @@
 [core]
 	# Display non-ASCII characters (e.g., Japanese) as-is instead of octal escapes
 	quotepath = false
-	# Use dotfiles-managed global hooks (e.g. gitleaks pre-commit).
-	# Note: this overrides each repository's .git/hooks/* entirely.
-	hooksPath = ~/.config/git/hooks
+[init]
+	# Per-repo hooks via template: copied into each repo's .git/hooks on
+	# `git init`/`clone`. The template's pre-commit is a REAL file, so the copy
+	# is a self-contained script (portable across Docker / other machines).
+	# git-lfs hooks are NOT placed here; use `git lfs install --local` per repo.
+	templateDir = ~/.config/git/template
