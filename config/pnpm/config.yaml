@@ -16,9 +16,10 @@
 # npm's equivalent is `min-release-age` (days) in ~/.npmrc.
 minimumReleaseAge: 2880
 
-# Let pnpm self-manage its own version via package.json's packageManager field.
-# Prepares for Node 25, which removes the bundled Corepack.
-managePackageManagerVersions: true
+# pnpm self-manages its version from package.json's packageManager field
+# (prep for Node 25, which removes the bundled Corepack). In pnpm 11 this is
+# already the default (pmOnFail: download); the old managePackageManagerVersions
+# setting was removed and cannot live in the global config, so nothing is set here.
 
 # When the lockfile satisfies package.json, perform a headless install
 # (no resolution, just symlink from the store). NOT the same as
