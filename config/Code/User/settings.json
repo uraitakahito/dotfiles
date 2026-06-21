@@ -119,6 +119,13 @@
     "workbench.iconTheme": "material-icon-theme",
 
     //
+    // Apple
+    //
+    // Support for the Containerization Framework on macOS
+    // https://github.com/microsoft/vscode-remote-release/issues/11012
+    "dev.containers.experimentalAppleContainerSupport": true,
+
+    //
     // Ruby LSP
     //
     // Ruby version managers
