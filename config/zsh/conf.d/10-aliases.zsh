@@ -39,4 +39,3 @@ fi
 alias ccm="claude --model opus --effort max"
 alias ccms="claude --model opus --effort max --dangerously-skip-permissions"
 alias ccmr="claude --model opus --effort max --remote-control"
-alias ccmrs="claude --model opus --effort max --remote-control --dangerously-skip-permissions"
