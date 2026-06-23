@@ -240,6 +240,7 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "preferredNotifChannel": "iterm2",
+  "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "//": [
     "Discussion on how to write comments in package.json:",
@@ -270,5 +271,5 @@
     "認証前/初回応答前は --% / --:-- にフォールバックする。",
     "refreshInterval=30s はリミットウィンドウ境界をまたぐ際の更新を保証するため。"
   ],
-  "inputNeededNotifEnabled": true
+  "tui": "fullscreen"
 }
