@@ -238,7 +238,9 @@
     "padding": 1,
     "refreshInterval": 30
   },
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
   "preferredNotifChannel": "iterm2",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
@@ -270,6 +272,5 @@
     "rate_limits は Pro/Max + 最初のAPI応答後にのみ stdin に渡されるため、",
     "認証前/初回応答前は --% / --:-- にフォールバックする。",
     "refreshInterval=30s はリミットウィンドウ境界をまたぐ際の更新を保証するため。"
-  ],
-  "tui": "fullscreen"
+  ]
 }
