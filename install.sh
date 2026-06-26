@@ -7,6 +7,14 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 source "$SCRIPT_DIR/config/zsh/functions/helper.zsh"
 
 #
+# Claude Code config directory (same canonical expression as
+# config/zsh/conf.d/02-claude.zsh). Honor an existing CLAUDE_CONFIG_DIR
+# (e.g. a Dev Container's ENV=/claude-config); otherwise default to the
+# XDG path so install and runtime resolve to the same location.
+#
+CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}"
+
+#
 # Sweep stale dotfiles symlinks under known link roots.
 #
 # Scope: we restrict the walk to directories install.sh actually links
@@ -21,7 +29,8 @@ find "$HOME" -maxdepth 1 -type l -lname "$SCRIPT_DIR/*" -delete 2>/dev/null || t
 
 # install.sh が貼る既知の親ディレクトリ群 (TCC 非保護領域のみ)
 LINK_ROOTS=(
-  "$HOME/.claude"
+  "$CLAUDE_DIR"        # Claude Code config dir (CLAUDE_CONFIG_DIR or XDG default)
+  "$HOME/.claude"      # legacy Claude location; sweep stale links left there
   "$HOME/.config"
   "$HOME/.docker"
   "$HOME/.vscode-server"
@@ -143,11 +152,11 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 #
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
-mkdir -p ~/.claude ~/.claude/hooks
-ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" ~/.claude/settings.json
-ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" ~/.claude/CLAUDE.md
-ln -fs "$SCRIPT_DIR/config/claude-code/statusline.sh" ~/.claude/statusline.sh
-ln -fs "$SCRIPT_DIR/config/claude-code/hooks/notify.sh" ~/.claude/hooks/notify.sh
+mkdir -p "$CLAUDE_DIR" "$CLAUDE_DIR/hooks"
+ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" "$CLAUDE_DIR/settings.json"
+ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
+ln -fs "$SCRIPT_DIR/config/claude-code/statusline.sh" "$CLAUDE_DIR/statusline.sh"
+ln -fs "$SCRIPT_DIR/config/claude-code/hooks/notify.sh" "$CLAUDE_DIR/hooks/notify.sh"
 
 #
 # Gemini CLI
