@@ -3,7 +3,7 @@
 # Claude Code hook notification wrapper for ntfy.sh.
 #
 # Usage:
-#   ~/.claude/hooks/notify.sh <event>   # Stop / Notification / ...
+#   "$CLAUDE_CONFIG_DIR"/hooks/notify.sh <event>   # Stop / Notification / ... (default ~/.config/claude)
 #
 # Reads Claude Code's hook payload (JSON) from stdin and forwards it to
 # ntfy.sh as a structured push notification.
