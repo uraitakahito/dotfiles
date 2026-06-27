@@ -152,11 +152,11 @@ ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 #
 # https://docs.anthropic.com/ja/docs/claude-code/memory
 #
-mkdir -p "$CLAUDE_DIR" "$CLAUDE_DIR/hooks"
-ln -fs "$SCRIPT_DIR/config/claude-code/settings.json" "$CLAUDE_DIR/settings.json"
-ln -fs "$SCRIPT_DIR/config/claude-code/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
-ln -fs "$SCRIPT_DIR/config/claude-code/statusline.sh" "$CLAUDE_DIR/statusline.sh"
-ln -fs "$SCRIPT_DIR/config/claude-code/hooks/notify.sh" "$CLAUDE_DIR/hooks/notify.sh"
+# Delegate to the shared seeder so build-time (host / image) and runtime
+# (docker-entrypoint.sh, after a volume is mounted over $CLAUDE_DIR) lay down
+# the same symlinks. See config/claude-code/seed-config-dir.sh.
+#
+CLAUDE_CONFIG_DIR="$CLAUDE_DIR" "$SCRIPT_DIR/config/claude-code/seed-config-dir.sh"
 
 #
 # Gemini CLI
