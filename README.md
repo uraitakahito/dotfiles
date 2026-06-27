@@ -1,14 +1,28 @@
 # dotfiles
 
-Personal dotfiles repository for a unified development environment.
-Provides Docker, Zsh, and VS Code configurations.
-Follows [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) for configuration file placement.
+開発環境のための個人用 dotfiles リポジトリ。
+設定ファイルの配置は [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) に従います。
 
-## Integration with VS Code Dev Containers
+## VS Code Dev Containers に従った設計
 
-This repository is designed to work with the dotfiles feature of [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
+このリポジトリは [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) の dotfiles 機能に従って設計されています。
+しかしながら、開発時に任意のエディタで利用できるようにするため、 Dockerfile内で明示的に利用されることを想定しています。
 
-Add the following to your VS Code `settings.json`:
+次のように明示的に呼び出してください:
+
+```Dockerfile
+RUN cd /home/${user_name} && \
+    git clone ${dotfiles_repository} && \
+    cd dotfiles && \
+    git checkout ${dotfiles_commit} && \
+    ./install.sh
+```
+
+サンプルとなるDockerfileは [hello-javascript/Dockerfile.dev.container](https://github.com/uraitakahito/hello-javascript/blob/7fae0a52f9b760efc5ffc8816d5ba205de2b8b31/Dockerfile.dev.container#L213-L220)にあります。
+
+### VS Code Dev Containers機能を使う場合
+
+`settings.json` に以下を追加してください：
 
 ```json
 {
@@ -17,15 +31,3 @@ Add the following to your VS Code `settings.json`:
     "dotfiles.installCommand": "install.sh"
 }
 ```
-
-When creating a Dev Container, this repository will be cloned automatically and `install.sh` will be executed.
-
-## Installation
-
-```bash
-./install.sh
-```
-
-## Docker Development Environment Setup
-
-See the comments in [Dockerfile](./Dockerfile) for detailed instructions on building, starting, and connecting.
