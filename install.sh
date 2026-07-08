@@ -148,6 +148,16 @@ mkdir -p ~/.config/ruff
 ln -fs "$SCRIPT_DIR/config/ruff/ruff.toml" ~/.config/ruff/ruff.toml
 
 #
+# MCP (Claude Code CLI)
+#
+# Reserved slot. The servers file (config/mcp/mcp.json) is optional and added
+# later; symlink it only if present so an empty slot leaves no dangling link.
+# Load at runtime with: claude --mcp-config ~/.config/mcp/mcp.json
+#
+mkdir -p ~/.config/mcp
+[ -f "$SCRIPT_DIR/config/mcp/mcp.json" ] && ln -fs "$SCRIPT_DIR/config/mcp/mcp.json" ~/.config/mcp/mcp.json
+
+#
 # CLAUDE CODE
 #
 # https://docs.anthropic.com/ja/docs/claude-code/memory
