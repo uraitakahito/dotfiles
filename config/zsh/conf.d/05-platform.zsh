@@ -82,7 +82,7 @@ fi
 #
 # Docker
 #
-if is-docker; then
+if is-container; then
   # This setting preserves the history even after restarting the Docker container.
   # https://github.com/uraitakahito/claude-code-docker/blob/0224b6a1c03bc3f47ebff7bcd23ab23da8a9f23c/Dockerfile#L32-L51
   if [ -d /zsh-volume ]; then

@@ -89,7 +89,7 @@ ln -fsn "$SCRIPT_DIR/config/git/template" ~/.config/git/template
 #
 # VS Code
 #
-if is-docker; then
+if is-container; then
   mkdir -p ~/.vscode-server/data/Machine
   ln -fs "$SCRIPT_DIR/config/Code/User/settings.json" ~/.vscode-server/data/Machine/settings.json
   ln -fs "$SCRIPT_DIR/config/Code/User/mcp.json" ~/.vscode-server/data/Machine/mcp.json
@@ -181,7 +181,7 @@ ln -fs "$SCRIPT_DIR/config/gemini/settings.json" ~/.config/gemini/settings.json
 # only exists on the host. In a Docker container (DooD via socket mount), this
 # config would break `docker version` etc. with "context not found".
 #
-if is-darwin && ! is-docker; then
+if is-darwin && ! is-container; then
   mkdir -p ~/.docker
   ln -fs "$SCRIPT_DIR/config/docker/config.json" ~/.docker/config.json
 fi
