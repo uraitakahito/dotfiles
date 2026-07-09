@@ -24,7 +24,7 @@ local cyan=$'\e[36m' reset=$'\e[m'
 # the script never stops, even if the locale is misconfigured or
 # unsupported (e.g. LANG set to a locale that is not installed).
 OS_ICON=""
-if is-docker; then
+if is-container; then
   OS_ICON=$(printf '\uF308' 2>/dev/null) || true
 elif is-darwin; then
   OS_ICON=$(printf '\uF179' 2>/dev/null) || true

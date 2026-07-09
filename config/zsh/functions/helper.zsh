@@ -32,9 +32,9 @@ function is-darwin {
   [[ "$OSTYPE" == darwin* ]]
 }
 
-# Checks if running in a container.
-function is-docker {
-  [[ -e /.dockerenv ]]
+# Checks if running inside a container (Docker / Podman / Apple container / …).
+function is-container {
+  [[ -e /.dockerenv ]] || [[ -e /run/.containerenv ]] || [[ -e /.cz-init ]] || [[ -n ${container:-} ]]
 }
 
 # Checks if running on Visual Studio Code Terminal.
