@@ -211,9 +211,6 @@
     // Include CSS styles when sending elements to chat
     "chat.sendElementsToChat.attachCSS": true,
 
-    // Include screenshots when sending elements to chat
-    "chat.sendElementsToChat.attachImages": true,
-
     // Use the integrated browser for Live Preview
     "livePreview.useIntegratedBrowser": true,
 
@@ -229,5 +226,10 @@
 
     // -x: follow `source` directives so SC1091 disappears when paired with
     //     a `# shellcheck source=path` hint at the source line.
-    "shellcheck.customArgs": ["-x"]
+    "shellcheck.customArgs": [
+        "-x"
+    ],
+
+    // Include screenshots when sending elements to chat
+    "workbench.browser.sendElementsToChat.attachImages": true
 }
