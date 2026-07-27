@@ -164,9 +164,6 @@
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "redhat.telemetry.enabled": false,
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
-    },
     "json.schemaDownload.trustedDomains": {
         "https://schemastore.azurewebsites.net/": true,
         "https://raw.githubusercontent.com/": true,
@@ -231,5 +228,28 @@
     ],
 
     // Include screenshots when sending elements to chat
-    "workbench.browser.sendElementsToChat.attachImages": true
+    "workbench.browser.sendElementsToChat.attachImages": true,
+
+    //
+    // YAML Language Support by Red Hat
+    //
+
+    // Turns off this extension's own SchemaStore-based schema detection for the
+    // listed files, so only one extension reports on them. These globs are not
+    // hand-written: 1.24.0 appends them itself once a more specific extension is
+    // installed — here github.vscode-github-actions, which also claims the
+    // Gitea / Forgejo workflow paths because they take GitHub Actions files.
+    //
+    // It outranks `yaml.schemas` (priority 4 vs 3), so a manual mapping for these
+    // paths would be kept but never used; the github-workflow.json entry that
+    // used to sit above was removed for that reason. Only a per-file
+    // `# yaml-language-server: $schema=...` modeline still wins.
+    "yaml.disableSchemaDetection": [
+        "**/.github/workflows/*.yml",
+        "**/.github/workflows/*.yaml",
+        "**/.gitea/workflows/*.yml",
+        "**/.gitea/workflows/*.yaml",
+        "**/.forgejo/workflows/*.yml",
+        "**/.forgejo/workflows/*.yaml"
+    ]
 }
