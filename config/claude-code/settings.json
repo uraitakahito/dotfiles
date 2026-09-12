@@ -241,6 +241,7 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
+  "model": "opus[1m]",
   "preferredNotifChannel": "iterm2",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
