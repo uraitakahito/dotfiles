@@ -1,61 +1,61 @@
-## Workflow Orchestration
+## ワークフローの進め方
 
-### Plan Mode Default
+### plan mode を既定にする
 
-- Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions)
-- If something goes sideways, STOP and re-plan immediately – don't keep pushing
-- Use plan mode for verification steps, not just building
-- Write detailed specs upfront to reduce ambiguity
+- 自明でないタスク（3 ステップ以上、またはアーキテクチャ上の判断を含むもの）では、必ず plan mode に入る
+- 何かがおかしくなったら、すぐに立ち止まって計画をやり直す。そのまま押し切らない
+- plan mode は実装だけでなく、検証の手順にも使う
+- あいまいさを減らすため、最初に詳細な仕様を書く
 
-### Subagent Strategy
+### サブエージェントの使い方
 
-- Use subagents liberally to keep main context window clean
-- Offload research, exploration, and parallel analysis to subagents
-- For complex problems, throw more compute at it via subagents
-- One task per subagent for focused execution
+- メインのコンテキストウィンドウをきれいに保つため、サブエージェントを積極的に使う
+- 調査、探索、並行した分析はサブエージェントに任せる
+- 複雑な問題には、サブエージェントを通じてより多くの計算資源を投入する
+- 集中して実行させるため、サブエージェント 1 つにつきタスクは 1 つ
 
-### Self-Improvement Loop
+### 自己改善のループ
 
-- After ANY correction from the user: update `tasks/lessons.md` with the pattern
-- Write rules for yourself that prevent the same mistake
-- Ruthlessly iterate on these lessons until mistake rate drops
-- Review lessons at session start for relevant project
+- ユーザーから指摘を受けたら、そのたびに `tasks/lessons.md` にそのパターンを記録する
+- 同じ間違いを防ぐためのルールを自分のために書く
+- 間違いの頻度が下がるまで、この教訓を徹底的に見直し続ける
+- セッションの開始時に、該当するプロジェクトの教訓を読み返す
 
-### Verification Before Done
+### 完了前の検証
 
-- Never mark a task complete without proving it works
-- Diff behavior between main and your changes when relevant
-- Ask yourself: "Would a staff engineer approve this?"
-- Run tests, check logs, demonstrate correctness
+- 動くことを証明せずにタスクを完了にしない
+- 必要に応じて、main と自分の変更との振る舞いの差を比較する
+- 「スタッフエンジニアならこれを承認するか？」と自問する
+- テストを実行し、ログを確認し、正しさを示す
 
-### Demand Elegance
+### エレガントさを追求する
 
-- For non-trivial changes: pause and ask "is there a more elegant way?"
-- If a fix feels hacky: "Knowing everything I know now, implement the elegant solution"
-- Skip this for simple, obvious fixes – don't over-engineer
-- Challenge your own work before presenting it
+- 自明でない変更では、いったん立ち止まって「もっとエレガントな方法はないか？」と問う
+- 修正が場当たり的だと感じたら、「今わかっていることをすべて踏まえて、エレガントな解を実装する」
+- 単純で明白な修正ではこれを省く。過剰な設計はしない
+- 提示する前に、自分の成果を自分で批判的に見直す
 
-### Autonomous Bug Fixing
+### 自律的なバグ修正
 
-- When given a bug report: just fix it. Don't ask for hand-holding
-- Point at logs, errors, failing tests – then resolve them
-- Zero context switching required from the user
-- Go fix failing CI tests without being told how
+- バグ報告を受けたら、ただ直す。手取り足取りの指示を求めない
+- ログ、エラー、失敗しているテストを特定し、そのまま解決する
+- ユーザーにコンテキストの切り替えを一切求めない
+- CI で失敗しているテストは、やり方を指示されなくても直しに行く
 
-## Task Management
+## タスク管理
 
-1. Plan First: Write plan to `tasks/todo.md` with checkable items
-2. Verify Plan: Check in before starting implementation
-3. Track Progress: Mark items complete as you go
-4. Explain Changes: High-level summary at each step
-5. Document Results: Add review section to `tasks/todo.md`
-6. Capture Lessons: Update `tasks/lessons.md` after corrections
+1. まず計画: チェック可能な項目で `tasks/todo.md` に計画を書く
+2. 計画の確認: 実装を始める前に確認を取る
+3. 進捗の記録: 進めながら項目を完了にしていく
+4. 変更の説明: 各ステップで高レベルの要約を伝える
+5. 結果の記録: `tasks/todo.md` にレビューのセクションを追加する
+6. 教訓の記録: 指摘を受けたら `tasks/lessons.md` を更新する
 
-## Core Principles
+## 基本原則
 
-- Simplicity First: Make every change as simple as possible. Impact minimal code.
-- No Laziness: Find root causes. No temporary fixes. Senior developer standards.
-- Minimal Impact: Changes should only touch what's necessary. Avoid introducing bugs.
+- シンプルさ第一: どの変更も可能な限りシンプルにする。影響するコードは最小限にする
+- 手を抜かない: 根本原因を見つける。一時しのぎの修正はしない。シニア開発者の水準で取り組む
+- 影響は最小限に: 変更は必要な箇所だけに触れる。バグを持ち込まない
 
 ## 開発ガイドライン
 
