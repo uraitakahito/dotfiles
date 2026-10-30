@@ -212,6 +212,7 @@
       "Bash(gh api * --method PUT*:*)"
     ]
   },
+  "model": "fable",
   "hooks": {
     "Stop": [
       {
@@ -232,6 +233,18 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/herdr-agent-state.sh\"; [ -f \"$f\" ] || exit 0; bash \"$f\" session",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -243,7 +256,6 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "model": "opus[1m]",
   "preferredNotifChannel": "iterm2",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
