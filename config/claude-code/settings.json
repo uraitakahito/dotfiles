@@ -232,6 +232,18 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/herdr-agent-state.sh\"; [ -f \"$f\" ] || exit 0; bash \"$f\" session",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
