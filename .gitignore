@@ -2,3 +2,5 @@ config/zsh/completion/_docker
 config/zsh/completion/_docker-compose
 # Zsh plugins (installed by install.sh)
 config/zsh/plugins/
+# Claude Code lessons (tasks/lessons.md, kept per CLAUDE.md)
+/tasks/
