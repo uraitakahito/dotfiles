@@ -85,5 +85,16 @@ unset CLAUDE_CODE_BRIDGE_SESSION_ID
 out=$(hook stop '{session_id: "s7", cwd: $cwd, last_assistant_message: "x"}')
 expect "without Remote Control: no link" "$out" 'has("click") | not'
 
+out=$(HERDR_PANE_ID=w3:p2 hook stop '{session_id: "s8", cwd: $cwd, last_assistant_message: "x"}')
+expect "the herdr pane ends the title" "$out" '.title | endswith(" · w3:p2")'
+out=$(hook stop '{session_id: "s8", cwd: $cwd,
+  last_assistant_message: "PR を作りました（https://github.com/o/r/pull/1）。CI も通りました。"}')
+expect "the first link becomes a button" "$out" \
+  '.actions == [{action: "view", label: "リンクを開く", url: "https://github.com/o/r/pull/1"}]'
+out=$(hook stop '{session_id: "s8", cwd: $cwd, last_assistant_message: "詳しくは [PR](https://github.com/o/r/pull/2) で。"}')
+expect "a Markdown link works too" "$out" '.actions[0].url == "https://github.com/o/r/pull/2"'
+out=$(hook stop '{session_id: "s8", cwd: $cwd, last_assistant_message: "x"}')
+expect "no link: no button" "$out" 'has("actions") | not'
+
 echo "$checks checks, $failed failed"
 [ "$failed" -eq 0 ]

@@ -93,9 +93,15 @@ esac
 
 # A tap opens this session on claude.ai; the ID is set while Remote Control is connected.
 click="${CLAUDE_CODE_BRIDGE_SESSION_ID:+https://claude.ai/code/$CLAUDE_CODE_BRIDGE_SESSION_ID}"
+# The herdr pane says where the session runs, for when you are back at the desk.
+title="$title${HERDR_PANE_ID:+ · $HERDR_PANE_ID}"
+# The reply's first link (a PR, a page) becomes a button.
 json=$(jq -cn --arg topic "$NTFY_TOPIC" --arg title "$title" --arg message "$message" --argjson priority "$priority" \
-  --arg click "$click" '
+  --arg click "$click" --arg reply "${reply:-}" '
   {topic: $topic, title: $title, message: $message, priority: $priority}
-  + if $click == "" then {} else {click: $click} end')
+  + if $click == "" then {} else {click: $click} end
+  + ([$reply | scan("https://[!-~]+")][0] // null
+     | if . == null then {} else {actions: [{action: "view", label: "リンクを開く",
+                                          url: sub("[)\\].,;:`>]+$"; "")}]} end)')
 if [ -n "${NTFY_DRYRUN:-}" ]; then printf '%s\n' "$json"; exit 0; fi
 curl -fsS -d "$json" https://ntfy.sh/ >/dev/null
