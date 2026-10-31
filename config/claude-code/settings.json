@@ -180,12 +180,22 @@
   },
   "model": "fable",
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/notify.sh prompt"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/notify.sh Stop"
+            "command": "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/notify.sh stop"
           }
         ]
       }
@@ -195,7 +205,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/notify.sh Notification"
+            "command": "${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/notify.sh notification"
           }
         ]
       }
