@@ -250,6 +250,8 @@
   ],
   "// statusLine": [
     "ステータスラインに 5h/7d レートリミット使用率とリセット時刻を表示する。",
+    "Fable などモデル別の週の枠は stdin にないため、statusline-usage-refresh.sh が get_usage で取り、",
+    "~/.cache/claude-statusline/ にキャッシュする。取り直しが 2 回続けて失敗すると ⚠ と理由を出す。",
     "rate_limits は Pro/Max + 最初のAPI応答後にのみ stdin に渡されるため、",
     "認証前/初回応答前は --% / --:-- にフォールバックする。",
     "refreshInterval=30s はリミットウィンドウ境界をまたぐ際の更新を保証するため。"
