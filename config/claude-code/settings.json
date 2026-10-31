@@ -233,8 +233,9 @@
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "preferredNotifChannel": "iterm2",
-  "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": false,
+  "agentPushNotifEnabled": false,
+  "remoteControlAtStartup": true,
   "//": [
     "Discussion on how to write comments in package.json:",
     "https://stackoverflow.com/questions/14221579/how-do-i-add-comments-to-package-json-for-npm-install"
@@ -246,17 +247,13 @@
     "3. 'Filter Alerts' をクリックして 'Send escape sequence-generated alerts' を有効化"
   ],
   "// agentPushNotifEnabled": [
-    "Remote Controlセッション (--remote-control起動) 中に、Claudeモバイルアプリへプッシュ通知を送る:",
-    "- トリガー: タスク完了時 / 判断要求時 / '/notify me when ...' 指示時",
-    "- 必要: モバイルアプリ + claude.aiログイン (Pro以上)",
-    "- 対話中に '/config' の 'Push when Claude decides' トグルで切替可能"
+    "Claude アプリへのプッシュは使わない (inputNeededNotifEnabled も同じ)。",
+    "通知は hooks/notify.sh の ntfy に一本化し、二重に届かないようにする。",
+    "書かないと ~/.claude.json に残った古い値が使われることがあるので、false を明示する。"
   ],
-  "// inputNeededNotifEnabled": [
-    "Claudeが入力待ち (permission prompt や質問) になったときに、Claudeモバイルアプリへプッシュ通知を送る:",
-    "- 公式説明 (内部スキーマ): 'Push to mobile when a permission prompt or question is waiting'",
-    "- agentPushNotifEnabled (Claudeの能動的な通知) と対をなし、こちらは『ユーザーの入力待ち』が発火条件",
-    "- 必要: モバイルアプリ + claude.aiログイン (Pro以上)",
-    "- 対話中に '/config' の 'Push when actions required' トグルで切替可能"
+  "// remoteControlAtStartup": [
+    "対話セッションを毎回 Remote Control につなぐ。notify.sh の通知をタップすると、そのセッションが claude.ai で開く。",
+    "ユーザー設定でだけ効く (プロジェクトやローカルの設定の true は無視される)。"
   ],
   "// statusLine": [
     "ステータスラインに 5h/7d レートリミット使用率とリセット時刻を表示する。",
