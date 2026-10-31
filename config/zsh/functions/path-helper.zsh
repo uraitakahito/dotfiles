@@ -17,9 +17,3 @@
 path_prepend() {
   path=($1(N-/) $path)
 }
-
-# Add directory to PATH if it exists (append)
-# Usage: path_append ./node_modules/.bin
-path_append() {
-  path+=($1(N-/))
-}

@@ -17,9 +17,10 @@ fi
 
 #
 # node_modules/.bin
-# https://github.com/uraitakahito/features/blob/8291744831e2c42b6c01fe169e98cca2a4b7fbc9/src/node/install.sh#L13
+# A relative entry is looked up from the current directory each time.
+# Add it unconditionally: an existence check would run only once, at startup.
 #
-path_append ./node_modules/.bin
+path+=(./node_modules/.bin)
 
 #
 # uv
