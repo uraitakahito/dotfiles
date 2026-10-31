@@ -21,3 +21,13 @@ jobs:
 
       - name: Reject legacy :* permission rules
         run: python3 config/claude-code/check-permissions.py config/claude-code/settings.json
+
+  test-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        # v6.0.2 - https://github.com/actions/checkout/releases/tag/v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Test hooks/notify.sh
+        run: bash config/claude-code/hooks/notify-test.sh
