@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# Claude Code hook: push what finished, and how, to ntfy.sh.
+# Claude Code hook: push what finished, and how, to ntfy.sh. Tapping the push
+# opens the session on claude.ai (Remote Control).
 #
 # Usage (settings.json hooks):
 #   notify.sh prompt         UserPromptSubmit: remember the request and when it began
@@ -90,7 +91,11 @@ case "$event" in
   *) exit 0 ;;
 esac
 
+# A tap opens this session on claude.ai; the ID is set while Remote Control is connected.
+click="${CLAUDE_CODE_BRIDGE_SESSION_ID:+https://claude.ai/code/$CLAUDE_CODE_BRIDGE_SESSION_ID}"
 json=$(jq -cn --arg topic "$NTFY_TOPIC" --arg title "$title" --arg message "$message" --argjson priority "$priority" \
-  '{topic: $topic, title: $title, message: $message, priority: $priority}')
+  --arg click "$click" '
+  {topic: $topic, title: $title, message: $message, priority: $priority}
+  + if $click == "" then {} else {click: $click} end')
 if [ -n "${NTFY_DRYRUN:-}" ]; then printf '%s\n' "$json"; exit 0; fi
 curl -fsS -d "$json" https://ntfy.sh/ >/dev/null

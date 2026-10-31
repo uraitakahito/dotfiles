@@ -75,5 +75,15 @@ expect "NTFY_TOPIC unset: nothing sent" "$out"
 out=$(hook stop '{session_id: "s6", cwd: $cwd, last_assistant_message: ""}')
 expect "an empty reply says so" "$out" '.message == "（本文なし）"'
 
+export CLAUDE_CODE_BRIDGE_SESSION_ID=session_TEST
+out=$(hook stop '{session_id: "s7", cwd: $cwd, last_assistant_message: "x"}')
+expect "a tap opens the session on claude.ai" "$out" '.click == "https://claude.ai/code/session_TEST"'
+out=$(hook notification '{session_id: "s7", cwd: $cwd, notification_type: "permission_prompt",
+  message: "Claude needs your permission to use Bash"}')
+expect "so does a permission prompt" "$out" '.click == "https://claude.ai/code/session_TEST"'
+unset CLAUDE_CODE_BRIDGE_SESSION_ID
+out=$(hook stop '{session_id: "s7", cwd: $cwd, last_assistant_message: "x"}')
+expect "without Remote Control: no link" "$out" 'has("click") | not'
+
 echo "$checks checks, $failed failed"
 [ "$failed" -eq 0 ]
