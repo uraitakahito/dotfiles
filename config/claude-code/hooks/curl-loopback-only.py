@@ -8,18 +8,23 @@
   - 外の行き先が 1 つでもある・行き先が読めない
   - 行き先を変える旗がある (-K -x -L -: --resolve --connect-to --proxy …)
   - ssh の先で走る (そこの loopback はこの機械ではない)
-  - 文字列の中で走る curl の書き込み (bash -c '…'・$(…)・`…`・シェルに食わせる here-doc)
+  - 別のシェルに渡す文字列の中の curl の書き込み (bash -c '…'・eval・ssh・シェルに食わせる here-doc)
+$(…)・`…` は、bash が走らせる物だけを取り出して、上と同じ規則で調べる。一重引用符と
+$'…' の中、引用符つきの here-doc の本文は走らないので読まない。引用符の無い here-doc の本文の
+中の $(…) は走るので読む。
 語に分けられないとき (shlex は "$(… "…" …)" の入れ子の引用符を読めない) は、置き換える前の
 deny と同じ照合に戻す: 片の頭が curl で、後ろに書く旗があれば止める。
 
 境界ではない。書き方を変えれば当たらないのは、置き換える前の deny と同じ。外へ書く curl を
 止める強さはそのまま、loopback だけを開ける。
 """
+import codecs
 import ipaddress
 import json
 import re
 import shlex
 import sys
+import warnings
 from urllib.parse import urlsplit
 
 # 値を取る短い旗 (curl --help all)。-X -d -F -T -u は書く・送る旗でもある。
@@ -49,7 +54,6 @@ REDIRECT = {">", ">>", "<", "<>", ">|", ">&", "&>", "&>>", "<&", "<<", "<<-", "<
 SHELLS = {"sh", "bash", "zsh", "dash", "ksh"}
 CURL_WORD = re.compile(r"(^|[^A-Za-z0-9_.-])curl($|[^A-Za-z0-9_-])")
 HEREDOC = re.compile(r"(?<!<)<<-?(?!<)[ \t]*(['\"]?)([A-Za-z_][A-Za-z0-9_]*)\1")  # <<< は here-string
-SUBST = ("$(", "`", "<(", ">(")
 # shlex は続いた記号を 1 語にする (")\n"・");")。演算子ごとに分け直す
 PUNCT = re.compile(r"[();<>|&\n`]+")
 OPS = re.compile(r"<<<|&>>|<<|>>|&&|\|\||;;|\|&|>&|<&|&>|>\||<>|[();<>|&\n`]")
@@ -82,8 +86,9 @@ def base(word):
 
 
 def split_heredocs(cmd):
-    """here-doc の本文を外す。シェル・ssh・eval に食わせる本文は、別に返して中を読む。"""
-    lines, out, fed, i = cmd.split("\n"), [], [], 0
+    """here-doc の本文を外す。シェル・ssh・eval に食わせる本文と、引用符の無い (展開される) 本文は、
+    別に返して中を読む。"""
+    lines, out, fed, expanded, i = cmd.split("\n"), [], [], [], 0
     while i < len(lines):
         line = lines[i]
         out.append(line)
@@ -99,11 +104,126 @@ def split_heredocs(cmd):
             words = {base(w) for w in re.split(r"[\s;&|()]+", line[:m.start()]) if w}
             if words & (SHELLS | {"ssh", "eval"}):
                 fed.append("\n".join(body))
-    return "\n".join(out), fed
+            if not m.group(1):
+                expanded.append("\n".join(body))
+    return "\n".join(out), fed, expanded
+
+
+def substitutions(s, heredoc=False):
+    """bash が走らせる $(…)・`…` の中身を返す (<(…) は引用符の外でしか走らず、語の側で読める)。
+
+    一重引用符と $'…' の中は走らないので読まない。二重引用符の中の $(…) と `…` は走る。
+    heredoc=True は引用符の無い here-doc の本文 (引用符はただの文字で、$( と ` は走る)。
+    閉じない物があれば Unreadable。
+    """
+    out, stack, i, n = [], [], 0, len(s)  # stack: [種類, 中身の始まり, 括弧の深さ]
+    outer = "doc" if heredoc else "top"
+    while i < n:
+        c = s[i]
+        kind = stack[-1][0] if stack else outer
+        if c == "\\":
+            i += 2
+            continue
+        if kind == "bt":
+            if c == "`":
+                out.append(s[stack.pop()[1]:i])
+            i += 1
+            continue
+        if kind in ("top", "sub"):
+            if c == "#" and (i == 0 or s[i - 1] in " \t\n;&|()"):
+                j = s.find("\n", i)
+                i = n if j < 0 else j
+                continue
+            if c == "'":
+                j = s.find("'", i + 1)
+                if j < 0:
+                    raise Unreadable("閉じない ' がある")
+                i = j + 1
+                continue
+            if s.startswith("$'", i):
+                j = i + 2
+                while j < n and s[j] != "'":
+                    j += 2 if s[j] == "\\" else 1
+                if j >= n:
+                    raise Unreadable("閉じない $' がある")
+                i = j + 1
+                continue
+            if c == '"':
+                stack.append(["dq", i + 1, 0])
+                i += 1
+                continue
+        if kind == "dq" and c == '"':
+            stack.pop()
+            i += 1
+            continue
+        if s.startswith("$(", i):
+            stack.append(["sub", i + 2, 1])
+            i += 2
+            continue
+        if c == "`":
+            stack.append(["bt", i + 1, 0])
+            i += 1
+            continue
+        if kind == "sub" and c in "()":
+            stack[-1][2] += 1 if c == "(" else -1
+            if stack[-1][2] == 0:
+                out.append(s[stack.pop()[1]:i])
+        i += 1
+    if stack:
+        raise Unreadable("閉じない $( か ` か \" がある")
+    return out
+
+
+def unquote_ansi_c(s):
+    """引用符の外の $'…' (ANSI-C の引用。shlex は知らない) を、同じ中身の '…' に書き換える。"""
+    out, i, n, in_dq = [], 0, len(s), False
+    while i < n:
+        c = s[i]
+        if c == "\\":
+            out.append(s[i:i + 2])
+            i += 2
+            continue
+        if in_dq:
+            in_dq = c != '"'
+            out.append(c)
+            i += 1
+            continue
+        if c == "#" and (i == 0 or s[i - 1] in " \t\n;&|()"):
+            j = s.find("\n", i)  # 注釈は落とす (中のアポストロフィで shlex が迷うので)
+            i = n if j < 0 else j
+            continue
+        if c == '"':
+            in_dq = True
+        elif c == "'":
+            j = s.find("'", i + 1)
+            if j < 0:
+                raise Unreadable("閉じない ' がある")
+            out.append(s[i:j + 1])
+            i = j + 1
+            continue
+        elif s.startswith("$'", i):
+            j = i + 2
+            while j < n and s[j] != "'":
+                j += 2 if s[j] == "\\" else 1
+            if j >= n:
+                raise Unreadable("閉じない $' がある")
+            raw = s[i + 2:j]
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                try:
+                    val = codecs.decode(raw.encode("latin-1", "backslashreplace"), "unicode_escape")
+                except Exception:
+                    val = raw
+            out.append(shlex.quote(val))
+            i = j + 1
+            continue
+        out.append(c)
+        i += 1
+    return "".join(out)
 
 
 def tokens(cmd):
-    lex = shlex.shlex(cmd.replace("\\\n", " "), posix=True, punctuation_chars="();<>|&\n`")
+    lex = shlex.shlex(unquote_ansi_c(cmd.replace("\\\n", " ")), posix=True, punctuation_chars="();<>|&\n`")
     lex.whitespace = " \t\r"
     lex.whitespace_split = True
     lex.commenters = ""  # 語の途中の # は bash ではただの文字。注釈は下で、語の頭の # だけ
@@ -201,9 +321,12 @@ def check_segment(args, nested, after_ssh):
 def check(cmd, nested=False, depth=0):
     if depth > 3:
         raise Unreadable("入れ子が深すぎる")
-    cmd, fed = split_heredocs(cmd)
+    cmd, fed, expanded = split_heredocs(cmd)
     for body in fed:
         check(body, True, depth + 1)
+    for body in substitutions(cmd) + [b for e in expanded for b in substitutions(e, heredoc=True)]:
+        if CURL_WORD.search(body):
+            check(body, nested, depth + 1)  # 同じシェルで走る: 上と同じ規則
     toks = tokens(cmd)
     seg, words = 0, set()  # いまの片の、ここまでの語
     for k, t in enumerate(toks):
@@ -218,9 +341,8 @@ def check(cmd, nested=False, depth=0):
         if not CURL_WORD.search(t):
             words.add(base(t))
             continue
-        runs_as_code = (
-            any(s in t for s in SUBST)
-            or "eval" in words or "ssh" in words
+        runs_as_code = (  # 別のシェルに渡す文字列
+            "eval" in words or "ssh" in words
             or (k > seg and re.fullmatch(r"-[A-Za-z]*c[A-Za-z]*", toks[k - 1]) and words & SHELLS)
         )
         if runs_as_code:
