@@ -162,21 +162,6 @@
       "Edit(//**/.env.dev)",
       "Edit(//**/.env.prod)",
       "Bash(xxd *)",
-      "Bash(curl* -X*)",
-      "Bash(curl* --request*)",
-      "Bash(curl* -d*)",
-      "Bash(curl* --data*)",
-      "Bash(curl* --json*)",
-      "Bash(curl* -F*)",
-      "Bash(curl* --form*)",
-      "Bash(curl* -T*)",
-      "Bash(curl* --upload-file*)",
-      "Bash(curl* -u*)",
-      "Bash(curl* --user *)",
-      "Bash(curl* --user=*)",
-      "Bash(curl* --oauth2-bearer*)",
-      "Bash(curl* -H*uthorization*)",
-      "Bash(curl* --header*uthorization*)",
       "Bash(gh repo delete *)",
       "Bash(gh secret set *)",
       "Bash(gh secret delete *)",
@@ -198,6 +183,18 @@
   },
   "model": "fable",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"${CLAUDE_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/claude}/hooks/curl-loopback-only.sh\"; if [ -f \"$f\" ]; then sh \"$f\"; else grep -q curl || exit 0; echo \"curl-loopback-only.sh が無いので、curl を含む Bash を止めました (seed-config-dir.sh で張る)\" >&2; exit 2; fi",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
