@@ -181,7 +181,7 @@
       "Bash(gh api* --input*)"
     ]
   },
-  "model": "fable",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
