@@ -187,6 +187,47 @@ if is-darwin && ! is-container; then
 fi
 
 #
+# cmux
+#
+# Symlink the whole ~/.config/cmux DIRECTORY (like the git template), not the
+# file: cmux rewrites cmux.json itself (`cmux config set`, approved resume
+# commands). If it saves by writing a temp file and renaming it over
+# cmux.json, a file symlink would be replaced by a real file and silently
+# leave the repo; a directory symlink keeps every write inside the repo.
+# config/cmux/.gitignore tracks only cmux.json.
+# cmux always uses the real ~/.config/cmux (it ignores XDG_CONFIG_HOME).
+# macOS host only: cmux is a Mac app.
+#
+if is-darwin && ! is-container; then
+  CMUX_DIR="$HOME/.config/cmux"
+  if [ -d "$CMUX_DIR" ] && [ ! -L "$CMUX_DIR" ]; then
+    # A real folder (cmux created it on first launch). Keep it as a backup,
+    # but only if it holds nothing besides cmux.json: never drop other files.
+    CMUX_OTHERS=$(find "$CMUX_DIR" -mindepth 1 -maxdepth 1 ! -name cmux.json ! -name .DS_Store)
+    if [ -n "$CMUX_OTHERS" ]; then
+      echo "cmux: $CMUX_DIR has files other than cmux.json; not linking. Move them out and re-run:" >&2
+      echo "$CMUX_OTHERS" >&2
+    else
+      CMUX_BACKUP="$CMUX_DIR.bak-$(date +%Y%m%d-%H%M%S)"
+      mv "$CMUX_DIR" "$CMUX_BACKUP"
+      echo "cmux: moved the existing $CMUX_DIR to $CMUX_BACKUP"
+    fi
+  fi
+  if [ ! -e "$CMUX_DIR" ] || [ -L "$CMUX_DIR" ]; then
+    mkdir -p "$HOME/.config"
+    ln -fsn "$SCRIPT_DIR/config/cmux" "$CMUX_DIR"
+    echo "cmux: linked $CMUX_DIR. Run 'cmux reload-config' (or Cmd+Shift+,) if cmux is running."
+  elif [ ! -d "$CMUX_DIR" ]; then
+    echo "cmux: $CMUX_DIR exists but is not a folder; not linking." >&2
+  fi
+  # The notification hook in cmux.json calls roster's tpm; without it every
+  # notification shows "Notification Hook Failed".
+  if [ ! -x "$HOME/projects/ai/roster/cli/bin/tpm" ]; then
+    echo "cmux: ~/projects/ai/roster/cli/bin/tpm not found; the tpm-banner hook in cmux.json will fail on each notification." >&2
+  fi
+fi
+
+#
 # npm
 #
 # npm does NOT natively support $XDG_CONFIG_HOME/npm/npmrc.
