@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+
+  // dotfiles で管理する（~/.config/cmux は dotfiles の config/cmux への symlink。install.sh が張る）。
+  // 書いてある設定だけが効き、ほかは設定画面の値か既定の値になる。全項目と既定の値は `cmux config docs` で見る。
+  // 手で変えたら Cmd+Shift+, か `cmux reload-config` で読み直す（`cmux config set` で変えた物はすぐ効く）。
+  // cmux が書き替えた物（`cmux config set`・resume の命令の承認）も、この file に入るので git diff に出る。
+
+  // Mac のバナーを、tpm（roster）の居場所の役割 × きっかけで出すか消すかを決める hook。
+  // node と cmux は tpm の入口が自分で見つけるので、Node を上げても替えなくてよい。roster を移したら `tpm banner setup` の字に替える。
+  // roster が ~/projects/ai/roster に無い Mac では、通知のたびに「Notification Hook Failed」が出る。
+  // 出すバナーを替えたいときは、~/.config/tpm/banner.jsonc に書く。たとえば DevOps Engineer 担当が答え終わったときも出すなら、
+  //   { "banner": { "devops-engineer": { "turn": "show" } } }
+  "notifications": {
+    "hooks": [
+      {"id":"tpm-banner","command":"\"$HOME/projects/ai/roster/cli/bin/tpm\" banner hook","timeoutSeconds":5}
+    ]
+  }
+}

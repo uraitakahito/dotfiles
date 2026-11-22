@@ -1,0 +1,5 @@
+# ~/.config/cmux is a symlink to this folder (install.sh), so anything cmux
+# creates here lands in the repo. Track only the settings file.
+*
+!.gitignore
+!cmux.json
