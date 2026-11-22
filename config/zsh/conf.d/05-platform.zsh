@@ -12,6 +12,14 @@ if is-darwin; then
   fi
 
   #
+  # rustup
+  #
+  # Homebrew's rustup is keg-only. Put its proxies (cargo, rustc, ...) first in PATH
+  # so that each repo's rust-toolchain.toml selects the toolchain.
+  #
+  path_prepend /opt/homebrew/opt/rustup/bin
+
+  #
   # zsh-completions
   #
   # You may also need to force rebuild `zcompdump`:
