@@ -181,7 +181,7 @@
       "Bash(gh api* --input*)"
     ]
   },
-  "model": "opus",
+  "model": "claude-opus-5-5",
   "hooks": {
     "PreToolUse": [
       {
