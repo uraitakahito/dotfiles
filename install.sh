@@ -220,10 +220,11 @@ if is-darwin && ! is-container; then
   elif [ ! -d "$CMUX_DIR" ]; then
     echo "cmux: $CMUX_DIR exists but is not a folder; not linking." >&2
   fi
-  # The notification hook in cmux.json calls roster's tpm; without it every
-  # notification shows "Notification Hook Failed".
-  if [ ! -x "$HOME/projects/ai/roster/cli/bin/tpm" ]; then
-    echo "cmux: ~/projects/ai/roster/cli/bin/tpm not found; the tpm-banner hook in cmux.json will fail on each notification." >&2
+  # The notification hook in cmux.json calls roster's entry script. Without
+  # roster the hook does nothing (it returns {} and the banner stays as cmux
+  # shows it), so this is only a note, not an error.
+  if [ ! -x "$HOME/projects/ai/roster/cli/bin/roster" ]; then
+    echo "cmux: ~/projects/ai/roster/cli/bin/roster not found; the tpm-banner hook in cmux.json will do nothing (banners stay as cmux shows them)."
   fi
 fi
 
