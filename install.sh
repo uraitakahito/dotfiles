@@ -224,7 +224,7 @@ if is-darwin && ! is-container; then
   # roster the hook does nothing (it returns {} and the banner stays as cmux
   # shows it), so this is only a note, not an error.
   if [ ! -x "$HOME/projects/ai/roster/cli/bin/roster" ]; then
-    echo "cmux: ~/projects/ai/roster/cli/bin/roster not found; the tpm-banner hook in cmux.json will do nothing (banners stay as cmux shows them)."
+    echo "cmux: ~/projects/ai/roster/cli/bin/roster not found; the roster-banner hook in cmux.json will do nothing (banners stay as cmux shows them)."
   fi
 fi
 

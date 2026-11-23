@@ -15,7 +15,7 @@
   //   { "banner": { "devops-engineer": { "turn": "show" } } }
   "notifications": {
     "hooks": [
-      {"id":"tpm-banner","command":"[ -x \"$HOME/projects/ai/roster/cli/bin/roster\" ] || { echo '{}'; exit 0; }; exec \"$HOME/projects/ai/roster/cli/bin/roster\" banner hook","timeoutSeconds":5}
+      {"id":"roster-banner","command":"[ -x \"$HOME/projects/ai/roster/cli/bin/roster\" ] || { echo '{}'; exit 0; }; exec \"$HOME/projects/ai/roster/cli/bin/roster\" banner hook","timeoutSeconds":5}
     ]
   }
 }
