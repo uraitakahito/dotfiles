@@ -11,7 +11,7 @@
   // node と cmux は roster の入口（cli/bin/roster）が自分で見つけるので、Node を上げても替えなくてよい。roster を移したら `roster banner setup` の字に替える。
   // roster が ~/projects/ai/roster に無い Mac では、命令の頭の検査で何もせずに終わる（バナーは cmux のまま出る）。
   // roster が有って動かない時は「Notification Hook Failed」が出る。
-  // 出すバナーを替えたいときは、~/.config/tpm/banner.jsonc に書く。たとえば DevOps Engineer 担当が答え終わったときも出すなら、
+  // 出すバナーを替えたいときは、~/.config/roster/banner.jsonc に書く。たとえば DevOps Engineer 担当が答え終わったときも出すなら、
   //   { "banner": { "devops-engineer": { "turn": "show" } } }
   "notifications": {
     "hooks": [
