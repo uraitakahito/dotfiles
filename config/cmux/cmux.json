@@ -9,12 +9,13 @@
 
   // Mac のバナーを、roster の居場所の役割 × きっかけで出すか消すかを決める hook。
   // node と cmux は roster の入口（cli/bin/roster）が自分で見つけるので、Node を上げても替えなくてよい。roster を移したら `roster banner setup` の字に替える。
-  // roster が ~/projects/ai/roster に無い Mac では、通知のたびに「Notification Hook Failed」が出る。
+  // roster が ~/projects/ai/roster に無い Mac では、命令の頭の検査で何もせずに終わる（バナーは cmux のまま出る）。
+  // roster が有って動かない時は「Notification Hook Failed」が出る。
   // 出すバナーを替えたいときは、~/.config/tpm/banner.jsonc に書く。たとえば DevOps Engineer 担当が答え終わったときも出すなら、
   //   { "banner": { "devops-engineer": { "turn": "show" } } }
   "notifications": {
     "hooks": [
-      {"id":"tpm-banner","command":"\"$HOME/projects/ai/roster/cli/bin/roster\" banner hook","timeoutSeconds":5}
+      {"id":"tpm-banner","command":"[ -x \"$HOME/projects/ai/roster/cli/bin/roster\" ] || { echo '{}'; exit 0; }; exec \"$HOME/projects/ai/roster/cli/bin/roster\" banner hook","timeoutSeconds":5}
     ]
   }
 }
