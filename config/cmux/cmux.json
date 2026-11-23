@@ -14,7 +14,7 @@
   //   { "banner": { "devops-engineer": { "turn": "show" } } }
   "notifications": {
     "hooks": [
-      {"id":"tpm-banner","command":"\"$HOME/projects/ai/roster/cli/bin/tpm\" banner hook","timeoutSeconds":5}
+      {"id":"tpm-banner","command":"\"$HOME/projects/ai/roster/cli/bin/roster\" banner hook","timeoutSeconds":5}
     ]
   }
 }
