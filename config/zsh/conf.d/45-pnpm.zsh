@@ -11,6 +11,10 @@ else
 fi
 path_prepend "$PNPM_HOME/bin"
 
-if (( $+commands[pnpm] )); then
+# nodenv's shim exists once any Node version has pnpm, and fails in a
+# version without it. Ask nodenv only when the shim is what we'd run.
+if (( $+commands[pnpm] )) && {
+  [[ $commands[pnpm] != */shims/pnpm ]] || nodenv which pnpm &>/dev/null
+}; then
   eval "$(pnpm completion zsh)"
 fi
