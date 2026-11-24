@@ -171,14 +171,7 @@
       "Bash(gh gpg-key add *)",
       "Bash(gh auth login *)",
       "Bash(gh auth logout *)",
-      "Bash(gh auth refresh *)",
-      "Bash(gh api* -X*)",
-      "Bash(gh api* --method*)",
-      "Bash(gh api* -f*)",
-      "Bash(gh api* -F*)",
-      "Bash(gh api* --field*)",
-      "Bash(gh api* --raw-field*)",
-      "Bash(gh api* --input*)"
+      "Bash(gh auth refresh *)"
     ]
   },
   "model": "claude-opus-5-5",
