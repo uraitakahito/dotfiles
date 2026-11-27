@@ -12,6 +12,14 @@ if is-darwin; then
   fi
 
   #
+  # cargo install
+  #
+  # Tools installed with `cargo install` (mdbook, sqlx, ...) go to ~/.cargo/bin.
+  # Prepended before rustup below, so rustup's proxies stay first.
+  #
+  path_prepend $HOME/.cargo/bin
+
+  #
   # rustup
   #
   # Homebrew's rustup is keg-only. Put its proxies (cargo, rustc, ...) first in PATH
